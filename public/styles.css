@@ -1,0 +1,2005 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    max-width: 1800px;
+    margin: 0 auto;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.flat_page {
+    background-color: #FFFFFF;
+    margin: 50px 25px;
+    padding: 20px 20px 20px 20px;
+}
+
+.images {
+    margin-right: 15px;
+}
+
+.small_images {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5px;
+}
+
+.description {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.additional_info {
+    font-size: 15px;
+    margin-right: 20px;
+}
+
+.price_per_meter {
+    font-size: 15px;
+}
+
+.flat_price {
+    line-height: 0.5;
+    margin: 15px 0;
+}
+
+.phone_number {
+    width: auto;
+    height: auto;
+    border-radius: 20px;
+    color: #FFFFFF;
+    padding: 10px;
+    display: inline-block;
+    background-color: #298F6B;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.favourites {
+    width: auto;
+    height: auto;
+    border-radius: 20px;
+    background-color: #E5E5E5;
+    padding: 10px;
+    transition: all .5s ease-in-out;
+}
+
+.search_result {
+    padding-left: 120px;
+}
+
+main {
+    margin: 100px;
+}
+
+.background_for_results {
+    background-color: #90C6B2;
+    margin: 0 100px 0 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+.background_inner {
+    background-color: #90C6B2;
+    position: absolute;
+    top: 50px;
+    left: 0;
+}
+
+.flat_page__info__button {
+    color: #828181;
+    border: none;
+    font-size: 12px;
+}
+
+.page-title {
+    margin-left: 150px;
+    font-size: 36px;
+}
+
+button {
+    font-family: 'Roboto', sans-serif;
+    background-color: #298F6B;
+    border-radius: 15px;
+    border: none;
+    height: 50px;
+    width: 300px;
+    font-size: 20px;
+    font-weight: lighter;
+    cursor: pointer;
+    box-shadow: 0 1px 6px 0 rgb(32 33 36);
+}
+
+select {
+    /*background-color: #298F6B;*/
+    border-radius: 15px;
+    border: none;
+    font-size: 20px;
+    padding-left: 5px;
+    margin-left: 5px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.price {
+    background-color: #298F6B;
+    border-radius: 15px;
+    border: none;
+    font-size: 20px;
+    padding-left: 5px;
+    margin-left: 5px;
+    font-weight: bold;
+    margin-right: 10px;
+    height: 40px;
+}
+
+/*header*/
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header_buttons {
+    display: flex;
+}
+
+.header_add_adv_btn {
+    width: auto;
+}
+
+.menu-toggle {
+    display: none;
+    position: relative;
+    width: 30px;
+    height: 26px;
+    background: transparent;
+    border-top: 2px solid;
+    border-bottom: 2px solid;
+    color: black;
+    font-size: 0;
+    transition: all .25s ease-in-out;
+    outline: none;
+    border-radius: unset;
+    margin-right: 10px;
+    z-index: 4;
+}
+
+.menu-toggle:before, .menu-toggle:after {
+    content: '';
+    display: block;
+    width: 25px;
+    height: 2px;
+    position: absolute;
+    top: 50%;
+    left: 13px;
+    background: black;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    transition: -webkit-transform 0.25s ease-in-out;
+}
+
+.menu-toggle.is-active:before {
+    transform: translate(-50%, -50%) rotate(
+            45deg);
+}
+
+.menu-toggle.is-active:after {
+    -webkit-transform: translate(-50%, -50%) rotate(
+            -45deg);
+    transform: translate(-50%, -50%) rotate(
+            -45deg);
+}
+
+/*popup*/
+.popup_nav {
+    margin: 0;
+    list-style-type: none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    padding-top: 50px;
+    height: 100%;
+    z-index: 3;
+    transform: translate(100%, 0);
+    transition: transform .5s ease-in-out;
+    background: linear-gradient(to right, #3084b9 0%, #54a27a 100%);
+}
+
+.popup_nav__item {
+    /*border-bottom: white 2px solid;*/
+    padding: 5px 0;
+}
+
+.background_for_one_flat_page {
+    background-color: #90C6B2;
+    margin: 0 100px 0 100px;
+    display: flex;
+    max-width: 1300px;
+}
+
+.flat_history_buttons_block {
+    padding-bottom: 20px;
+    margin-left: 5px;
+    display: flex;
+}
+
+.flat_page__price__views_and_price {
+    font-size: 10px;
+    margin-left: 7px;
+}
+
+.flat_page__info {
+    width: 70%;
+}
+
+.flat_page__price {
+    width: 70%;
+    margin-left: 20px;
+}
+
+.flat_page__info__image {
+    font-size: 200px;
+    margin-left: 5px;
+}
+
+.flat_page__price__views_and_price__views {
+    color: #828181;
+    font-size: 8px;
+    line-height: 0.5;
+}
+
+.flat_page__price__views_and_price__price {
+    font-size: 20px;
+}
+
+.flat_page__inner {
+    display: flex;
+}
+
+.flat_page__description {
+    display: none;
+}
+
+.flat_page__info__full_description__map {
+    width: 100%;
+    height: 400px;
+    margin-bottom: 5px;
+}
+
+/*add_adv*/
+.content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-adv__header {
+    font-size: 36px;
+    margin-left: 40px;
+}
+
+.nav {
+    display: flex;
+}
+
+.header_logo {
+    cursor: pointer;
+    max-width: 100px;
+    max-height: 100px;
+    background-color: #90C6B2;
+    color: #90C6B2;
+}
+
+.nav_item {
+    text-decoration: none;
+    color: black;
+    /*width: 150px;*/
+    height: 50px;
+    text-align: center;
+    align-items: center;
+    list-style-type: none;
+    padding: 0 20px;
+}
+
+.nav_item_text {
+    text-decoration: none;
+    color: black;
+    padding-top: 40px;
+    font-weight: lighter;
+}
+
+.popup-nav_item_text {
+    text-decoration: none;
+    color: white;
+    font-size: 36px;
+    font-weight: lighter;
+}
+
+
+.header_enter_btn {
+    background-color: #90C6B2;
+    width: 100px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.header_info {
+    display: flex;
+    align-items: center;
+}
+
+.header_add_adv_text {
+    margin: 10px;
+}
+
+.nav_item_text {
+    padding-top: 15px;
+}
+
+.views_and_price {
+    font-size: 10px;
+}
+
+.flat_page__info {
+    width: 70%;
+}
+
+.flat_page__info__image {
+    font-size: 200px;
+    height: 376px;
+    width: 817px;
+}
+
+.views {
+    color: #828181;
+    font-size: 8px;
+    line-height: 0.5;
+}
+
+/*add_adv*/
+.content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-adv__header {
+    font-size: 36px;
+    margin-left: 40px;
+}
+
+.add-adv {
+    width: 70%;
+    padding-right: 50px;
+}
+
+.add-adv__form {
+    background-color: #90C6B2;
+}
+
+.ad-adv__form__image {
+    padding: 10px;
+    max-height: 200px;
+    max-width: 200px;
+}
+
+.add-adv__info {
+    list-style-type: none;
+}
+
+.add-adv__info:first-child {
+    padding-top: 30px;
+}
+
+.add-adv__info__item {
+    display: flex;
+    margin-bottom: 20px;
+    margin-left: 50px;
+}
+
+.add-adv__info__item--block {
+    display: block;
+}
+
+.add-adv__form__title {
+    font-weight: 300;
+    width: 225px;
+    height: 40px;
+}
+
+
+.add-adv__option {
+    font-size: 20px;
+    margin-right: 30px;
+    width: 211px;
+    height: 40px;
+    border-radius: 20px;
+    transition: color, background-color .2s linear;
+    background-color: #298F6B;
+    border: 0;
+    cursor: pointer;
+}
+
+.add-adv__option:hover {
+    background-color: black;
+    color: white;
+}
+
+.add-adv__info__item .active {
+    background-color: black;
+    color: white;
+}
+
+#add_adv_map{
+    width: 90%;
+    height: 400px;
+    margin-top: 20px;
+}
+
+.object-options {
+    list-style-type: none;
+    padding-left: unset;
+}
+
+.object-options .active_object {
+    color: white;
+}
+
+.object-options .active_object:before {
+    color: black;
+}
+
+.object-options__item:hover {
+    color: white;
+}
+
+.object-options__item:hover:before {
+    color: black;
+}
+
+.object-options__item {
+    cursor: pointer;
+    transition: color .2s linear;
+}
+
+.object-options__item::before {
+    content: ".";
+    color: #298F6B;
+    margin-right: 10px;
+    font-size: 80px;
+    line-height: 0.3;
+    transition: color .2s linear;
+}
+
+.add-adv__parameter {
+    display: flex;
+    align-items: baseline;
+}
+
+.add-adv__parameter__text {
+    width: 270px;
+}
+
+.object_parameter_input {
+    background-color: #298F6B;
+    border-radius: 20px;
+    margin-bottom: 6px;
+    border: none;
+    width: 211px;
+    height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.object_parameter_input--large {
+    width: 90%;
+}
+
+.furniture_buttons .add-adv__option {
+    width: 105px;
+    margin-left: 0;
+    border-radius: 20px;
+}
+
+.furniture_buttons {
+    display: flex;
+}
+
+.furniture_buttons .add-adv__option:first-child {
+    margin-right: 3px;
+}
+
+.object_parameter_input--location {
+    width: 575px;
+}
+
+.object_parameter_input--small {
+    width: 90px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+
+.add_adv_photo_field {
+    height: 210px;
+    background-color: #298F6B;
+    position: relative;
+    border-radius: 5px;
+}
+
+/*main-page*/
+
+.main__page {
+    /*text-align: center;*/
+    margin-bottom: 57px;
+
+}
+
+.main__page__image {
+    width: 100%;
+    height: 730px;
+    overflow: hidden;
+    position: relative;
+}
+
+.main__page__image picture img {
+    filter: brightness(60%);
+}
+
+.main__page__choice {
+    display: block;
+    width: 240px;
+    height: 50px;
+    position: absolute;
+    top: 365px;
+    left: 377px;
+}
+
+.main__page__buy__rent {
+    margin: 0;
+    list-style: none;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding-left: 0;
+    font-size: 20px;
+}
+
+.main__page__buy__rent li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 100%;
+}
+
+.main__page__buy__rent li:first-child a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+.main__page__buy__rent li:first-child {
+    background-color: #90C6B2;
+    border-radius: 20px 0 0 0;
+}
+
+.main__page__buy__rent li:last-child {
+    color: white;
+    background-color: black;
+    opacity: 0.6;
+    border-radius: 0 20px 0 0;
+}
+
+.main__page__buy__rent li:last-child a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.main__page__options {
+    display: flex;
+    position: absolute;
+    width: 1166px;
+    height: 75px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-size: 20px;
+}
+
+.main__page__options li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 100%;
+    background-color: white;
+    border: 1px black;
+}
+
+.main__page__options li:first-child {
+    border-radius: 0 0 0 20px;
+}
+
+.main__page__options__select {
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.main__page__options__rooms {
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.main__page__options__price {
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.main__page__options__address {
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    border: 0;
+}
+
+.main__page__options__address::placeholder {
+    color: black;
+}
+
+.main__page__options li:last-child {
+    width: 566px;
+    border-radius: 0 20px 20px 0;
+}
+
+.main__page__options__search {
+    display: block;
+    position: absolute;
+    width: 200px;
+    height: 75px;
+    margin: 0;
+    top: 135px;
+    left: 966px;
+
+}
+
+.main__page__options__search__btn {
+    width: 200px;
+    height: 75px;
+    border-radius: 20px;
+    border: 0;
+    background-color: #298F6B;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/*log-page*/
+.log__page {
+    display: flex;
+    height: 600px;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.log__page__content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.fa-folder-open {
+    font-size: 100px;
+    margin-top: auto;
+    cursor: pointer;
+}
+
+.upload_photo_description {
+    /*color: white;*/
+    font-weight: 300;
+    margin-bottom: auto;
+}
+
+.object_parameter_input_description {
+    height: 150px;
+    text-align: justify;
+    border-radius: 5px;
+}
+
+.add_adv_submit_button_field {
+    display: flex;
+    justify-content: center;
+}
+
+.add_adv_submit_button {
+    font-weight: bold;
+    border-radius: 20px;
+    width: 232px;
+    height: 77px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    transition: color, background-color .2s linear;
+}
+
+.add_adv_submit_button:hover {
+    background-color: black;
+    color: white;
+}
+
+.add_adv_photo__inner {
+    position: absolute;
+    top: 10%;
+    left: 30%;
+    text-align: center;
+}
+
+.add-photo__input {
+    display: none;
+}
+
+/*advertisement*/
+.advertisement {
+}
+
+.advertisement-title {
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+
+.advertisement__item {
+    border-radius: 20px;
+    position: relative;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-image: linear-gradient(to right, #00b09b, #96c93d);
+
+}
+
+.side-panel-image {
+    flex-shrink: 0;
+    width: 100%;
+    max-height: 100%;
+    transition: opacity .2s linear;
+    cursor: pointer;
+}
+
+.advertisement__item:hover .side-panel-image {
+    opacity: 0.3;
+}
+
+.advertisement__item:hover .side-panel-info__header {
+    opacity: 1;
+}
+
+.advertisement__item:hover .side-panel-links {
+    opacity: 1;
+}
+
+.side-panel-info__header {
+    opacity: 0;
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    color: white;
+    text-transform: uppercase;
+    transition: opacity .2s linear;
+}
+
+.side-panel-links {
+    opacity: 0;
+    position: absolute;
+    top: 60%;
+    left: 40%;
+    color: white;
+    font-size: 36px;
+    transition: opacity .2s linear;
+}
+
+
+/*ипотека(mortgage)*/
+.mortgage {
+    position: absolute;
+}
+
+.mortgage__inner {
+    position: absolute;
+    background: #27366BCC;
+    top: 0;
+    left: 100px;
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mortgage_background {
+    max-width: 1730px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mortgage__text {
+    text-transform: uppercase;
+    color: white;
+    font-size: 64px;
+    margin: 30px 100px;
+    text-align: center;
+    padding: 30px;
+}
+
+.mortgage__button {
+    background-color: white;
+    border-radius: 35px;
+    box-sizing: border-box;
+    font-size: 36px;
+    padding: 30px;
+    height: auto;
+}
+
+/*filters*/
+.filters {
+    padding-left: 20px;
+    display: flex;
+    align-items: baseline;
+
+}
+
+.filters__inner {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.filter__item {
+    display: flex;
+    justify-content: space-between;
+    background-color: #298F6B;
+    border-radius: 20px;
+    align-items: center;
+    height: 30px;
+    margin: 0 0 20px 30px;
+    padding: 3px 20px;
+}
+
+.filter__value {
+    margin-left: 5px;
+    color: white;
+    font-weight: bold;
+    background-color: #298F6B;
+    font-size: 20px;
+    border: none;
+    content: "1 2000 0000";
+    height: 23px;
+    text-align: right;
+    width: 150px;
+}
+
+.filter__value::placeholder {
+    color: white;
+}
+
+.mortgage-list {
+    background-color: #90C6B2;
+    margin-left: 100px;
+    overflow: hidden;
+    margin-top: 30px;
+    max-width: 1600px;
+}
+
+.mortgage-list__image {
+    height: 100%;
+    object-fit: cover;
+}
+
+.mortgage-list__item {
+    margin: 30px 60px 30px 30px;
+    border: 1px solid #298F6B;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.mortgage-list__info {
+    margin: 0 auto;
+}
+
+.mortgage-list__title {
+    color: white;
+    font-size: 48px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.mortgage-list__subtitle {
+    width: 100%;
+    text-align: center;
+    font-size: 36px;
+    margin-top: 0;
+}
+
+.mortgage-list__subtitle--hidden {
+    opacity: 0;
+}
+
+.mortgage-list__buttons {
+    display: flex;
+    margin: 0 20px 20px;
+}
+
+.show-number-button {
+    color: white;
+    width: auto;
+    padding: 10px 30px;
+    margin-right: 40px;
+    background-color: #298F6B;
+    display: inline-block;
+    border-radius: 20px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.add-to-favourite-button {
+    width: auto;
+    padding: 0 30px;
+    background-color: #E5E5E5;;
+}
+
+.mortgage-list__subtitle--hidden {
+    opacity: 0;
+}
+
+.flat_page_info__about_cur_flat {
+    display: flex;
+    border: solid 2px #FFFFFF;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    margin: 5px;
+    width: 812px;
+    /*vertical-align: middle;*/
+    /*text-align: justify;*/
+}
+
+.flat_page_info__about_cur_flat__item {
+    padding-right: 5%;
+}
+
+.flat_page_info__tags_and_other {
+    display: none;
+}
+
+.flat_page_info__about_cur_flat_990px {
+    display: none;
+}
+
+.flat_page__tags {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 10px;
+}
+
+.flat_page__tags__mortgage {
+    border-radius: 15px;
+    padding: 5px;
+    background-color: #298F6B;
+    margin: 7px;
+}
+
+.flat_page__tags__show_online {
+    border-radius: 15px;
+    padding: 5px;
+    background-color: #DED7D7;
+    margin: 7px;
+}
+
+.flat_page__tags__has_renovation {
+    border-radius: 15px;
+    padding: 5px;
+    background-color: #DED7D7;
+    margin: 7px;
+}
+
+.flat_page__tags__who_is {
+    border-radius: 15px;
+    padding: 5px;
+    background-color: #DED7D7;
+    margin: 7px;
+}
+
+.flat_page__tags__has_furniture {
+    border-radius: 15px;
+    padding: 5px;
+    background-color: #DED7D7;
+    margin: 7px;
+}
+
+.flat_page__tags__rented {
+    border-radius: 15px;
+    padding: 5px;
+    background-color: #DED7D7;
+    margin: 7px;
+}
+
+.flat_page__tags__leased_house {
+    border-radius: 15px;
+    padding: 5px;
+    background-color: #DED7D7;
+    margin: 7px;
+}
+
+.flat_page__tags__bargaining {
+    border-radius: 15px;
+    padding: 5px;
+    background-color: #DED7D7;
+    margin: 7px;
+}
+
+.flat_page__tags__easy_sale {
+    border-radius: 15px;
+    padding: 5px;
+    background-color: #DED7D7;
+    margin: 7px;
+}
+
+.flat_page__tags__phone_number {
+    width: auto;
+    height: auto;
+    border-radius: 20px;
+    background-color: #EAEE1A;
+    padding: 10px;
+    margin: 7px;
+    font-size: 15px;
+    display: inline-block;
+}
+
+.flat_page__tags__favourites {
+    width: auto;
+    height: auto;
+    border-radius: 20px;
+    background-color: #E5E5E5;
+    padding: 10px;
+    margin: 7px;
+    font-size: 15px;
+}
+
+.log__page__content span {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.log__page__input {
+    margin-top: 10px;
+    margin-bottom: 14px;
+    height: 60px;
+    width: 320px;
+    border-radius: 20px;
+    font-size: 20px;
+    padding: 0;
+}
+
+.log__page__input::placeholder {
+    color: black;
+    font-weight: bold;
+}
+
+.log__page__btn {
+    height: 50px;
+    width: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    border: 0;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #298F6B;
+    margin-bottom: 32px;
+}
+
+.log__page__content a {
+    color: #298F6B;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+
+.log__page__social {
+    list-style: none;
+    display: flex;
+    padding: 0;
+}
+
+.social_item {
+    margin-left: 37px;
+}
+
+.social_item:first-child {
+    margin-left: 0;
+}
+
+/*footer*/
+
+footer {
+    margin-top: 100px;
+    font-size: 24px;
+}
+
+.footer-inner {
+    width: 100%;
+    text-align: center;
+}
+
+.fa-heart {
+    color: #e81818;
+}
+
+.fa-instagram {
+    font-weight: 400;
+    padding: 2px 3px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+    background: linear-gradient(darkmagenta, red, yellow);
+}
+
+.info {
+    margin-left: 50px;
+    font-size: 36px;
+    font-weight: 100;
+}
+
+.info__name__inner {
+    margin: 0;
+    font-size: 32px;
+}
+
+.flat_price__overall {
+    font-size: 28px;
+}
+
+.flat_page__info__full_description {
+    margin-left: 5px;
+}
+
+.flat_page__info__full_description__text {
+    font-weight: 10;
+}
+
+.flat_page__info__full_description__heading {
+    font-size: 12px;
+}
+
+.flat_page__info__full_description__text {
+    font-size: 13px;
+}
+
+.flat_page__price__developer {
+    padding-left: 5px;
+}
+
+.flat_page__price__developer__heading {
+    font-size: 13px;
+    margin: 5px 0 5px 0;
+}
+
+.flat_page__price__developer__image {
+    width: 50%;
+}
+
+.info__without_full_description {
+    display: flex;
+    justify-content: space-between;
+}
+
+.info__without_full_description__and_developer {
+
+}
+
+.info__without_full_description__with_developer {
+    padding: 0 0 0 200px;
+}
+
+.flat_page__info__images {
+    margin-left: 5px;
+}
+
+.background_for_favourites {
+    background-color: #90C6B2;
+    margin: 15% 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+.background_for_favourites__page {
+    display: flex;
+}
+
+.background_for_favourites__page__container {
+    margin-left: 25px;
+}
+
+.background_for_favourites__page__container__button {
+    width: auto;
+    height: auto;
+    border-radius: 15px;
+    background-color: #EAEE1A;
+    padding: 10px 35px;
+    margin: 30px 0;
+    font-size: 15px;
+    display: inline-block;
+}
+
+.background_for_favourites__page__container__change_account {
+    width: auto;
+    height: auto;
+    border-radius: 15px;
+    background-color: #E5E5E5;
+    padding: 10px 35px;
+    margin-top: 30px;
+    font-size: 15px;
+    display: inline-block;
+}
+
+.background_for_favourites__page__image {
+    height: 222px;
+}
+
+* {
+    box-sizing: border-box
+}
+
+/* Mapbox */
+.marker {
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.mapboxgl-popup {
+    max-width: 100px;
+}
+
+.mapboxgl-popup-content {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.mapboxgl-popup-close-button {
+    width: inherit;
+    height: inherit;
+}
+
+/* Slideshow container */
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+}
+
+/* Hide the images by default */
+.mySlides {
+    display: none;
+}
+
+.mySlides2 {
+    display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Caption text */
+.text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Number text (1/4 etc) */
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.dot2 {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
+}
+
+@media screen and (max-width: 1600px) {
+
+    /*main page*/
+    .main__page__choice{
+        left: 300px;
+    }
+
+    .main__page__options{
+        width: 1050px;
+    }
+
+    .main__page__options__search{
+        left: 850px;
+    }
+
+    /*log-page*/
+
+    .log__page{
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    main {
+        margin: 50px;
+    }
+
+    /*main page*/
+    .main__page__choice{
+        left: 140px;
+    }
+
+    .main__page__options{
+        width: 1050px;
+    }
+
+    .main__page__options__search{
+        left: 850px;
+    }
+
+    /*log-page*/
+
+    .log__page{
+        justify-content: center;
+    }
+
+    /*add adv*/
+    .add_adv_photo_field {
+    }
+
+    .object_parameter_input--large {
+        margin-right: 10px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    /*header*/
+    .nav_item {
+        /*width: 125px;*/
+    }
+
+    main {
+        margin: 30px;
+    }
+
+    /*main page*/
+
+    .main__page__choice{
+        width: 200px;
+        left: 100px;
+    }
+
+    .main__page__options {
+        width: 1000px;
+    }
+
+    .main__page__options__search{
+        left: 800px;
+    }
+
+    /*add adv*/
+    .add-adv__info__item {
+        margin-left: 25px;
+    }
+
+    .add-adv__parameter {
+        display: block;
+    }
+
+    .add-adv__parameter__text {
+        margin-bottom: 10px;
+    }
+
+    /*advertisement*/
+    .side-panel-info__header {
+        font-size: 18px;
+    }
+
+    /*mortgage*/
+    .mortgage-list__title {
+        font-size: 36px;
+    }
+
+    .mortgage-list__item {
+        margin-right: 30px;
+    }
+
+    .mortgage-list {
+        margin-left: 30px;
+    }
+
+    .mortgage-list__image {
+        width: 50%;
+    }
+}
+
+
+@media screen and (max-width: 1145px) {
+
+    /*main page*/
+
+    .main__page__choice{
+        left: 80px;
+    }
+
+    .main__page__options{
+        width: 900px;
+    }
+
+    .main__page__options__search{
+        left: 700px;
+    }
+
+    /*flat page*/
+
+    .flat_page__description {
+        display: block;
+    }
+
+    .flat_page__full_description {
+        display: none;
+    }
+
+    .phone_number {
+        margin-bottom: 10px;
+    }
+
+    .flat_page_info__about_cur_flat {
+        margin-top: 55px;
+    }
+
+    .flat_page_info__about_cur_flat {
+        width: 780px;
+    }
+
+    .flat_page__info__full_description__text {
+        font-size: 15px;
+    }
+
+    .background_for_favourites__page__container__change_account {
+        margin: 0 0 30px 0;
+    }
+
+    .nav_item {
+        padding: 0 10px;
+    }
+
+    .nav_item_text {
+        font-size: 16px;
+    }
+}
+
+
+@media screen and (max-width: 990px) {
+    /*header*/
+    .nav_item {
+        /*width: 100px;*/
+    }
+
+    .header_add_adv_text {
+        font-size: 15px;
+    }
+
+    /*main page*/
+
+    .main__page__choice{
+        width: 180px;
+        left: 120px;
+        font-size: 18px;
+    }
+
+    .main__page__options {
+        width: 500px;
+        font-size: 18px;
+    }
+
+    .main__page__options__address{
+        width: 250px;
+    }
+
+    .main__page__options__search{
+        left: 517px;
+        font-size: 18px;
+    }
+
+    /*add adv*/
+    .add-adv {
+        padding-right: 0;
+    }
+
+    /*navigation*/
+    .header {
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .header .header_buttons {
+        display: none;
+    }
+
+    .header_buttons.active_button {
+        display: flex;
+    }
+
+    .header_buttons {
+        margin-left: auto;
+        flex-direction: column;
+    }
+
+    .header_add_adv_btn {
+        width: 250px;
+        margin: 20px auto;
+    }
+
+    .header_enter_btn {
+        margin: 0 auto;
+    }
+
+    .menu-toggle {
+        display: block;
+        box-shadow: none;
+    }
+
+
+    /*add adv*/
+    .add-adv__header {
+        font-size: 28px;
+    }
+
+    .advertisement-title {
+        font-size: 28px;
+    }
+
+    .add-adv__option {
+        font-size: 16px;
+    }
+
+    .content {
+        display: block;
+    }
+
+    .add-adv {
+        width: 100%;
+    }
+
+    /*mortgage*/
+    .mortgage-list__title {
+        font-size: 30px;
+    }
+
+    .mortgage-list__item {
+        display: block;
+        text-align: center;
+    }
+
+    .mortgage-list__image {
+        width: 100%;
+        height: 100%;
+    }
+
+    .mortgage-list__buttons {
+        justify-content: center;
+    }
+
+    /*advertisement*/
+    .advertisement-title {
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+
+    .advertisement-inner {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .advertisement__item {
+        width: 45%;
+        margin-right: 15px;
+    }
+
+    .side-panel-info__header {
+        font-size: 18px;
+        top: 15%;
+        left: 10%;
+    }
+
+    .side-panel-links {
+        left: 35%;
+        top: 55%;
+    }
+
+    /*footer*/
+    footer {
+        font-size: 18px;
+    }
+
+    .flat_page__inner {
+        flex-direction: column;
+    }
+
+    .small_images {
+        display: none;
+    }
+
+    .images {
+        margin: 0;
+    }
+
+    .info {
+        margin: 0;
+    }
+
+    .info__without_full_description {
+        justify-content: unset;
+    }
+
+    .flat_page__price {
+        display: none;
+    }
+
+    .flat_page_info__tags_and_other {
+        display: inline;
+    }
+
+    .flat_page__info__images {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .flat_page__price {
+    }
+
+    .flat_page__info {
+        width: 96%;
+        margin: 2%;
+    }
+
+    .flat_page__price__developer {
+        width: 50%;
+    }
+
+    .flat_page_info__about_cur_flat_990px {
+        display: inline;
+    }
+
+    .flat_page_info__about_cur_flat {
+        display: none;
+    }
+
+    .flat_page_info__about_cur_flat_990px__topic {
+        margin: 10px 0 0 5px;
+    }
+
+    .flat_page_info__about_cur_flat_990px__characteristics {
+        font-size: 15px;
+        margin: -5px 0 0 5px;
+        font-weight: 10;
+    }
+
+    .background_for_favourites__page {
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+    }
+
+    .background_for_favourites__page__image {
+        width: 380px;
+    }
+}
+
+@media screen and (max-width: 770px) {
+
+    /*.mortgage*/
+    .filters {
+        display: block;
+    }
+
+    .page-title {
+        margin-left: 50px;
+    }
+
+    /*main page*/
+
+    .main__page__choice{
+        width: 180px;
+        left: 50px;
+        font-size: 18px;
+    }
+
+    .main__page__options {
+        width: 500px;
+        font-size: 18px;
+    }
+
+    .main__page__options__address{
+        width: 200px;
+    }
+    .main__page__options__search{
+        left: 467px;
+        font-size: 18px;
+    }
+
+    /*add-adv*/
+    .add_adv_photo__inner {
+        top: 10%;
+        left: 15%
+    }
+
+    /*advertisement */
+    .advertisement__item {
+        width: 90%;
+        padding: 0;
+        border-radius: 30px;
+    }
+
+    .side-panel-info__header {
+        font-size: 26px;
+    }
+
+    .side-panel-links {
+        left: 40%;
+        font-size: 50px;
+    }
+
+    .flat_page__info__image {
+        height: 100%;
+        width: 100%;
+    }
+
+    .small_images {
+        display: none;
+    }
+
+    .background_for_results {
+        margin: 0;
+    }
+
+    .images {
+        margin: 0;
+    }
+
+    .info {
+        margin: 0 auto;
+    }
+
+    .background_for_one_flat_page {
+        margin: 0;
+    }
+
+    .background_for_favourites {
+        margin: 15% 0;
+    }
+
+    .background_for_favourites__page__container {
+        margin: 0 25px;
+    }
+}
+
+
+@media screen and (max-width: 550px) {
+    /*header*/
+    .header_add_adv_text {
+        font-size: 12px;
+    }
+
+    /*add adv*/
+    main {
+        margin: 0;
+    }
+
+    .add-adv__info__item {
+        display: block;
+    }
+
+    .add-adv__info__item button {
+        margin: 10px auto;
+
+    }
+
+    .add_adv_photo_field {
+        width: 90%;
+        margin: 0;
+    }
+
+    .object_parameter_input_description {
+        width: 90%;
+    }
+    textarea::-webkit-scrollbar {
+        width: 12px;
+        background-color: #F5F5F5; }
+
+    textarea::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+        background-color: #4285F4; }
+
+    /*advertisement*/
+    .side-panel-info__header {
+        font-size: 20px;
+    }
+
+    .side-panel-links {
+        font-size: 40px;
+    }
+
+    /*footer*/
+    footer {
+        font-size: 10px;
+    }
+
+    .fa-instagram {
+        padding: 1px 2px;
+        border-radius: 3px;
+    }
+
+    /*mortgage*/
+    .mortgage-list__buttons {
+        display: block;
+    }
+
+    .mortgage-list {
+        margin-left: 0;
+    }
+
+    .show-number-button {
+        margin-bottom: 20px;
+    }
+
+    .info__name__inner {
+        font-size: 23px;
+    }
+
+    .search_result {
+        padding-left: 30px;
+    }
+
+    .filters {
+        padding-left: 0;
+    }
+
+    .filter__item {
+        margin-left: 3px;
+    }
+
+    .filter__value {
+        width: 100px;
+    }
+
+    .flat_page_info__about_cur_flat_990px__topic {
+        font-size: 14px;
+    }
+
+    .background_for_favourites__page__container_header {
+        font-size: 30px;
+    }
+
+    .popup-nav_item_text {
+        font-size: 32px;
+    }
+
+    .popup_nav {
+        padding-inline-start: 0;
+    }
+}
