@@ -1,0 +1,397 @@
+<main>
+    <div class="content">
+        <div class="add-adv">
+            <h1 class="add-adv__header">Разместить новое объявление</h1>
+            <form class="add-adv__form" id="flat_form" method="POST">
+                <div class="add-adv__info">
+                    <div class="add-adv__info__item">
+                        <div class="add-adv__form__title">Кто вы?</div>
+                        <label class="">
+                            <input
+                                    class="add-adv__option__input"
+                                    type="radio"
+                                    name="fromOwner"
+                                    value="true"
+                            />
+                            <span class="add-adv__option">Владелец</span>
+                        </label>
+                        <label>
+                            <input
+                                    class="add-adv__option__input"
+                                    type="radio"
+                                    name="fromOwner"
+                                    value="false"
+                            />
+                            <span class="add-adv__option">Риэлтор</span>
+                        </label>
+                    </div>
+                    <div class="add-adv__info__item">
+                        <div class="add-adv__form__title">Тип сделки</div>
+                        <label class="">
+                            <input
+                                    class="add-adv__option__input"
+                                    type="radio"
+                                    value="rent"
+                                    name="dealType"
+                            />
+                            <span class="add-adv__option">Аренда</span>
+                        </label>
+                        <label>
+                            <input
+                                    class="add-adv__option__input"
+                                    type="radio"
+                                    value="sell"
+                                    name="dealType"
+                            />
+                            <span class="add-adv__option">Продажа</span>
+                        </label>
+                    </div>
+                    <div class="add-adv__info__item living">
+                        <div class="add-adv__form__title">Объект сделки</div>
+                        <ul class="object-options">
+                            <li class="object-options__item deal_object"><span
+                            >Квартира</span></li>
+                            <li class="object-options__item deal_object"><span
+                            >Дом</span></li>
+                        </ul>
+                    </div>
+                    <div class="add-adv__info__item">
+                        <div class="add-adv__form__title">Готовы показать онлайн?</div>
+                        <label>
+                            <input
+                                    class="add-adv__option__input"
+                                    type="radio"
+                                    name="readyToShowOnline"
+                                    value="true"
+                            />
+                            <span class="add-adv__option">Да</span>
+                        </label>
+                        <label>
+                            <input
+                                    class="add-adv__option__input"
+                                    type="radio"
+                                    name="readyToShowOnline"
+                                    value="false"
+                            />
+                            <span class="add-adv__option">Нет</span>
+                        </label>
+                    </div>
+                    <div class="add-adv__info__item">
+                        <div class="add-adv__form__title">Цена</div>
+                        <label>
+                            <input
+                                    class="add-adv__option__input"
+                                    type="radio"
+                                    name="isFinalPrice"
+                                    value="true"
+                            />
+                            <span class="add-adv__option">Окончательная</span>
+                        </label>
+                        <label>
+                            <input
+                                    class="add-adv__option__input"
+                                    type="radio"
+                                    name="isFinalPrice"
+                                    value="false"
+                            />
+                            <span class="add-adv__option">Договорная</span>
+                        </label>
+                    </div>
+                    <div class="add-adv__info__item">
+                        <div class="add-adv__form__title">Ремонт</div>
+                        <label>
+                            <input
+                                    class="add-adv__option__input"
+                                    type="radio"
+                                    name="needsRenovation"
+                                    value="true"
+                            />
+                            <span class="add-adv__option">Требуется</span>
+                        </label>
+                        <label>
+                            <input
+                                    class="add-adv__option__input"
+                                    type="radio"
+                                    name="needsRenovation"
+                                    value="false"
+                            />
+                            <span class="add-adv__option">Уже есть</span>
+                        </label>
+                    </div>
+                    <div class="add-adv__info__item">
+                        <div class="add-adv__form__title">Об объекте</div>
+                        <div class="add-adv__parameters">
+                            <div class="add-adv__parameter">
+                                <div class="add-adv__parameter__text">Количество комнат</div>
+                                <label>
+                                    <input
+                                            class="object_parameter_input"
+                                            min="1"
+                                            name="roomCount"
+                                            required
+                                            type="number"
+                                    />
+                                </label>
+                            </div>
+                            <div class="add-adv__parameter">
+                                <div class="add-adv__parameter__text">Общая площадь</div>
+                                <label>
+                                    <input
+                                            class="object_parameter_input"
+                                            min="0"
+                                            name="area"
+                                            required
+                                            type="number"
+                                    />
+                                </label>
+                            </div>
+                            <div class="add-adv__parameter">
+                                <div class="add-adv__parameter__text">Площадь кухни</div>
+                                <label>
+                                    <input
+                                            class="object_parameter_input"
+                                            min="0"
+                                            name="kitchenArea"
+                                            required
+                                            type="number"
+                                    />
+                                </label>
+                            </div>
+                            <div class="add-adv__parameter">
+                                <div class="add-adv__parameter__text">Жилая площадь</div>
+                                <label>
+                                    <input
+                                            class="object_parameter_input"
+                                            min="0"
+                                            name="livingArea"
+                                            required
+                                            type="number"
+                                    />
+                                </label>
+                            </div>
+                            <div class="add-adv__parameter">
+                                <div class="add-adv__parameter__text">Высота ( м.)</div>
+                                <label>
+                                    <input
+                                            class="object_parameter_input"
+                                            min="0"
+                                            name="ceilingHeight"
+                                            required
+                                            step="0.01"
+                                            type="number"
+                                    />
+                                </label>
+                            </div>
+                            <div class="add-adv__parameter">
+                                <div class="add-adv__parameter__text">Этаж</div>
+                                <label>
+                                    <input
+                                            class="object_parameter_input object_parameter_input--small"
+                                            min="1"
+                                            name="floorNumber"
+                                            required
+                                            style="margin-left: 0"
+                                            type="number"
+                                    />
+                                </label>
+                                <span> из </span>
+                                <label>
+                                    <input
+                                            class="object_parameter_input object_parameter_input--small"
+                                            min="1"
+                                            name="totalFloorNumber"
+                                            required
+                                            type="number"
+                                    />
+                                </label>
+                            </div>
+                            <div class="add-adv__parameter">
+                                <div class="add-adv__parameter__text">Год постройки</div>
+                                <label>
+                                    <input
+                                            class="object_parameter_input"
+                                            min="1000"
+                                            name="yearOfBuilding"
+                                            required
+                                            type="number"
+                                    />
+                                </label>
+                            </div>
+                            <div class="add-adv__parameter" style="margin-top: 10px;">
+                                <div class="add-adv__parameter__text">Мебель</div>
+                                <label>
+                                    <input
+                                            class="add-adv__option__input"
+                                            type="radio"
+                                            name="hasFurniture"
+                                            value="true"
+                                    />
+                                    <span class="add-adv__option">Да</span>
+                                </label>
+                                <label>
+                                    <input
+                                            class="add-adv__option__input"
+                                            type="radio"
+                                            name="hasFurniture"
+                                            value="false"
+                                    />
+                                    <span class="add-adv__option">Heт</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="add-adv__info__item add-adv__info__item--block">
+                        <div class="add-adv__form__title">Адрес</div>
+                        <label for="add_adv_address"></label><input
+                            class="object_parameter_input object_parameter_input--large"
+                            id="add_adv_address"
+                            name="location"
+                            required
+                            type="text"
+                    />
+                        <div id="map"></div>
+                    </div>
+                    <div class="add-adv__info__item add-adv__info__item--block">
+                        <div class="add-adv__form__title">Фото</div>
+                        <div
+                                class="add_adv_photo_field object_parameter_input--large"
+                                id="file_display_area"
+                        >
+                            <div class="add_adv_photo__inner">
+                                <input
+                                        name="photos"
+                                        class="add-photo__input"
+                                        value=""
+                                        id="file-input"
+                                        multiple
+                                        type="file"
+                                        accept="image/png, image/jpeg"
+                                />
+                                <label for="file-input"><i
+                                        class="fas fa-folder-open"
+                                ></i></label>
+                                <div class="upload_photo_description">
+                                    Загрузите свое фото сюда...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="add-adv__info__item add-adv__info__item--block">
+                        <div class="add-adv__form__title">Описание</div>
+                        <label>
+              <textarea
+                      class="object_parameter_input object_parameter_input_description object_parameter_input--large"
+                      name="description"
+                      required
+              > </textarea>
+                        </label>
+                    </div>
+                    <div class="add-adv__info__item add-adv__info__item--block">
+                        <div class="add-adv__form__title">Контактный номер</div>
+                        <label>
+                            <input
+                                    class="object_parameter_input"
+                                    name="contactNumber"
+                                    required
+                                    type="tel"
+                            />
+                        </label>
+                    </div>
+                    <div class="add-adv__info__item add-adv__info__item--block">
+                        <div class="add-adv__form__title">Цена</div>
+                        <label>
+                            <input
+                                    class="object_parameter_input"
+                                    name="price"
+                                    required
+                                    type="number"
+                            />
+                        </label>
+                        <label>
+                            <select class="price" name="selectedPrice">
+                                <option value="dollar">$</option>
+                                <option value="ruble">₽</option>
+                                <option value="MDL">MDL</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="add_adv_submit_button_field">
+                        <button class="add_adv_submit_button" type="submit">Добавить
+                            объявление
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="advertisement">
+            <h1 class="advertisement-title">Популярные объявления</h1>
+            <div class="advertisement-inner">
+                <div class="advertisement__item">
+                    <div class="side-panel-info">
+                        <h3 class="side-panel-info__header">дом в центре на Варшавке</h3>
+                        <div class="side-panel-links">
+                            <i class="fas fa-heart"></i>
+                            <i class="fas fa-share"></i>
+                        </div>
+                    </div>
+                    <img
+                            alt="adv_1"
+                            class="side-panel-image"
+                            src="images/side-panel-adv/side_panel_adv_1.png"
+                    />
+                </div>
+                <div class="advertisement__item">
+                    <h3 class="side-panel-info__header">Пентхаус со своим лесом</h3>
+                    <div class="side-panel-links">
+                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-share"></i>
+                    </div>
+                    <img
+                            alt="adv_1"
+                            class="side-panel-image"
+                            src="images/side-panel-adv/side_panel_adv_2.png"
+                    />
+                </div>
+                <div class="advertisement__item">
+                    <h3 class="side-panel-info__header">дом с ошеломительным видом на горы</h3>
+                    <div class="side-panel-links">
+                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-share"></i>
+                    </div>
+                    <img
+                            alt="adv_1"
+                            class="side-panel-image"
+                            src="images/side-panel-adv/side_panel_adv_3.png"
+                    />
+                </div>
+                <div class="advertisement__item">
+                    <h3 class="side-panel-info__header">квартира в стиле лофт</h3>
+                    <div class="side-panel-links">
+                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-share"></i>
+                    </div>
+                    <img
+                            alt="adv_1"
+                            class="side-panel-image"
+                            src="images/side-panel-adv/side_panel_adv_4.png"
+                    />
+                </div>
+                <div class="advertisement__item">
+                    <h3 class="side-panel-info__header">Склад 1гектар в отличном состоянии</h3>
+                    <div class="side-panel-links">
+                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-share"></i>
+                    </div>
+                    <img
+                            alt="adv_1"
+                            class="side-panel-image"
+                            src="images/side-panel-adv/side_panel_adv_5.png"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="javascript/image_loader.js"></script>
+<script src="javascript/send_advertisement.js"></script>
+{{> ymaps}}

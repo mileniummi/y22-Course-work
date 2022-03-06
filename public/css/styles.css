@@ -300,20 +300,15 @@ select {
 }
 
 .nav_item {
-    text-decoration: none;
-    color: black;
-    /*width: 150px;*/
-    height: 50px;
-    text-align: center;
-    align-items: center;
-    list-style-type: none;
-    padding: 0 20px;
+    display: table-cell;
 }
 
 .nav_item_text {
+    height: 100%;
+    vertical-align: middle;
+    padding: 18px;
     text-decoration: none;
     color: black;
-    padding-top: 40px;
     font-weight: lighter;
 }
 
@@ -338,7 +333,8 @@ select {
 }
 
 .header_add_adv_text {
-    margin: 10px;
+    height: 100%;
+    padding: 10px;
 }
 
 .nav_item_text {
@@ -415,6 +411,9 @@ select {
     height: 40px;
 }
 
+.add-adv__info__item input[type="radio"] {
+    display: none;
+}
 
 .add-adv__option {
     font-size: 20px;
@@ -426,6 +425,16 @@ select {
     background-color: #298F6B;
     border: 0;
     cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    border: none;
+    font-weight: lighter;
+    box-shadow: 0 1px 6px 0 rgb(32 33 36);
+    padding: 10px 30px;
+}
+
+.add-adv__option__input:checked + .add-adv__option {
+    background-color: black;
+    color: white;
 }
 
 .add-adv__option:hover {
@@ -438,7 +447,8 @@ select {
     color: white;
 }
 
-#add_adv_map{
+/*add_adv_info*/
+#map {
     width: 90%;
     height: 400px;
     margin-top: 20px;
@@ -541,7 +551,6 @@ select {
 .main__page {
     /*text-align: center;*/
     margin-bottom: 57px;
-
 }
 
 .main__page__image {
@@ -1420,21 +1429,20 @@ footer {
 @media screen and (max-width: 1600px) {
 
     /*main page*/
-    .main__page__choice{
+    .main__page__choice {
         left: 300px;
     }
 
-    .main__page__options{
+    .main__page__options {
         width: 1050px;
     }
 
-    .main__page__options__search{
+    .main__page__options__search {
         left: 850px;
     }
 
     /*log-page*/
-
-    .log__page{
+    .log__page {
         justify-content: center;
     }
 }
@@ -1445,21 +1453,20 @@ footer {
     }
 
     /*main page*/
-    .main__page__choice{
+    .main__page__choice {
         left: 140px;
     }
 
-    .main__page__options{
+    .main__page__options {
         width: 1050px;
     }
 
-    .main__page__options__search{
+    .main__page__options__search {
         left: 850px;
     }
 
     /*log-page*/
-
-    .log__page{
+    .log__page {
         justify-content: center;
     }
 
@@ -1483,8 +1490,7 @@ footer {
     }
 
     /*main page*/
-
-    .main__page__choice{
+    .main__page__choice {
         width: 200px;
         left: 100px;
     }
@@ -1493,7 +1499,7 @@ footer {
         width: 1000px;
     }
 
-    .main__page__options__search{
+    .main__page__options__search {
         left: 800px;
     }
 
@@ -1537,21 +1543,19 @@ footer {
 @media screen and (max-width: 1145px) {
 
     /*main page*/
-
-    .main__page__choice{
+    .main__page__choice {
         left: 80px;
     }
 
-    .main__page__options{
+    .main__page__options {
         width: 900px;
     }
 
-    .main__page__options__search{
+    .main__page__options__search {
         left: 700px;
     }
 
     /*flat page*/
-
     .flat_page__description {
         display: block;
     }
@@ -1601,8 +1605,7 @@ footer {
     }
 
     /*main page*/
-
-    .main__page__choice{
+    .main__page__choice {
         width: 180px;
         left: 120px;
         font-size: 18px;
@@ -1613,11 +1616,11 @@ footer {
         font-size: 18px;
     }
 
-    .main__page__options__address{
+    .main__page__options__address {
         width: 250px;
     }
 
-    .main__page__options__search{
+    .main__page__options__search {
         left: 517px;
         font-size: 18px;
     }
@@ -1821,8 +1824,7 @@ footer {
     }
 
     /*main page*/
-
-    .main__page__choice{
+    .main__page__choice {
         width: 180px;
         left: 50px;
         font-size: 18px;
@@ -1833,10 +1835,11 @@ footer {
         font-size: 18px;
     }
 
-    .main__page__options__address{
+    .main__page__options__address {
         width: 200px;
     }
-    .main__page__options__search{
+
+    .main__page__options__search {
         left: 467px;
         font-size: 18px;
     }
@@ -1926,14 +1929,17 @@ footer {
     .object_parameter_input_description {
         width: 90%;
     }
+
     textarea::-webkit-scrollbar {
         width: 12px;
-        background-color: #F5F5F5; }
+        background-color: #F5F5F5;
+    }
 
     textarea::-webkit-scrollbar-thumb {
         border-radius: 10px;
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
-        background-color: #4285F4; }
+        background-color: #4285F4;
+    }
 
     /*advertisement*/
     .side-panel-info__header {

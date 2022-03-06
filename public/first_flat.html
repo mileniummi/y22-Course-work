@@ -3,39 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="styles.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link href="../views/styles.css" rel="stylesheet">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link crossorigin="anonymous" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet'/>
     <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js'></script>
-    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css' type='text/css' />
+    <link href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css'
+          rel='stylesheet'
+          type='text/css'/>
 </head>
 <body>
 <header class="header">
     <div class="header_info">
-        <a href="index.html" class="header_logo">
-            <img src="images/header/logo.png" alt="logo">
+        <a class="header_logo" href="indexx.html">
+            <img alt="logo" src="images/header/logo.png">
         </a>
         <ul class="nav">
             <li class="nav_item">
-                <a href="flats_list.html" class="nav_item_text">Аренда</a>
+                <a class="nav_item_text" href="flats_list.html">Аренда</a>
             </li>
             <li class="nav_item">
-                <a href="flats_list.html" class="nav_item_text">Продажа</a>
+                <a class="nav_item_text" href="flats_list.html">Продажа</a>
             </li>
             <li class="nav_item">
-                <a href="mortgage_find.html" class="nav_item_text">Ипотека</a>
+                <a class="nav_item_text" href="mortgage_find.html">Ипотека</a>
             </li>
             <li class="nav_item">
-                <a href="my_advertisements.html" class="nav_item_text">Мои&nbsp;объявления</a>
+                <a class="nav_item_text" href="my_advertisements.html">Мои&nbsp;объявления</a>
             </li>
             <li class="nav_item">
-                <a href="favourites.html" class="nav_item_text">Избранное</a>
+                <a class="nav_item_text" href="favourites.html">Избранное</a>
             </li>
         </ul>
     </div>
@@ -50,19 +52,19 @@
     <button class="menu-toggle" id="menu-toggle">Menu</button>
     <ul class="popup_nav" id="popup_nav">
         <li class="popup_nav__item">
-            <a href="flats_list.html" class="popup-nav_item_text">Аренда</a>
+            <a class="popup-nav_item_text" href="flats_list.html">Аренда</a>
         </li>
         <li class="popup_nav__item">
-            <a href="flats_list.html" class="popup-nav_item_text">Продажа</a>
+            <a class="popup-nav_item_text" href="flats_list.html">Продажа</a>
         </li>
         <li class="popup_nav__item">
-            <a href="mortgage_find.html" class="popup-nav_item_text">Ипотека</a>
+            <a class="popup-nav_item_text" href="mortgage_find.html">Ипотека</a>
         </li>
         <li class="popup_nav__item">
-            <a href="my_advertisements.html" class="popup-nav_item_text">Мои&nbsp;объявления</a>
+            <a class="popup-nav_item_text" href="my_advertisements.html">Мои&nbsp;объявления</a>
         </li>
         <li class="popup_nav__item">
-            <a href="favourites.html" class="popup-nav_item_text">Избранное</a>
+            <a class="popup-nav_item_text" href="favourites.html">Избранное</a>
         </li>
         <div class="header_buttons active_button">
             <button class="header_add_adv_btn" onclick="window.location.href='add_adv.html'">
@@ -92,22 +94,32 @@
                 <!-- Full-width images with number and caption text -->
                 <div class="mySlides fade">
                     <div class="numbertext">1 / 4</div>
-                    <img class=flat_page__info__image" src="images/flats_list/first_flat_OSTROV/first_flat_OSTROV_photo_5.png" style="width:100%" alt="">
+                    <img alt=""
+                         class=flat_page__info__image"
+                         src="images/flats_list/first_flat_OSTROV/first_flat_OSTROV_photo_5.png"
+                         style="width:100%">
                 </div>
 
                 <div class="mySlides fade">
                     <div class="numbertext">2 / 4</div>
-                    <img class=flat_page__info__image" src="images/flats_list/first_flat_OSTROV/first_flat_OSTROV_photo_4.jpg" style="width:100%" alt="">
+                    <img alt=""
+                         class=flat_page__info__image"
+                         src="images/flats_list/first_flat_OSTROV/first_flat_OSTROV_photo_4.jpg"
+                         style="width:100%">
                 </div>
 
                 <div class="mySlides fade">
                     <div class="numbertext">3 / 4</div>
-                    <img class=flat_page__info__image" src="images/flats_list/first_flat_OSTROV/first_flat_OSTROV_photo_6.png" style="width:100%" alt="">
+                    <img alt=""
+                         class=flat_page__info__image"
+                         src="images/flats_list/first_flat_OSTROV/first_flat_OSTROV_photo_6.png"
+                         style="width:100%">
                 </div>
 
                 <div class="mySlides fade">
                     <div class="numbertext">4 / 4</div>
-                    <img class=flat_page__info__image" src="images/flats_list/first_flat_OSTROV/HP_OSTROV_plan.png" style="width:100%" alt="">
+                    <img alt="" class=flat_page__info__image"
+                         src="images/flats_list/first_flat_OSTROV/HP_OSTROV_plan.png" style="width:100%">
                 </div>
 
                 <!-- Next and previous buttons -->
@@ -145,7 +157,7 @@
             </div>
             <div class="flat_page__price__developer">
                 <p class="flat_page__price__developer__heading">Застройщик</p>
-                <img class="flat_page__price__developer__image" src="images/Stroitel'nyj_trest.png" alt="">
+                <img alt="" class="flat_page__price__developer__image" src="images/Stroitel'nyj_trest.png">
             </div>
         </div>
 
@@ -188,21 +200,25 @@
             </div>
             <div class="flat_page__info__full_description">
                 <p>Описание</p>
-                <p class="flat_page__info__full_description__text">Продается видовая квартира в Петроградском районе по адресу Петровский пр-т д. 5, стр. 1, расположенная
-                    на 3-м этаже 8-ми этажного дома (ЖК "Остров").<br>О квартире<br> Квартира находится в черновой отделке,
+                <p class="flat_page__info__full_description__text">Продается видовая квартира в Петроградском районе по
+                    адресу Петровский пр-т д. 5, стр. 1, расположенная
+                    на 3-м этаже 8-ми этажного дома (ЖК "Остров").<br>О квартире<br> Квартира находится в черновой
+                    отделке,
                     что
                     позволит вам воплотить в жизнь любые дизайнерские решения. Из квартиры открывается прекрасный вид на
                     мост Бетанкура и окрестности. Общая площадь квартиры без учета балкона составляет 85 м².<br>Об
                     инфраструктуре<br>В шаговой доступности находятся все необходимые объекты социальной инфраструктуры,
-                    магазины первой необходимости, школы и поликлиники. В трех минутах ходьбы расположен парк "Петровский
-                    парк" и "Петровский пруд".<br>О логистике<br>До станции метро Чкаловская или Спортивная всего 3 минуты
+                    магазины первой необходимости, школы и поликлиники. В трех минутах ходьбы расположен парк
+                    "Петровский
+                    парк" и "Петровский пруд".<br>О логистике<br>До станции метро Чкаловская или Спортивная всего 3
+                    минуты
                     на транспорте или 20 минут пешком. Выезд на
                     ЗСД находится в 3 км. Так же преимуществом является близкая доступность к проспектам и выездам с
                     острова. </p>
             </div>
             <div class="flat_page__info__full_description">
                 <p>Расположение</p>
-                <div class="flat_page__info__full_description__map" id="first_flat_map"> </div>
+                <div class="flat_page__info__full_description__map" id="first_flat_map"></div>
             </div>
         </div>
 
@@ -229,7 +245,7 @@
         </div>
         <div class="flat_page__price__developer">
             <p class="flat_page__price__developer__heading">Застройщик</p>
-            <img class="flat_page__price__developer__image" src="images/Stroitel'nyj_trest.png" alt="">
+            <img alt="" class="flat_page__price__developer__image" src="images/Stroitel'nyj_trest.png">
         </div>
     </div>
 </div>

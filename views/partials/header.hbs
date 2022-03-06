@@ -1,0 +1,65 @@
+<header class="header">
+    <div class="header_info">
+        <a href="/" class="header_logo">
+            <img src="images/header/logo.png" alt="logo"/>
+        </a>
+        <ul class="nav">
+            <li class="nav_item">
+                <a href="/flats" class="nav_item_text">Аренда</a>
+            </li>
+            <li class="nav_item">
+                <a href="/mortgages" class="nav_item_text">Ипотека</a>
+            </li>
+            <li class="nav_item">
+                <a
+                        href="/my-advertisements"
+                        class="nav_item_text"
+                >Мои&nbsp;объявления</a>
+            </li>
+            <li class="nav_item">
+                <a href="/favourites" class="nav_item_text">Избранное</a>
+            </li>
+        </ul>
+    </div>
+    <div class="header_buttons">
+        <button class="header_add_adv_btn">
+            <a
+                    href="/add-advertisement"
+                    class="header_add_adv_text"
+            >+&nbsp;Добавить&nbsp;объявление</a>
+        </button>
+        <button class="header_enter_btn" onclick="window.location.href='/login'">
+            <span class="header_add_adv_text">Войти</span>
+        </button>
+    </div>
+    <button class="menu-toggle" id="menu-toggle">Menu</button>
+    <ul class="popup_nav" id="popup_nav">
+        <li class="popup_nav__item">
+            <a href="/flats" class="popup-nav_item_text">Аренда</a>
+        </li>
+        <li class="popup_nav__item">
+            <a href="/mortgages" class="popup-nav_item_text">Ипотека</a>
+        </li>
+        <li class="popup_nav__item">
+            <a
+                    href="/my-advertisements"
+                    class="popup-nav_item_text"
+            >Мои&nbsp;объявления</a>
+        </li>
+        <li class="popup_nav__item">
+            <a href="/favourites" class="popup-nav_item_text">Избранное</a>
+        </li>
+        <li class="header_buttons active_button">
+            <button
+                    class="header_add_adv_btn"
+                    onclick="window.location.href='add-advertisement'"
+            >
+                <span class="header_add_adv_text">+&nbsp;Добавить&nbsp;объявление</span>
+            </button>
+            <button class="header_enter_btn" onclick="window.location.href='/login'">
+                <span class="header_add_adv_text">Войти</span>
+            </button>
+        </li>
+    </ul>
+</header>
+<script src="javascript/header_popup_menu.js"></script>

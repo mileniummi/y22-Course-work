@@ -3,39 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Add-adv</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="../views/styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link crossorigin="anonymous" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" rel="stylesheet"/>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet'/>
     <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js'></script>
-    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css' type='text/css' />
+    <link href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css'
+          rel='stylesheet'
+          type='text/css'/>
 </head>
 <body>
 <header class="header">
     <div class="header_info">
-        <a href="index.html" class="header_logo">
-            <img src="images/header/logo.png" alt="logo">
+        <a class="header_logo" href="indexx.html">
+            <img alt="logo" src="images/header/logo.png">
         </a>
         <ul class="nav">
             <li class="nav_item">
-                <a href="flats_list.html" class="nav_item_text">Аренда</a>
+                <a class="nav_item_text" href="flats_list.html">Аренда</a>
             </li>
             <li class="nav_item">
-                <a href="flats_list.html" class="nav_item_text">Продажа</a>
+                <a class="nav_item_text" href="flats_list.html">Продажа</a>
             </li>
             <li class="nav_item">
-                <a href="mortgage_find.html" class="nav_item_text">Ипотека</a>
+                <a class="nav_item_text" href="mortgage_find.html">Ипотека</a>
             </li>
             <li class="nav_item">
-                <a href="my_advertisements.html" class="nav_item_text">Мои&nbsp;объявления</a>
+                <a class="nav_item_text" href="my_advertisements.html">Мои&nbsp;объявления</a>
             </li>
             <li class="nav_item">
-                <a href="favourites.html" class="nav_item_text">Избранное</a>
+                <a class="nav_item_text" href="favourites.html">Избранное</a>
             </li>
         </ul>
     </div>
@@ -50,19 +52,19 @@
     <button class="menu-toggle" id="menu-toggle">Menu</button>
     <ul class="popup_nav" id="popup_nav">
         <li class="popup_nav__item">
-            <a href="flats_list.html" class="popup-nav_item_text">Аренда</a>
+            <a class="popup-nav_item_text" href="flats_list.html">Аренда</a>
         </li>
         <li class="popup_nav__item">
-            <a href="flats_list.html" class="popup-nav_item_text">Продажа</a>
+            <a class="popup-nav_item_text" href="flats_list.html">Продажа</a>
         </li>
         <li class="popup_nav__item">
-            <a href="mortgage_find.html" class="popup-nav_item_text">Ипотека</a>
+            <a class="popup-nav_item_text" href="mortgage_find.html">Ипотека</a>
         </li>
         <li class="popup_nav__item">
-            <a href="my_advertisements.html" class="popup-nav_item_text">Мои&nbsp;объявления</a>
+            <a class="popup-nav_item_text" href="my_advertisements.html">Мои&nbsp;объявления</a>
         </li>
         <li class="popup_nav__item">
-            <a href="favourites.html" class="popup-nav_item_text">Избранное</a>
+            <a class="popup-nav_item_text" href="favourites.html">Избранное</a>
         </li>
         <div class="header_buttons active_button">
             <button class="header_add_adv_btn" onclick="window.location.href='add_adv.html'">
@@ -81,7 +83,7 @@
     <div class="content">
         <div class="add-adv">
             <h1 class="add-adv__header">Разместить новое объявление</h1>
-            <form action="display.html" class="add-adv__form" method="GET" id="flat_form">
+            <form action="display.html" class="add-adv__form" id="flat_form" method="GET">
                 <div class="add-adv__info">
                     <div class="add-adv__info__item">
                         <div class="add-adv__form__title">Кто вы?</div>
@@ -120,8 +122,8 @@
                         <div class="add-adv__parameters">
                             <div class="add-adv__parameter">
                                 <div class="add-adv__parameter__text">Год постройки</div>
-                                <input type="number" name="house_year_of_construction"
-                                       class="object_parameter_input" required>
+                                <input class="object_parameter_input" name="house_year_of_construction"
+                                       required type="number">
                             </div>
                         </div>
                     </div>
@@ -130,46 +132,48 @@
                         <div class="add-adv__parameters">
                             <div class="add-adv__parameter">
                                 <div class="add-adv__parameter__text">Количество комнат</div>
-                                <input type="number" name="flat_room_number" min="1"
-                                       class="object_parameter_input" required>
+                                <input class="object_parameter_input" min="1" name="flat_room_number"
+                                       required type="number">
                             </div>
                             <div class="add-adv__parameter">
                                 <div class="add-adv__parameter__text">Общая площадь</div>
-                                <input type="number" min="0" name="flat_area_all"
-                                       class="object_parameter_input" required>
+                                <input class="object_parameter_input" min="0" name="flat_area_all"
+                                       required type="number">
                             </div>
                             <div class="add-adv__parameter">
                                 <div class="add-adv__parameter__text">Площадь кухни</div>
-                                <input type="number" min="0" name="flat_kitchen_area"
-                                       class="object_parameter_input" required>
+                                <input class="object_parameter_input" min="0" name="flat_kitchen_area"
+                                       required type="number">
                             </div>
                             <div class="add-adv__parameter">
                                 <div class="add-adv__parameter__text">Жилая площадь</div>
-                                <input type="number" min="0" name="flat_living_area"
-                                       class="object_parameter_input" required>
+                                <input class="object_parameter_input" min="0" name="flat_living_area"
+                                       required type="number">
                             </div>
                             <div class="add-adv__parameter">
                                 <div class="add-adv__parameter__text">Площадь</div>
-                                <input type="number" min="0" name="area"
-                                       class="object_parameter_input" required>
+                                <input class="object_parameter_input" min="0" name="area"
+                                       required type="number">
                             </div>
                             <div class="add-adv__parameter">
                                 <div class="add-adv__parameter__text">Высота ( м.)</div>
-                                <input type="number" step="0.01" min="0" name="flat_ceiling_height"
-                                       class="object_parameter_input" required>
+                                <input class="object_parameter_input" min="0" name="flat_ceiling_height" required
+                                       step="0.01" type="number">
                             </div>
                             <div class="add-adv__parameter">
                                 <div class="add-adv__parameter__text">Этаж</div>
-                                <input type="number" min="1" name="flat_floor_number" style="margin-left: 0"
-                                       class="object_parameter_input object_parameter_input--small" required>
+                                <input class="object_parameter_input object_parameter_input--small" min="1"
+                                       name="flat_floor_number" required
+                                       style="margin-left: 0" type="number">
                                 <span> из </span>
-                                <input type="number" min="1" name="flat_total_floor_number"
-                                       class="object_parameter_input object_parameter_input--small" required>
+                                <input class="object_parameter_input object_parameter_input--small" min="1"
+                                       name="flat_total_floor_number"
+                                       required type="number">
                             </div>
                             <div class="add-adv__parameter">
                                 <div class="add-adv__parameter__text">Год постройки</div>
-                                <input type="number" min="1000" name="flat_year_of_building"
-                                       class="object_parameter_input" required>
+                                <input class="object_parameter_input" min="1000" name="flat_year_of_building"
+                                       required type="number">
                             </div>
                             <div class="add-adv__parameter">
                                 <div class="add-adv__parameter__text">Мебель</div>
@@ -182,15 +186,16 @@
                     </div>
                     <div class="add-adv__info__item add-adv__info__item--block">
                         <div class="add-adv__form__title">Адрес</div>
-                        <input type="text" name="flat_location"
-                               class="object_parameter_input object_parameter_input--large" id="add_adv_address" required>
+                        <input class="object_parameter_input object_parameter_input--large" id="add_adv_address"
+                               name="flat_location" required
+                               type="text">
                         <div id='add_adv_map'></div>
                     </div>
                     <div class="add-adv__info__item add-adv__info__item--block">
                         <div class="add-adv__form__title">Фото</div>
                         <div class="add_adv_photo_field object_parameter_input--large" id="file_display_area">
                             <div class="add_adv_photo__inner">
-                                <input type="file" id="file-input" class="add-photo__input" multiple>
+                                <input class="add-photo__input" id="file-input" multiple type="file">
                                 <label for="file-input"><i class="fas fa-folder-open"></i></label>
                                 <div class="upload_photo_description">
                                     Загрузите свое фото сюда...
@@ -200,26 +205,28 @@
                     </div>
                     <div class="add-adv__info__item add-adv__info__item--block">
                         <div class="add-adv__form__title ">Описание</div>
-                        <textarea type="text" name="flat_description"
-                                  class="object_parameter_input object_parameter_input_description object_parameter_input--large"
-                                  required> </textarea>
+                        <textarea
+                                class="object_parameter_input object_parameter_input_description object_parameter_input--large"
+                                name="flat_description"
+                                required
+                                type="text"> </textarea>
                     </div>
                     <div class="add-adv__info__item add-adv__info__item--block">
                         <div class="add-adv__form__title">Контактный номер</div>
-                        <input type="tel" name="contact_number"
-                               class="object_parameter_input" required>
+                        <input class="object_parameter_input" name="contact_number"
+                               required type="tel">
                     </div>
                     <div class="add-adv__info__item add-adv__info__item--block">
                         <div class="add-adv__form__title">Цена</div>
-                        <input type="number" name="price" class="object_parameter_input" required>
-                        <select name="select_price" class="price">
+                        <input class="object_parameter_input" name="price" required type="number">
+                        <select class="price" name="select_price">
                             <option value="dollar">$</option>
                             <option value="ruble">₽</option>
                             <option value="MDL">MDL</option>
                         </select>
                     </div>
                     <div class="add_adv_submit_button_field">
-                        <button type="submit" class="add_adv_submit_button">Добавить объявление</button>
+                        <button class="add_adv_submit_button" type="submit">Добавить объявление</button>
                     </div>
                 </div>
             </form>
@@ -235,7 +242,7 @@
                             <i class="fas fa-share"></i>
                         </div>
                     </div>
-                    <img class="side-panel-image" src="images/side-panel-adv/side_panel_adv_1.png" alt="adv_1">
+                    <img alt="adv_1" class="side-panel-image" src="images/side-panel-adv/side_panel_adv_1.png">
                 </div>
                 <div class="advertisement__item">
                     <h3 class="side-panel-info__header">Пентхаус со своим лесом</h3>
@@ -243,7 +250,7 @@
                         <i class="fas fa-heart"></i>
                         <i class="fas fa-share"></i>
                     </div>
-                    <img class="side-panel-image" src="images/side-panel-adv/side_panel_adv_2.png" alt="adv_1">
+                    <img alt="adv_1" class="side-panel-image" src="images/side-panel-adv/side_panel_adv_2.png">
                 </div>
                 <div class="advertisement__item">
                     <h3 class="side-panel-info__header">дом с ошеломительным видом на горы</h3>
@@ -251,7 +258,7 @@
                         <i class="fas fa-heart"></i>
                         <i class="fas fa-share"></i>
                     </div>
-                    <img class="side-panel-image" src="images/side-panel-adv/side_panel_adv_3.png" alt="adv_1">
+                    <img alt="adv_1" class="side-panel-image" src="images/side-panel-adv/side_panel_adv_3.png">
                 </div>
                 <div class="advertisement__item">
                     <h3 class="side-panel-info__header">квартира в стиле лофт</h3>
@@ -259,7 +266,7 @@
                         <i class="fas fa-heart"></i>
                         <i class="fas fa-share"></i>
                     </div>
-                    <img class="side-panel-image" src="images/side-panel-adv/side_panel_adv_4.png" alt="adv_1">
+                    <img alt="adv_1" class="side-panel-image" src="images/side-panel-adv/side_panel_adv_4.png">
                 </div>
                 <div class="advertisement__item">
                     <h3 class="side-panel-info__header">Склад 1гектар в отличном состоянии</h3>
@@ -267,7 +274,7 @@
                         <i class="fas fa-heart"></i>
                         <i class="fas fa-share"></i>
                     </div>
-                    <img class="side-panel-image" src="images/side-panel-adv/side_panel_adv_5.png" alt="adv_1">
+                    <img alt="adv_1" class="side-panel-image" src="images/side-panel-adv/side_panel_adv_5.png">
                 </div>
             </div>
         </div>
