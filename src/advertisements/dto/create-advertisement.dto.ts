@@ -1,7 +1,7 @@
 export class CreateAdvertisementDto {
   readonly description: string;
   readonly area: number;
-  readonly price: number;
+  readonly price: string;
   readonly location: number;
   readonly ceilingHeight: number;
   readonly roomCount: number;
@@ -20,4 +20,7 @@ export class CreateAdvertisementDto {
   readonly dealObject: string;
   readonly photos: string[];
   readonly selectedPrice;
+  readonly metroStation;
+  readonly pricePerMeter: string;
 }
+[{}];

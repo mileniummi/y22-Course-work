@@ -1,15 +1,27 @@
 <div class="log__page">
   <div class="log__page__content">
     <span>Вход и регистрация</span>
-    <input
-      class="log__page__input"
-      name="log"
-      placeholder="Email или ID"
-      type="text"
-    />
-    <button class="log__page__btn">
-      <span class="log__page__txt">Продолжить</span>
-    </button>
+    <form method="post" class="log__page-form" >
+      <label>
+        <input
+          class="log__page__input"
+          name="login"
+          placeholder="Email или ID"
+          type="text"
+        />
+      </label>
+      <label>
+        <input
+          class="log__page__input"
+          name="password"
+          placeholder="Введите пароль"
+          type="password"
+        />
+      </label>
+      <button class="log__page__btn">
+        <span class="log__page__txt">Продолжить</span>
+      </button>
+    </form>
     <a>Войти через соц. сети</a>
     <ul class="log__page__social">
       <li class="social_item">

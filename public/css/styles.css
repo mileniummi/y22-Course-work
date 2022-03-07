@@ -613,6 +613,15 @@ select {
     text-decoration: none;
 }
 
+.main__page__buy__rent__input input[type="radio"] {
+    display: none;
+}
+
+.main__page__buy__rent__input span {
+    background-color: #90C6B2;
+    display: inline-block;
+}
+
 .main__page__options {
     display: flex;
     position: absolute;
@@ -725,6 +734,12 @@ select {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.log__page-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .fa-folder-open {
@@ -1116,12 +1131,12 @@ select {
     width: 320px;
     border-radius: 20px;
     font-size: 20px;
-    padding: 0;
+    padding: 5px;
 }
 
 .log__page__input::placeholder {
-    color: black;
     font-weight: bold;
+    color: #828190;
 }
 
 .log__page__btn {

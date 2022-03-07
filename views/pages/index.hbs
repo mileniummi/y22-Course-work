@@ -1,53 +1,55 @@
 <div class="main__page">
-    <div class="main__page__image">
-        <picture>
-            <img alt="daaamn house" src="images/initial_images/home.jpg"/>
-        </picture>
-    </div>
-    <div class="main__page__choice">
-        <ul class="main__page__buy__rent">
-            <li><a href="">Купить</a></li>
-            <li><a href="">Снять</a></li>
-        </ul>
-        <ul class="main__page__options">
-            <li>
-                <select class="main__page__options__select">
-                    <option>Квартира</option>
-                    <option>Дом</option>
-                </select>
-            </li>
-            <li>
-                <select class="main__page__options__rooms">
-                    <option>Комнаты</option>
-                    <option>Cтудия</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3+</option>
-                </select>
-            </li>
-            <li>
-                <select class="main__page__options__price">
-                    <option>Цена</option>
-                    <option>До 2млн</option>
-                    <option>От 2млн до 4млн</option>
-                    <option>От 4млн до 6млн</option>
-                    <option>От 6 млн</option>
-                </select>
-            </li>
-            <li>
-                <input
-                        class="main__page__options__address"
-                        name="address"
-                        placeholder="Адрес"
-                        type="text"
-                />
-            </li>
-        </ul>
-        <div class="main__page__options__search">
-            <button class="main__page__options__search__btn">
-                <p class="main__page__options__search__txt">Найти</p>
-            </button>
-        </div>
-    </div>
-
+  <div class="main__page__image">
+    <picture>
+      <img alt="main-bg" src="images/initial_images/home.jpg" />
+    </picture>
+  </div>
+  <div class="main__page__choice">
+    <form action="">
+      <div class="main__page__buy__rent">
+          <label>
+              <input type="radio" name="dealType" class="main__page__buy__rent__input">
+              <span>Купить</span>
+          </label>
+          <label>
+              <input type="radio" name="dealType" class="main__page__buy__rent__input">
+              <span>Снять</span>
+          </label>
+      </div>
+      <ul class="main__page__options">
+        <li>
+          <select class="main__page__options__select">
+            <option>Квартира</option>
+            <option>Дом</option>
+          </select>
+        </li>
+        <li>
+          <select class="main__page__options__rooms">
+            <option>Комнаты</option>
+            <option>Cтудия</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3+</option>
+          </select>
+        </li>
+        <li>
+          <select class="main__page__options__price">
+            <option>Цена</option>
+            <option>До 2млн</option>
+            <option>От 2млн до 4млн</option>
+            <option>От 4млн до 6млн</option>
+            <option>От 6 млн</option>
+          </select>
+        </li>
+        <li>
+          <input
+            class="main__page__options__address"
+            name="address"
+            placeholder="Адрес"
+            type="text"
+          />
+        </li>
+      </ul>
+    </form>
+  </div>
 </div>
