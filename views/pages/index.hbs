@@ -7,14 +7,14 @@
   <div class="main__page__choice">
     <form action="">
       <div class="main__page__buy__rent">
-          <label>
-              <input type="radio" name="dealType" class="main__page__buy__rent__input">
-              <span>Купить</span>
-          </label>
-          <label>
-              <input type="radio" name="dealType" class="main__page__buy__rent__input">
-              <span>Снять</span>
-          </label>
+        <div class="main__page__buy__rent-item">
+          <input id="fid-1" type="radio" name="radio" value="1" checked />
+          <label for="fid-1">Купить</label>
+        </div>
+        <div class="main__page__buy__rent-item">
+          <input id="fid-2" type="radio" name="radio" value="2" />
+          <label for="fid-2">Снять</label>
+        </div>
       </div>
       <ul class="main__page__options">
         <li>
@@ -51,5 +51,10 @@
         </li>
       </ul>
     </form>
+    <div class="main__page__options__search">
+      <button class="main__page__options__search__btn">
+        <p class="main__page__options__search__txt">Найти</p>
+      </button>
+    </div>
   </div>
 </div>
