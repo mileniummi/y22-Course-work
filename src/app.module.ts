@@ -8,9 +8,11 @@ import { FavouritesController } from "./favourites/favourites.controller";
 import { MyAdvertisementsController } from "./my-advertisements/my-advertisements.controller";
 import { AddAdvertisementController } from "./add-advertisement/add-advertisement.controller";
 import { AdvertisementsController } from "./advertisements/advertisements.controller";
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
-  imports: [ConfigModule.forRoot()],
+  imports: [ConfigModule.forRoot(), AuthModule, UsersModule],
   controllers: [
     AppController,
     MortgagesController,

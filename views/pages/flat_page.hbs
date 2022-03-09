@@ -15,7 +15,7 @@
 
                 {{#each adv.photos}}
                     <div class="numbertext">{{@index}} / {{../adv.photos.length}}</div>
-                        <img alt="" class="mySlides" src="{{this}}" style="width:100%">
+                    <img alt="" class="mySlides" src="{{this}}" style="width:100%">
                 {{/each}}
 
                 <!-- Next and previous buttons -->
@@ -81,7 +81,8 @@
             </div>
             <div class="flat_page_info__about_cur_flat_990px">
                 <p class="flat_page_info__about_cur_flat_990px__topic">Характеристики</p>
-                <p class="flat_page_info__about_cur_flat_990px__characteristics"><br>{{adv.floorNumber}} этаж из {{adv.totalFloorNumber}}<br>
+                <p class="flat_page_info__about_cur_flat_990px__characteristics"><br>{{adv.floorNumber}} этаж
+                    из {{adv.totalFloorNumber}}<br>
                     {{adv.area}} м<sup>2</sup> - общая площадь<br>
                     {{adv.kitchenArea}} м<sup>2</sup> - кухня<br>
                     {{adv.livingArea}} м<sup>2</sup> - жилая<br>
@@ -97,7 +98,7 @@
             </div>
             <div class="flat_page__info__full_description">
                 <p>Расположение</p>
-                <div class="flat_page__info__full_description__map" id="flat_Mohovaya_map"></div>
+                <div class="flat_page__info__full_description__map" id="map"></div>
             </div>
         </div>
 
@@ -122,8 +123,5 @@
         </div>
     </div>
 </div>
+{{> ymaps latitude=adv.latitude longitude=adv.longitude initialZoom=16 ableToCreatePlacemark=false }}
 <script src="/javascript/slide_show_for_first_flat.js"></script>
-<script src="/javascript/header_popup_menu.js"></script>
-<script src="/javascript/phone_number_button.js"></script>
-<script src="/javascript/add_to_fav_button.js"></script>
-<script src="/javascript/first_flat_map.js"></script>

@@ -3,29 +3,33 @@ ymaps.ready(init);
 function init() {
   let myPlacemark,
     myMap = new ymaps.Map("map", {
-      center: [59.95159589219949, 30.317689724457583],
-      zoom: 10,
+      center: centerCoords,
+      zoom: initialZoom,
     });
-
-  // Слушаем клик на карте.
-  myMap.events.add("click", function (e) {
-    let coords = e.get("coords");
-
-    // Если метка уже создана – просто передвигаем ее.
-    if (myPlacemark) {
-      myPlacemark.geometry.setCoordinates(coords);
-    }
-    // Если нет – создаем.
-    else {
-      myPlacemark = createPlacemark(coords);
-      myMap.geoObjects.add(myPlacemark);
-      // Слушаем событие окончания перетаскивания на метке.
-      myPlacemark.events.add("dragend", function () {
-        getAddress(myPlacemark.geometry.getCoordinates());
-      });
-    }
-    getAddress(coords);
-  });
+  if (ableToCreatePlacemark) {
+    // Слушаем клик на карте.
+    myMap.events.add("click", function (e) {
+      let coords = e.get("coords");
+      document.getElementById("map-latitude").value = coords[0];
+      document.getElementById("map-longitude").value = coords[1];
+      // Если метка уже создана – просто передвигаем ее.
+      if (myPlacemark) {
+        myPlacemark.geometry.setCoordinates(coords);
+      }
+      // Если нет – создаем.
+      else {
+        myPlacemark = createPlacemark(coords);
+        myMap.geoObjects.add(myPlacemark);
+        // Слушаем событие окончания перетаскивания на метке.
+        myPlacemark.events.add("dragend", function () {
+          getAddress(myPlacemark.geometry.getCoordinates());
+        });
+      }
+      getAddress(coords);
+    });
+  } else {
+    myMap.geoObjects.add(new ymaps.Placemark(centerCoords));
+  }
 
   // Создание метки.
   function createPlacemark(coords) {

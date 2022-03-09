@@ -10,7 +10,8 @@ export class CreateAdvertisementDto {
   readonly yearOfBuilding: number;
   readonly kitchenArea: number;
   readonly livingArea: number;
-  readonly coords: number[];
+  readonly latitude: number;
+  readonly longitude: number;
   readonly readyToShowOnline: boolean;
   readonly isFinalPrice: boolean;
   readonly hasFurniture: boolean;
@@ -18,9 +19,9 @@ export class CreateAdvertisementDto {
   readonly fromOwner: boolean;
   readonly contactNumber: string;
   readonly dealObject: string;
-  readonly photos: string[];
-  readonly selectedPrice;
+  readonly photos: Array<string>;
+  readonly currency: string;
   readonly metroStation;
   readonly pricePerMeter: string;
+  readonly createdAt: Date;
 }
-[{}];

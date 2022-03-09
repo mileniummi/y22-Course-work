@@ -19,7 +19,7 @@ window.addEventListener("load", function () {
     });
 
     // Set up our request
-    XHR.open("POST", "/");
+    XHR.open("POST", "/add-advertisement");
 
     // The data sent is what the user provided in the form
     XHR.send(FD);

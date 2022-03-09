@@ -464,26 +464,6 @@ select {
     margin-top: 20px;
 }
 
-.object-options {
-    list-style-type: none;
-    padding-left: unset;
-}
-
-.object-options .active_object {
-    color: white;
-}
-
-.object-options .active_object:before {
-    color: black;
-}
-
-.object-options__item:hover {
-    color: white;
-}
-
-.object-options__item:hover:before {
-    color: black;
-}
 
 .object-options__item {
     cursor: pointer;
@@ -2007,6 +1987,7 @@ footer {
 
     .background_for_favourites__page__container_header {
         font-size: 30px;
+        margin: 15px 0;
     }
 
     .popup-nav_item_text {

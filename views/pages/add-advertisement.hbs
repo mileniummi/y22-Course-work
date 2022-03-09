@@ -2,7 +2,12 @@
     <div class="content">
         <div class="add-adv">
             <h1 class="add-adv__header">Разместить новое объявление</h1>
-            <form class="add-adv__form" id="flat_form" method="POST">
+            <form
+                    class="add-adv__form"
+                    id="flat_form"
+                    method="POST"
+                    enctype="multipart/form-data"
+            >
                 <div class="add-adv__info">
                     <div class="add-adv__info__item">
                         <div class="add-adv__form__title">Кто вы?</div>
@@ -46,14 +51,26 @@
                             <span class="add-adv__option">Продажа</span>
                         </label>
                     </div>
-                    <div class="add-adv__info__item living">
+                    <div class="add-adv__info__item">
                         <div class="add-adv__form__title">Объект сделки</div>
-                        <ul class="object-options">
-                            <li class="object-options__item deal_object"><span
-                            >Квартира</span></li>
-                            <li class="object-options__item deal_object"><span
-                            >Дом</span></li>
-                        </ul>
+                        <label class="">
+                            <input
+                                    class="add-adv__option__input"
+                                    type="radio"
+                                    value="flat"
+                                    name="dealObject"
+                            />
+                            <span class="add-adv__option">Квартира</span>
+                        </label>
+                        <label>
+                            <input
+                                    class="add-adv__option__input"
+                                    type="radio"
+                                    value="house"
+                                    name="dealObject"
+                            />
+                            <span class="add-adv__option">Дом</span>
+                        </label>
                     </div>
                     <div class="add-adv__info__item">
                         <div class="add-adv__form__title">Готовы показать онлайн?</div>
@@ -138,7 +155,7 @@
                                 <label>
                                     <input
                                             class="object_parameter_input"
-                                            min="0"
+                                            min="3"
                                             name="area"
                                             required
                                             type="number"
@@ -150,7 +167,7 @@
                                 <label>
                                     <input
                                             class="object_parameter_input"
-                                            min="0"
+                                            min="3"
                                             name="kitchenArea"
                                             required
                                             type="number"
@@ -162,7 +179,7 @@
                                 <label>
                                     <input
                                             class="object_parameter_input"
-                                            min="0"
+                                            min="3"
                                             name="livingArea"
                                             required
                                             type="number"
@@ -174,7 +191,7 @@
                                 <label>
                                     <input
                                             class="object_parameter_input"
-                                            min="0"
+                                            min="1.5"
                                             name="ceilingHeight"
                                             required
                                             step="0.01"
@@ -211,6 +228,7 @@
                                     <input
                                             class="object_parameter_input"
                                             min="1000"
+                                            max="2030"
                                             name="yearOfBuilding"
                                             required
                                             type="number"
@@ -242,15 +260,31 @@
                     </div>
                     <div class="add-adv__info__item add-adv__info__item--block">
                         <div class="add-adv__form__title">Адрес</div>
-                        <label for="add_adv_address"></label><input
-                            class="object_parameter_input object_parameter_input--large"
-                            id="add_adv_address"
-                            name="location"
-                            required
-                            type="text"
-                    />
+                        <label for="add_adv_address"><input
+                                class="object_parameter_input object_parameter_input--large"
+                                id="add_adv_address"
+                                name="location"
+                                required
+                                type="text"
+                        />
+                        </label>
                         <div id="map"></div>
                     </div>
+                    <div class="add-adv__info__item" style="display: none">
+                        <label><input
+                                id="map-latitude"
+                                name="latitude"
+                        />
+                        </label>
+                    </div>
+                    <div class="add-adv__info__item" style="display: none">
+                        <label><input
+                                id="map-longitude"
+                                name="longitude"
+                        />
+                        </label>
+                    </div>
+
                     <div class="add-adv__info__item add-adv__info__item--block">
                         <div class="add-adv__form__title">Фото</div>
                         <div
@@ -259,13 +293,13 @@
                         >
                             <div class="add_adv_photo__inner">
                                 <input
-                                        name="photos"
+                                        name="photos[]"
                                         class="add-photo__input"
-                                        value=""
                                         id="file-input"
-                                        multiple
+                                        multiple="multiple"
                                         type="file"
                                         accept="image/png, image/jpeg"
+                                        required
                                 />
                                 <label for="file-input"><i
                                         class="fas fa-folder-open"
@@ -308,7 +342,7 @@
                             />
                         </label>
                         <label>
-                            <select class="price" name="selectedPrice">
+                            <select class="price" name="currency">
                                 <option value="dollar">$</option>
                                 <option value="ruble">₽</option>
                                 <option value="MDL">MDL</option>
@@ -328,7 +362,7 @@
             <div class="advertisement-inner">
                 <div class="advertisement__item">
                     <div class="side-panel-info">
-                        <h3 class="side-panel-info__header">дом в центре на Варшавке</h3>
+                        <h3 class="side-panel-info__header">дом в центре на Моховой</h3>
                         <div class="side-panel-links">
                             <i class="fas fa-heart"></i>
                             <i class="fas fa-share"></i>
@@ -337,7 +371,7 @@
                     <img
                             alt="adv_1"
                             class="side-panel-image"
-                            src="images/side-panel-adv/side_panel_adv_1.png"
+                            src="/images/side-panel-adv/side_panel_adv_1.png"
                     />
                 </div>
                 <div class="advertisement__item">
@@ -349,7 +383,7 @@
                     <img
                             alt="adv_1"
                             class="side-panel-image"
-                            src="images/side-panel-adv/side_panel_adv_2.png"
+                            src="/images/side-panel-adv/side_panel_adv_2.png"
                     />
                 </div>
                 <div class="advertisement__item">
@@ -361,7 +395,7 @@
                     <img
                             alt="adv_1"
                             class="side-panel-image"
-                            src="images/side-panel-adv/side_panel_adv_3.png"
+                            src="/images/side-panel-adv/side_panel_adv_3.png"
                     />
                 </div>
                 <div class="advertisement__item">
@@ -373,7 +407,7 @@
                     <img
                             alt="adv_1"
                             class="side-panel-image"
-                            src="images/side-panel-adv/side_panel_adv_4.png"
+                            src="/images/side-panel-adv/side_panel_adv_4.png"
                     />
                 </div>
                 <div class="advertisement__item">
@@ -385,13 +419,12 @@
                     <img
                             alt="adv_1"
                             class="side-panel-image"
-                            src="images/side-panel-adv/side_panel_adv_5.png"
+                            src="/images/side-panel-adv/side_panel_adv_5.png"
                     />
                 </div>
             </div>
         </div>
     </div>
 </main>
-<script src="javascript/image_loader.js"></script>
-<script src="javascript/send_advertisement.js"></script>
-{{> ymaps}}
+<script src="/javascript/image_loader.js"></script>
+{{> ymaps latitude=59.95111647568897 longitude=30.316310840162668 initialZoom=10 ableToCreatePlacemark=true }}
