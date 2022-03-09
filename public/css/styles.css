@@ -23,12 +23,22 @@ a {
 
 .images {
     margin-right: 15px;
+    width: 30%;
 }
 
 .small_images {
     display: flex;
     justify-content: space-between;
     padding-top: 5px;
+}
+
+.small_images__item {
+    width: 100%;
+}
+
+.small_images__item-class {
+    max-width: 100%;
+    height: auto;
 }
 
 .description {
@@ -1104,6 +1114,7 @@ select {
     margin: 7px;
     font-size: 15px;
     display: inline-block;
+    cursor: pointer;
 }
 
 .flat_page__tags__favourites {
@@ -1200,6 +1211,7 @@ footer {
     margin-left: 50px;
     font-size: 36px;
     font-weight: 100;
+    width: 70%;
 }
 
 .info__name__inner {
@@ -1324,21 +1336,6 @@ footer {
     height: inherit;
 }
 
-/* Slideshow container */
-.slideshow-container {
-    max-width: 1000px;
-    position: relative;
-}
-
-/* Hide the images by default */
-.mySlides {
-    display: none;
-}
-
-.mySlides2 {
-    display: none;
-}
-
 /* Next & previous buttons */
 .prev, .next {
     cursor: pointer;
@@ -1382,7 +1379,6 @@ footer {
     font-size: 12px;
     padding: 8px 12px;
     position: absolute;
-    top: 0;
 }
 
 /* The dots/bullets/indicators */

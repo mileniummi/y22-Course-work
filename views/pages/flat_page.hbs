@@ -1,3 +1,4 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <p class="search_result">
     Купить {{adv.roomCount}}-комнатную квартиру
 </p>
@@ -10,22 +11,16 @@
         </div>
         <div class="flat_page__info__images">
             <!-- Slideshow container -->
-            <div class="slideshow-container">
+            <div class="slideshow-container slider" id="div{{adv.id}}">
 
-                <!-- Full-width images with number and caption text -->
                 {{#each adv.photos}}
-                    <div class="mySlides fade">
-                        <div class="numbertext">@index / {{adv.photos.length}}</div>
-                        <img alt="" class=flat_page__info__image"
-                             src="{{this}}" style="width:100%">
-                    </div>
+                    <div class="numbertext">{{@index}} / {{../adv.photos.length}}</div>
+                        <img alt="" class="mySlides" src="{{this}}" style="width:100%">
                 {{/each}}
-            </div>
-
 
                 <!-- Next and previous buttons -->
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                <a class="prev" onclick="plusDivs(this, -1)">&#10094;</a>
+                <a class="next" onclick="plusDivs(this, 1)">&#10095;</a>
             </div>
             <br>
 
@@ -127,3 +122,8 @@
         </div>
     </div>
 </div>
+<script src="/javascript/slide_show_for_first_flat.js"></script>
+<script src="/javascript/header_popup_menu.js"></script>
+<script src="/javascript/phone_number_button.js"></script>
+<script src="/javascript/add_to_fav_button.js"></script>
+<script src="/javascript/first_flat_map.js"></script>

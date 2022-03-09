@@ -1,47 +1,38 @@
 <!--one flat-->
-<a href="/advertisements/1">
+<a href="/advertisements/{{adv.id}}">
   <div class="flat_page">
     <div class="flat_page__inner">
       <div class="images">
         <div class="big_image">
-          <div class="slideshow-container">
+          <div class="slideshow-container slider" id="div{{adv.id}}">
 
-            <!-- Full-width images with number and caption text -->
-<!--              photos [0, 5]-->
-<!--              is working!!!!!!!!-->
-
-              {{#each adv.photos2}}
-                  <div class="mySlides fade">
-                      <div class="numbertext">{{@index}} / {{../adv.photos2.length}}</div>
-                      <img alt="" class=flat_page__info__image"
-                           src="{{this}}" style="width:100%">
-                  </div>
+              {{#each adv.photos}}
+                  <div class="numbertext">{{@index}} / {{../adv.photos.length}}</div>
+                      <img alt="" class="mySlides" src="{{this}}" style="width:100%">
               {{/each}}
 
             <!-- Next and previous buttons -->
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            <a class="w3-display-left" onclick="plusDivs(this, -1)">&#10094;</a>
+            <a class="w3-display-right" onclick="plusDivs(this, 1)">&#10095;</a>
           </div>
         </div>
         <div class="small_images">
-          <img
-            alt=""
-            src={{adv.photos.[0]}}
-          />
-          <img
-            alt=""
-            src={{adv.photos.[1]}}
-          />
+            <div class="small_images__item">
+                <img alt="" class="small_images__item-class" src={{adv.photos.[0]}} />
+            </div>
+            <div class="small_images__item">
+                <img alt="" class="small_images__item-class" src={{adv.photos.[1]}} />
+            </div>
         </div>
       </div>
       <div class="info">
         <div class="info__without_full_description">
           <div class="info__without_full_description__and_developer">
-            <a class="name" href="second_flat.html">
+            <a class="name" href="/advertisements/{{adv.id}}">
               <p class="info__name__inner">{{adv.area}} м<sup>2</sup>, {{adv.roomCount}}-комнатная
                 квартира</p>
             </a>
-            <a class="description" href="second_flat.html">
+            <a class="description" href="/advertisements/{{adv.id}}">
               <div class="additional_info">
                 <p>{{adv.floorNumber}} этаж из {{adv.totalFloorNumber}}
                   <br />
