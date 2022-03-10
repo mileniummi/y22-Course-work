@@ -31,9 +31,15 @@
                     class="header_add_adv_text"
             >+&nbsp;Добавить&nbsp;объявление</a>
         </button>
-        <button class="header_enter_btn" onclick="window.location.href='/login'">
-            <span class="header_add_adv_text">Войти</span>
+       {{#if user}}
+       <button class="header_enter_btn" onclick="window.location.href='/my-advertisements'">
+           <span class="header_add_adv_text">{{user.login}}</span>
         </button>
+        {{else}}
+           {{user}}
+           <button class="header_enter_btn" onclick="window.location.href='/login'">
+               <span class="header_add_adv_text">Войти</span>
+           </button> {{/if}}
     </div>
     <button class="menu-toggle" id="menu-toggle">Menu</button>
     <ul class="popup_nav" id="popup_nav">
@@ -62,9 +68,15 @@
             >
                 <span class="header_add_adv_text">+&nbsp;Добавить&nbsp;объявление</span>
             </button>
-            <button class="header_enter_btn" onclick="window.location.href='/login'">
-                <span class="header_add_adv_text">Войти</span>
-            </button>
+            {{#if user}}
+                <button class="header_enter_btn" onclick="window.location.href='/my-advertisements'">
+                    <span class="header_add_adv_text">{{user.login}}</span>
+                </button>
+            {{else}}
+                {{user}}
+                <button class="header_enter_btn" onclick="window.location.href='/login'">
+                    <span class="header_add_adv_text">Войти</span>
+                </button> {{/if}}
         </li>
     </ul>
 </header>
