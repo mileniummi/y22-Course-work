@@ -1361,6 +1361,10 @@ footer {
     position: absolute;
 }
 
+.slideshow-container {
+    position: relative;
+}
+
 /* The dots/bullets/indicators */
 .dot {
     cursor: pointer;

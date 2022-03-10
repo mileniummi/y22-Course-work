@@ -6,13 +6,13 @@ export class AdvertisementsController {
   @Get("/")
   @Render("pages/flats_list")
   getFlatList() {
-    return { flat1: advArray[0], flat2: advArray[1] };
+    return { user: { login: "name" }, advArray };
   }
 
   @Get("/:id")
   @Render("pages/flat_page")
   getOneFlat(@Param("id") id: string) {
     const a = advArray.find((adv) => adv.id === id);
-    return { adv: a };
+    return { user: { login: "name" }, adv: a };
   }
 }
