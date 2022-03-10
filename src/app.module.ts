@@ -8,6 +8,8 @@ import { FavouritesController } from "./favourites/favourites.controller";
 import { MyAdvertisementsController } from "./my-advertisements/my-advertisements.controller";
 import { AddAdvertisementController } from "./add-advertisement/add-advertisement.controller";
 import { AdvertisementsController } from "./advertisements/advertisements.controller";
+import { APP_INTERCEPTOR } from "@nestjs/core";
+import { LoggingInterceptor } from "./logging.interceptor";
 
 @Module({
   imports: [ConfigModule.forRoot()],
@@ -20,6 +22,12 @@ import { AdvertisementsController } from "./advertisements/advertisements.contro
     AddAdvertisementController,
     AdvertisementsController,
   ],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: LoggingInterceptor,
+    },
+  ],
 })
 export class AppModule {}

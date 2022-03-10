@@ -1,7 +1,9 @@
-{{#if adverisements}}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>>
-    <div class="background_for_results">
-        {{> flats_list_item adv=advertisements.[0]}}
+{{#if anythingToDisplay}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <div class="background_for_results" style="margin-top: 50px;">
+        {{#each advertisements}}
+            {{> flats_list_item adv=this}}
+        {{/each}}
     </div>
     <script src="/javascript/slide_show_for_first_flat.js"></script>
 {{else}}

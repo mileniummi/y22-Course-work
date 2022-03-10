@@ -6,6 +6,9 @@ export class MyAdvertisementsController {
   @Get("/")
   @Render("pages/my-advertisements")
   getMyAdvertisements() {
-    return { advertisements: userAdvertisements };
+    return {
+      anythingToDisplay: !!userAdvertisements.length,
+      advertisements: userAdvertisements,
+    };
   }
 }

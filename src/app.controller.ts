@@ -4,7 +4,5 @@ import { Controller, Get, Render } from "@nestjs/common";
 export class AppController {
   @Get()
   @Render("pages/index")
-  root() {
-    return { message: "Hello world!" };
-  }
+  root() {}
 }

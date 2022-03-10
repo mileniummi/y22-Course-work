@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Post,
+  Redirect,
   Render,
   UploadedFiles,
   UseInterceptors,
@@ -10,10 +11,12 @@ import {
 import { FilesInterceptor } from "@nestjs/platform-express";
 import advArray from "../data/advertisementsArray";
 import userAdvertisements from "../data/userAdvertisements";
+import { nanoid } from "nanoid";
 
 @Controller("add-advertisement")
 export class AddAdvertisementController {
   @Post("/")
+  @Redirect("my-advertisements")
   @UseInterceptors(FilesInterceptor("photos[]"))
   create(
     @Body() advertisement,
@@ -24,6 +27,7 @@ export class AddAdvertisementController {
       (photo) =>
         `data:${photo.mimetype};base64,${photo.buffer.toString("base64")}`
     );
+    advertisement.id = nanoid();
     advArray.push(advertisement);
     userAdvertisements.push(advertisement);
   }
