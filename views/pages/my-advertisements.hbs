@@ -1,0 +1,34 @@
+{{#if anythingToDisplay}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <div class="background_for_results" style="margin-top: 50px;">
+        {{#each advertisements}}
+            {{> flats_list_item adv=this}}
+        {{/each}}
+    </div>
+    <script src="/javascript/slide_show_for_first_flat.js"></script>
+{{else}}
+    <div class="background_for_favourites">
+        <div class="background_for_favourites__page">
+            <div class="background_for_favourites__page__container">
+                <h1 class="background_for_favourites__page__container_header">Добавляйте
+                    свои объявления</h1>
+                <div class="background_for_favourites__page__container__description">
+                    Здесь будут отображаться Ваши объявления.
+                </div>
+                <a
+                        class="background_for_favourites__page__container__button"
+                        href="/add-advertisement"
+                >Добавить объявление</a>
+                <a
+                        class="background_for_favourites__page__container__change_account"
+                        href="/login"
+                >Сменить аккаунт</a>
+            </div>
+            <img
+                    alt=""
+                    class="background_for_favourites__page__image"
+                    src="/images/favourites_background.svg"
+            />
+        </div>
+    </div>
+{{/if}}
