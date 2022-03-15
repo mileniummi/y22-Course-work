@@ -7,7 +7,7 @@
           <div class="slideshow-container slider" id="div{{adv.id}}">
 
               {{#each adv.photos}}
-                  <div class="numbertext">{{@index}} / {{../adv.photos.length}}</div>
+                  <div class="numbertext">{{math @index '+' 1}}/ {{../adv.photos.length}}</div>
                       <img alt="" class="mySlides" src="{{this}}" style="width:100%">
               {{/each}}
 

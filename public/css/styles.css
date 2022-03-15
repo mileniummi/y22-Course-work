@@ -1215,14 +1215,11 @@ footer {
 
 .flat_page__info__full_description__text {
     font-weight: 10;
+    font-size: 13px;
 }
 
 .flat_page__info__full_description__heading {
     font-size: 12px;
-}
-
-.flat_page__info__full_description__text {
-    font-size: 13px;
 }
 
 .flat_page__price__developer {
@@ -1632,9 +1629,6 @@ footer {
     }
 
     /*navigation*/
-    .header {
-    }
-
     .nav {
         display: none;
     }
@@ -1748,6 +1742,7 @@ footer {
 
     .images {
         margin: 0;
+        width: auto;
     }
 
     .info {
@@ -1769,9 +1764,6 @@ footer {
     .flat_page__info__images {
         margin-left: auto;
         margin-right: auto;
-    }
-
-    .flat_page__price {
     }
 
     .flat_page__info {
@@ -1880,6 +1872,14 @@ footer {
 
     .images {
         margin: 0;
+    }
+
+    .flat_page__info__full_description__text {
+        font-size: 20px;
+        -webkit-line-clamp: 5;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 
     .info {
