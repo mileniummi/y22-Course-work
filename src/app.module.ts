@@ -11,10 +11,12 @@ import { AdvertisementsModule } from "./advertisements/advertisements.module";
 import { FavouritesModule } from "./favourites/favourites.module";
 import { MyAdvertisementsModule } from "./my-advertisements/my-advertisements.module";
 import { MortgagesModule } from "./mortgages/mortgages.module";
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from "./auth/auth.module";
+import { User } from "./user/entities/user.entity";
+import { Advertisement } from "./advertisements/entities/advertisement.entity";
+import { ImagesLink } from "./advertisements/entities/images-link.entity";
 
 const dbConnection: object = parse(process.env.DATABASE_URL);
-console.log(dbConnection);
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -27,6 +29,7 @@ console.log(dbConnection);
       ssl: {
         rejectUnauthorized: false,
       },
+      entities: [User, Advertisement, ImagesLink],
     }),
     AddAdvertisementModule,
     AdvertisementsModule,
