@@ -12,9 +12,7 @@ import { FavouritesModule } from "./favourites/favourites.module";
 import { MyAdvertisementsModule } from "./my-advertisements/my-advertisements.module";
 import { MortgagesModule } from "./mortgages/mortgages.module";
 import { AuthModule } from "./auth/auth.module";
-import { User } from "./user/entities/user.entity";
-import { Advertisement } from "./advertisements/entities/advertisement.entity";
-import { ImagesLink } from "./advertisements/entities/images-link.entity";
+import { join } from "path";
 
 const dbConnection: object = parse(process.env.DATABASE_URL);
 @Module({
@@ -23,13 +21,13 @@ const dbConnection: object = parse(process.env.DATABASE_URL);
     TypeOrmModule.forRoot({
       ...dbConnection,
       type: "postgres",
-      username: "cjxvjizunkjwnf",
+      username: "jarnqyerxeacxz",
       synchronize: true,
       autoLoadEntities: true,
       ssl: {
         rejectUnauthorized: false,
       },
-      entities: [User, Advertisement, ImagesLink],
+      entities: [join(__dirname, "**", "*.entity[.ts,.js]")],
     }),
     AddAdvertisementModule,
     AdvertisementsModule,
