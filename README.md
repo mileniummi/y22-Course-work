@@ -76,36 +76,36 @@ Nest is [MIT licensed](LICENSE).
 
 ## Description of ER diagram  
 
-We have three tables in the database: advertisement, user and images_link. You can see the diagram in the root of repository (ER-diagram.png)
+We have three tables in the database: advertisement, user and database_image. You can see the diagram in the root of repository (ER-diagram.png)
 
 - **Advertisement**  
 *id* column is primary key  
-*authorId* column is id of user who owns this advertisement, and it's connected with User table  
-*imagesId* column is id of link to the folder with images  
+*authorId* column is foreign key of this table and primary key of the table User  
 Also this table contains columns with information about advertisement (such as price of flat/house, location, description etc.) which was filled in by user  
 
 - **User**  
 *id* column is primary key  
 Also this table contains columns with first name, last name, username, password and info about activity of user's account   
 
-- **Images_link**  
-This table contains info about advertisement and link to the folder with images (links to the images) of it  
-*id* column is primary key
+- **Database_image**  
+This table contains images 
+*id* column is primary key  
+*advertisementId* column is foreign key of this table and primary key of the table Advertisement
 
 ## Описание ER-диаграммы  
 
-В базе данных есть три таблицы: advertisement, user and images_link. Саму таблицу можно увидеть в корне репозитория (ER-diagram.png)
+В базе данных есть три таблицы: advertisement, user and database_image. Саму таблицу можно увидеть в корне репозитория (ER-diagram.png)
 
 - **Advertisement**  
 *id* - первичный ключ   
-*authorId* - айди пользователя, который создал это объявление; эта колонка связана с таблицей User    
-*imagesId* - айди ссылки на папку с изображениями данного объявления   
+*authorId* - внешний ключ этой таблицы, который является первичным ключом таблицы  User  
 Также в этой таблице содержатся колонки с информацией про объявление, такие как: цена, локация, описание и т.д., которые были заполнены пользователем  
 
 - **User**  
 *id* - первичный ключ  
 Также эта таблица содержит колонки с именем, фамилией, именем пользователя, паролем и информацией об активности аккаунта  
 
-- **Images_link**  
-Эта таблица содержит информацию про объявление и ссылку на папку с изображениями (которые относятся к этому объявлению)   
-*id* - первичный ключ 
+- **Database_image**  
+Эта таблица содержит изображения  
+*id* - первичный ключ  
+*advertisementId* - внешний ключ этой таблицы, который является первичным ключом таблицы Advertisement
