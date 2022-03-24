@@ -3,12 +3,17 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  OneToOne,
-  JoinColumn,
   ManyToOne,
+  OneToMany,
 } from "typeorm";
 import { User } from "../../user/entities/user.entity";
-import { ImagesLink } from "./images-link.entity";
+import { databaseImage } from "./databaseImage.entity";
+
+export enum Currency {
+  DOLLAR = "dollar",
+  RUBLE = "ruble",
+  LEI = "MDL",
+}
 
 @Entity()
 export class Advertisement {
@@ -24,11 +29,11 @@ export class Advertisement {
   @Column()
   area: number;
 
-  @Column()
-  price: string;
+  @Column({ type: "float" })
+  price: number;
 
   @Column()
-  location: number;
+  location: string;
 
   @Column()
   ceilingHeight: number;
@@ -51,10 +56,10 @@ export class Advertisement {
   @Column()
   livingArea: number;
 
-  @Column()
+  @Column({ type: "float" })
   latitude: number;
 
-  @Column()
+  @Column({ type: "float" })
   longitude: number;
 
   @Column()
@@ -78,18 +83,17 @@ export class Advertisement {
   @Column()
   dealObject: string;
 
-  @OneToOne(() => ImagesLink)
-  @JoinColumn()
-  images: ImagesLink;
+  @OneToMany(() => databaseImage, (image) => image.advertisement)
+  images: databaseImage[];
 
-  @Column()
-  currency: string;
+  @Column({ type: "enum", enum: Currency, default: Currency.RUBLE })
+  currency: Currency;
 
-  @Column()
+  @Column({ nullable: true })
   metroStation: string;
 
-  @Column()
-  pricePerMeter: string;
+  @Column({ type: "float", nullable: true })
+  pricePerMeter: number;
 
   @CreateDateColumn()
   createdAt: Date;

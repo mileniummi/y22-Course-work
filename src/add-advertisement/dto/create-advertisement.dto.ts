@@ -1,8 +1,10 @@
+import { Currency } from "../../advertisements/entities/advertisement.entity";
+
 export class CreateAdvertisementDto {
   readonly description: string;
   readonly area: number;
-  readonly price: string;
-  readonly location: number;
+  readonly price: number;
+  readonly location: string;
   readonly ceilingHeight: number;
   readonly roomCount: number;
   readonly floorNumber: number;
@@ -19,9 +21,6 @@ export class CreateAdvertisementDto {
   readonly fromOwner: boolean;
   readonly contactNumber: string;
   readonly dealObject: string;
-  readonly photos: Array<string>;
-  readonly currency: string;
-  readonly metroStation;
-  readonly pricePerMeter: string;
+  readonly currency: Currency;
   readonly createdAt: Date;
 }

@@ -1,20 +1,20 @@
 import { Controller, Get, Param, Render } from "@nestjs/common";
 import advArray from "../data/advertisementsArray";
+import { AdvertisementsService } from "./advertisements.service";
 
 @Controller("advertisements")
 export class AdvertisementsController {
+  constructor(private advertisementsService: AdvertisementsService) {}
+
   @Get("/")
   @Render("pages/flats_list")
-  getFlatList() {
-    return { user: { login: "user" }, advertisements: advArray };
+  async getFlatList() {
+    return await this.advertisementsService.getFlatList();
   }
 
   @Get("/:id")
   @Render("pages/flat_page")
-  getOneFlat(@Param("id") id: string) {
-    return {
-      user: { login: "user" },
-      adv: advArray.find((adv) => adv.id === id),
-    };
+  async getOneFlat(@Param("id") id: string) {
+    return await this.advertisementsService.getSingleFlat(id);
   }
 }

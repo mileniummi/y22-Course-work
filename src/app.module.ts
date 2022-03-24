@@ -3,7 +3,7 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { ConfigModule } from "@nestjs/config";
 import { APP_INTERCEPTOR } from "@nestjs/core";
-import { LoggingInterceptor } from "./logging.interceptor";
+import { ServerLoadingTimeInterceptor } from "./server-loading-time.interceptor";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { parse } from "pg-connection-string";
 import { AddAdvertisementModule } from "./add-advertisement/add-advertisement.module";
@@ -12,7 +12,9 @@ import { FavouritesModule } from "./favourites/favourites.module";
 import { MyAdvertisementsModule } from "./my-advertisements/my-advertisements.module";
 import { MortgagesModule } from "./mortgages/mortgages.module";
 import { AuthModule } from "./auth/auth.module";
-import { join } from "path";
+import { User } from "./user/entities/user.entity";
+import { Advertisement } from "./advertisements/entities/advertisement.entity";
+import { databaseImage } from "./advertisements/entities/databaseImage.entity";
 
 const dbConnection: object = parse(process.env.DATABASE_URL);
 @Module({
@@ -20,14 +22,14 @@ const dbConnection: object = parse(process.env.DATABASE_URL);
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       ...dbConnection,
+      username: process.env.DATABASE_USER,
       type: "postgres",
-      username: "jarnqyerxeacxz",
       synchronize: true,
       autoLoadEntities: true,
       ssl: {
         rejectUnauthorized: false,
       },
-      entities: [join(__dirname, "**", "*.entity[.ts,.js]")],
+      entities: [User, Advertisement, databaseImage],
     }),
     AddAdvertisementModule,
     AdvertisementsModule,
@@ -41,7 +43,7 @@ const dbConnection: object = parse(process.env.DATABASE_URL);
     AppService,
     {
       provide: APP_INTERCEPTOR,
-      useClass: LoggingInterceptor,
+      useClass: ServerLoadingTimeInterceptor,
     },
   ],
 })
