@@ -1,5 +1,4 @@
 import { Controller, Get, Param, Render } from "@nestjs/common";
-import advArray from "../data/advertisementsArray";
 import { AdvertisementsService } from "./advertisements.service";
 
 @Controller("advertisements")
