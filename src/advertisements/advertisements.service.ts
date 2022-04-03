@@ -9,7 +9,18 @@ export class AdvertisementsService {
     @InjectRepository(Advertisement)
     private advertisementsRepository: Repository<Advertisement>
   ) {}
-  async getFlatList() {}
+  async getFlatList() {
+    const advertisements = await this.advertisementsRepository.find({});
+    return { user: { login: "user" }, advertisements: advertisements };
+  }
 
-  async getSingleFlat(id) {}
+  async getSingleFlat(id) {
+    const advertisement = await this.advertisementsRepository.findOne({
+      where: { id },
+    });
+    return {
+      user: { login: "user" },
+      adv: { ...advertisement },
+    };
+  }
 }

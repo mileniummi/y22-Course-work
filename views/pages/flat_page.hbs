@@ -13,8 +13,8 @@
             <!-- Slideshow container -->
             <div class="slideshow-container slider" id="div{{adv.id}}">
 
-                {{#each adv.photos}}
-                    <div class="numbertext">{{math @index '+' 1}} / {{../adv.photos.length}}</div>
+                {{#each adv.images}}
+                    <div class="numbertext">{{math @index '+' 1}} / {{../adv.images.length}}</div>
                     <img alt="" class="mySlides" src="{{this}}" style="width:100%">
                 {{/each}}
 

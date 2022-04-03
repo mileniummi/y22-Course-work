@@ -6,8 +6,8 @@
         <div class="big_image">
           <div class="slideshow-container slider" id="div{{adv.id}}">
 
-              {{#each adv.photos}}
-                  <div class="numbertext">{{math @index '+' 1}}/ {{../adv.photos.length}}</div>
+              {{#each adv.images}}
+                  <div class="numbertext">{{math @index '+' 1}}/ {{../adv.images.length}}</div>
                       <img alt="" class="mySlides" src="{{this}}" style="width:100%">
               {{/each}}
 
@@ -18,10 +18,10 @@
         </div>
         <div class="small_images">
             <div class="small_images__item">
-                <img alt="" class="small_images__item-class" src={{adv.photos.[0]}} />
+                <img alt="" class="small_images__item-class" src={{adv.images.[0]}} />
             </div>
             <div class="small_images__item">
-                <img alt="" class="small_images__item-class" src={{adv.photos.[1]}} />
+                <img alt="" class="small_images__item-class" src={{adv.images.[1]}} />
             </div>
         </div>
       </div>
