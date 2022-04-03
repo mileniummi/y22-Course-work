@@ -1,4 +1,4 @@
-import { Currency } from "../../advertisements/entities/advertisement.entity";
+import { Currency } from "../entities/advertisement.entity";
 
 export class CreateAdvertisementDto {
   readonly description: string;
