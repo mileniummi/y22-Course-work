@@ -23,4 +23,7 @@ export class User {
 
   @OneToMany(() => Advertisement, (adv) => adv.author)
   advertisements: Advertisement[];
+
+  @Column("int", { array: true })
+  favAdvsID: number[];
 }
