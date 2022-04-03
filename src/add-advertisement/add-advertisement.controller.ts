@@ -3,33 +3,29 @@ import {
   Controller,
   Get,
   Post,
+  Request,
   Redirect,
   Render,
   UploadedFiles,
   UseInterceptors,
+  Response,
 } from "@nestjs/common";
 import { FilesInterceptor } from "@nestjs/platform-express";
-import advArray from "../data/advertisementsArray";
-import userAdvertisements from "../data/userAdvertisements";
-import { nanoid } from "nanoid";
+import { AddAdvertisementService } from "./add-advertisement.service";
+import { CreateAdvertisementDto } from "./dto/create-advertisement.dto";
 
 @Controller("add-advertisement")
 export class AddAdvertisementController {
+  constructor(private addAdvertisementService: AddAdvertisementService) {}
+
   @Post("/")
   @Redirect("my-advertisements")
   @UseInterceptors(FilesInterceptor("photos[]"))
   create(
-    @Body() advertisement,
+    @Body() advertisement: CreateAdvertisementDto,
     @UploadedFiles() photos: Array<Express.Multer.File>
   ) {
-    advertisement.dateTime = new Date();
-    advertisement.photos = photos.map(
-      (photo) =>
-        `data:${photo.mimetype};base64,${photo.buffer.toString("base64")}`
-    );
-    advertisement.id = nanoid();
-    advArray.push(advertisement);
-    userAdvertisements.push(advertisement);
+    this.addAdvertisementService.create(advertisement, photos);
   }
 
   @Get("/")

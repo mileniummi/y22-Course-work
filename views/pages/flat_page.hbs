@@ -13,8 +13,8 @@
             <!-- Slideshow container -->
             <div class="slideshow-container slider" id="div{{adv.id}}">
 
-                {{#each adv.photos}}
-                    <div class="numbertext">{{@index}} / {{../adv.photos.length}}</div>
+                {{#each adv.images}}
+                    <div class="numbertext">{{math @index '+' 1}} / {{../adv.images.length}}</div>
                     <img alt="" class="mySlides" src="{{this}}" style="width:100%">
                 {{/each}}
 
@@ -92,7 +92,7 @@
             </div>
             <div class="flat_page__info__full_description">
                 <p>Описание</p>
-                <p class="flat_page__info__full_description__text">
+                <p class="flat_page__info__full_description__text_all">
                     {{adv.description}}
                 </p>
             </div>
@@ -125,3 +125,4 @@
 </div>
 {{> ymaps latitude=adv.latitude longitude=adv.longitude initialZoom=16 ableToCreatePlacemark=false }}
 <script src="/javascript/slide_show.js"></script>
+<script src="/javascript/phone_number_button.js"></script>

@@ -71,3 +71,41 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+# Home-hunter
+
+## Description of ER diagram  
+
+We have three tables in the database: advertisement, user and database_image. You can see the diagram in the root of repository (ER-diagram.png)
+
+- **Advertisement**  
+*id* column is primary key  
+*authorId* column is foreign key of this table and primary key of the table User  
+Also this table contains columns with information about advertisement (such as price of flat/house, location, description etc.) which was filled in by user  
+
+- **User**  
+*id* column is primary key  
+Also this table contains columns with first name, last name, username, password and info about activity of user's account   
+
+- **Database_image**  
+This table contains images 
+*id* column is primary key  
+*advertisementId* column is foreign key of this table and primary key of the table Advertisement
+
+## Описание ER-диаграммы  
+
+В базе данных есть три таблицы: advertisement, user and database_image. Саму таблицу можно увидеть в корне репозитория (ER-diagram.png)
+
+- **Advertisement**  
+*id* - первичный ключ   
+*authorId* - внешний ключ этой таблицы, который является первичным ключом таблицы  User  
+Также в этой таблице содержатся колонки с информацией про объявление, такие как: цена, локация, описание и т.д., которые были заполнены пользователем  
+
+- **User**  
+*id* - первичный ключ  
+Также эта таблица содержит колонки с именем, фамилией, именем пользователя, паролем и информацией об активности аккаунта  
+
+- **Database_image**  
+Эта таблица содержит изображения  
+*id* - первичный ключ  
+*advertisementId* - внешний ключ этой таблицы, который является первичным ключом таблицы Advertisement

@@ -1,13 +1,11 @@
 import { Body, Controller, Get, Post, Render } from "@nestjs/common";
 
-@Controller("login")
-export class LoginController {
+@Controller("auth")
+export class AuthController {
   @Get("/")
   @Render("pages/login")
   getLoginPage() {}
 
   @Post("/")
-  getUser(@Body() user) {
-    console.log(user);
-  }
+  getUser(@Body() user) {}
 }

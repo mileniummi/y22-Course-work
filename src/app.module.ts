@@ -2,31 +2,41 @@ import { Module } from "@nestjs/common";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { ConfigModule } from "@nestjs/config";
-import { MortgagesController } from "./mortgages/mortgages.controller";
-import { LoginController } from "./login/login.controller";
-import { FavouritesController } from "./favourites/favourites.controller";
-import { MyAdvertisementsController } from "./my-advertisements/my-advertisements.controller";
-import { AddAdvertisementController } from "./add-advertisement/add-advertisement.controller";
-import { AdvertisementsController } from "./advertisements/advertisements.controller";
 import { APP_INTERCEPTOR } from "@nestjs/core";
-import { LoggingInterceptor } from "./logging.interceptor";
+import { ServerLoadingTimeInterceptor } from "./server-loading-time.interceptor";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { AddAdvertisementModule } from "./add-advertisement/add-advertisement.module";
+import { AdvertisementsModule } from "./advertisements/advertisements.module";
+import { FavouritesModule } from "./favourites/favourites.module";
+import { MyAdvertisementsModule } from "./my-advertisements/my-advertisements.module";
+import { MortgagesModule } from "./mortgages/mortgages.module";
+import { AuthModule } from "./auth/auth.module";
+import { getConnectionOptions } from "typeorm";
+import { join } from "path";
 
 @Module({
-  imports: [ConfigModule.forRoot()],
-  controllers: [
-    AppController,
-    MortgagesController,
-    LoginController,
-    FavouritesController,
-    MyAdvertisementsController,
-    AddAdvertisementController,
-    AdvertisementsController,
+  imports: [
+    ConfigModule.forRoot(),
+    TypeOrmModule.forRootAsync({
+      useFactory: async () =>
+        Object.assign(await getConnectionOptions(), {
+          url: process.env.DATABASE_URL,
+          entities: [join(__dirname, "**", "*.entity.{ts,js}")],
+        }),
+    }),
+    AddAdvertisementModule,
+    AdvertisementsModule,
+    FavouritesModule,
+    MyAdvertisementsModule,
+    MortgagesModule,
+    AuthModule,
   ],
+  controllers: [AppController],
   providers: [
     AppService,
     {
       provide: APP_INTERCEPTOR,
-      useClass: LoggingInterceptor,
+      useClass: ServerLoadingTimeInterceptor,
     },
   ],
 })
