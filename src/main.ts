@@ -4,9 +4,18 @@ import { NestExpressApplication } from "@nestjs/platform-express";
 import { join } from "path";
 import * as hbs from "hbs";
 import * as expressHbs from "express-handlebars";
+import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
+  const config = new DocumentBuilder()
+    .setTitle("Home-Hunter")
+    .setDescription("MVC app for selling flats and houses")
+    .setVersion("1.0")
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup("docs", app, document);
 
   app.useStaticAssets(join(__dirname, "..", "public"));
   app.setBaseViewsDir(join(__dirname, "..", "views"));

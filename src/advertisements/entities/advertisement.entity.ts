@@ -6,6 +6,7 @@ import {
   ManyToOne,
 } from "typeorm";
 import { User } from "../../user/entities/user.entity";
+import { ApiProperty } from "@nestjs/swagger";
 
 export enum Currency {
   DOLLAR = "dollar",
@@ -15,6 +16,7 @@ export enum Currency {
 
 @Entity()
 export class Advertisement {
+  @ApiProperty({ example: 1, description: "Id of advertisement" })
   @PrimaryGeneratedColumn()
   id: number;
 

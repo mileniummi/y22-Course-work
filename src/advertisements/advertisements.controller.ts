@@ -12,11 +12,16 @@ import {
 import { AdvertisementsService } from "./advertisements.service";
 import { FilesInterceptor } from "@nestjs/platform-express";
 import { CreateAdvertisementDto } from "./dto/create-advertisement.dto";
+import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+import { Advertisement } from "./entities/advertisement.entity";
 
+@ApiTags("Advertisements")
 @Controller("advertisements")
 export class AdvertisementsController {
   constructor(private advertisementsService: AdvertisementsService) {}
 
+  @ApiOperation({ summary: "Get all advertisements" })
+  @ApiResponse({ status: 200, type: [Advertisement] })
   @Get("/")
   @Render("pages/flats_list")
   async getFlatList() {
