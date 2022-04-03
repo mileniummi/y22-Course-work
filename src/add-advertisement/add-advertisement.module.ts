@@ -3,10 +3,9 @@ import { AddAdvertisementController } from "./add-advertisement.controller";
 import { AddAdvertisementService } from "./add-advertisement.service";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { Advertisement } from "../advertisements/entities/advertisement.entity";
-import { databaseImage } from "../advertisements/entities/databaseImage.entity";
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Advertisement, databaseImage])],
+  imports: [TypeOrmModule.forFeature([Advertisement])],
   controllers: [AddAdvertisementController],
   providers: [AddAdvertisementService],
 })

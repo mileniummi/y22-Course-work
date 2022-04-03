@@ -4,10 +4,8 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   ManyToOne,
-  OneToMany,
 } from "typeorm";
 import { User } from "../../user/entities/user.entity";
-import { databaseImage } from "./databaseImage.entity";
 
 export enum Currency {
   DOLLAR = "dollar",
@@ -83,9 +81,6 @@ export class Advertisement {
   @Column()
   dealObject: string;
 
-  @OneToMany(() => databaseImage, (image) => image.advertisement)
-  images: databaseImage[];
-
   @Column({ type: "enum", enum: Currency, default: Currency.RUBLE })
   currency: Currency;
 
@@ -100,4 +95,7 @@ export class Advertisement {
 
   @ManyToOne(() => User, (user) => user.id)
   author: User;
+
+  @Column("text", { array: true })
+  images: string[];
 }

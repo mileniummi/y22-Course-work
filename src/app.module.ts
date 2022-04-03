@@ -14,7 +14,6 @@ import { MortgagesModule } from "./mortgages/mortgages.module";
 import { AuthModule } from "./auth/auth.module";
 import { User } from "./user/entities/user.entity";
 import { Advertisement } from "./advertisements/entities/advertisement.entity";
-import { databaseImage } from "./advertisements/entities/databaseImage.entity";
 
 const dbConnection: object = parse(process.env.DATABASE_URL);
 @Module({
@@ -29,7 +28,7 @@ const dbConnection: object = parse(process.env.DATABASE_URL);
       ssl: {
         rejectUnauthorized: false,
       },
-      entities: [User, Advertisement, databaseImage],
+      entities: [User, Advertisement],
     }),
     AddAdvertisementModule,
     AdvertisementsModule,
