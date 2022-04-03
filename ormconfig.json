@@ -1,0 +1,8 @@
+{
+  "type": "postgres",
+  "synchronize": true,
+  "autoLoadEntities": true,
+  "ssl": {
+    "rejectUnauthorized": false
+  }
+}
