@@ -1,4 +1,8 @@
-import { Currency } from "../entities/advertisement.entity";
+import {
+  Currency,
+  DealType,
+  DealObject,
+} from "../entities/advertisement.entity";
 
 export class CreateAdvertisementDto {
   readonly description: string;
@@ -20,7 +24,8 @@ export class CreateAdvertisementDto {
   readonly needsRenovation: boolean;
   readonly fromOwner: boolean;
   readonly contactNumber: string;
-  readonly dealObject: string;
+  readonly dealObject: DealObject;
+  readonly dealType: DealType;
   readonly currency: Currency;
   readonly createdAt: Date;
 }

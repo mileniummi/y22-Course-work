@@ -76,25 +76,23 @@ Nest is [MIT licensed](LICENSE).
 
 ## Description of ER diagram  
 
-We have three tables in the database: advertisement, user and database_image. You can see the diagram in the root of repository (ER-diagram.png)
+We have two tables in the database: advertisement and user. You can see the diagram in the root of repository (ER-diagram.png)
+![ER-diagram.png](ER-diagram.png)
 
 - **Advertisement**  
 *id* column is primary key  
 *authorId* column is foreign key of this table and primary key of the table User  
 Also this table contains columns with information about advertisement (such as price of flat/house, location, description etc.) which was filled in by user  
 
+
 - **User**  
 *id* column is primary key  
-Also this table contains columns with first name, last name, username, password and info about activity of user's account   
-
-- **Database_image**  
-This table contains images 
-*id* column is primary key  
-*advertisementId* column is foreign key of this table and primary key of the table Advertisement
+*favAdvsID* is field with an array with id of advertisements which were added to favourites by user  
+Also this table contains columns with first name, last name, username, password and info about activity of user's account
 
 ## Описание ER-диаграммы  
 
-В базе данных есть три таблицы: advertisement, user and database_image. Саму таблицу можно увидеть в корне репозитория (ER-diagram.png)
+В базе данных есть две таблицы: advertisement и user. Саму таблицу можно увидеть в корне репозитория (ER-diagram.png)
 
 - **Advertisement**  
 *id* - первичный ключ   
@@ -103,9 +101,6 @@ This table contains images
 
 - **User**  
 *id* - первичный ключ  
+*favAdvsID* - массив с id объявлений, которые пользователь добавил в избранное  
 Также эта таблица содержит колонки с именем, фамилией, именем пользователя, паролем и информацией об активности аккаунта  
 
-- **Database_image**  
-Эта таблица содержит изображения  
-*id* - первичный ключ  
-*advertisementId* - внешний ключ этой таблицы, который является первичным ключом таблицы Advertisement
