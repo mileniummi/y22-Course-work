@@ -43,18 +43,18 @@ export class AdvertisementsController {
   @Post("/add")
   @Redirect("my")
   @UseInterceptors(FilesInterceptor("photos[]"))
-  create(
+  async create(
     @Body() advertisement: CreateAdvertisementDto,
     @UploadedFiles() photos: Array<Express.Multer.File>
   ) {
-    this.advertisementsService.create(advertisement, photos);
+    await this.advertisementsService.create(advertisement, photos);
   }
 
   @ApiOperation({ summary: "Get page with form" })
   @ApiResponse({ status: 200, type: [Advertisement] })
   @Get("/add")
   @Render("pages/add-advertisement")
-  get() {}
+  getAddAdvertisementPage() {}
 
   @ApiOperation({ summary: "Get page of current advertisement by id" })
   @ApiResponse({ status: 200, type: [Advertisement] })
