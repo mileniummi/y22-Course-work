@@ -12,13 +12,13 @@ import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 @Controller("auth")
 export class AuthController {
   @ApiOperation({ summary: "Get login page" })
-  @ApiResponse({ status: 200, type: "text/html" })
+  @ApiResponse({ status: 200, description: "success, returns html text" })
   @Get("/login")
   @Render("pages/login")
   getLoginPage() {}
 
   @ApiOperation({ summary: "Get register page" })
-  @ApiResponse({ status: 200, type: "text/html" })
+  @ApiResponse({ status: 200, description: "success, returns html text" })
   @Get("/register")
   //@Render("pages/register")
   getRegisterPage() {

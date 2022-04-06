@@ -6,7 +6,7 @@ import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 export class FavouritesController {
   @Get("/")
   @ApiOperation({ summary: "Get all favourite advertisements" })
-  @ApiResponse({ status: 200, type: "text/html" })
+  @ApiResponse({ status: 200, description: "success, returns html text" })
   @Render("pages/favourites")
   getFavouriteAdvertisements() {}
 }

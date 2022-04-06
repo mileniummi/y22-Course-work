@@ -5,7 +5,7 @@ import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 @Controller("mortgages")
 export class MortgagesController {
   @ApiOperation({ summary: "Get all mortgages" })
-  @ApiResponse({ status: 200, type: "text/html" })
+  @ApiResponse({ status: 200, description: "success, returns html text" })
   @Get("/")
   @Render("pages/mortgages")
   getMortgageList() {}
