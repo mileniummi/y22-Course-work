@@ -33,7 +33,7 @@ export class AdvertisementsService {
     });
     return {
       user: { login: "user" },
-      adv: { ...advertisement },
+      adv: advertisement ? { ...advertisement } : undefined,
     };
   }
   async create(

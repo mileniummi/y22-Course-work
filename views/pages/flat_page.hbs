@@ -1,4 +1,5 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+{{#if adv}}
 <p class="search_result">
     Купить {{adv.roomCount}}-комнатную квартиру
 </p>
@@ -124,5 +125,19 @@
     </div>
 </div>
 {{> ymaps latitude=adv.latitude longitude=adv.longitude initialZoom=16 ableToCreatePlacemark=false }}
+{{else}}
+    <div class="background_for_page_not_found">
+        <div class="background_for_favourites__page">
+            <div class="background_for_favourites__page__container">
+                <h1 class="background_for_favourites__page__container_header">Oops...page not found</h1>
+            </div>
+            <img
+                    alt=""
+                    class="background_for_favourites__page__image"
+                    src="/images/page_not_found_cat.jpg"
+            />
+        </div>
+    </div>
+{{/if}}
 <script src="/javascript/slide_show.js"></script>
 <script src="/javascript/phone_number_button.js"></script>

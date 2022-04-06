@@ -20,9 +20,9 @@ export class AuthController {
   @ApiOperation({ summary: "Get register page" })
   @ApiResponse({ status: 200, description: "success, returns html text" })
   @Get("/register")
-  //@Render("pages/register")
+  @Render("pages/register")
   getRegisterPage() {
-    throw new NotImplementedException();
+    return {};
   }
 
   @ApiOperation({ summary: "Log in system" })
