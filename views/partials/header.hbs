@@ -15,7 +15,7 @@
             </li>
             <li class="nav_item">
                 <a
-                        href="/my-advertisements"
+                        href="/advertisements/my"
                         class="nav_item_text"
                 >Мои&nbsp;объявления</a>
             </li>
@@ -27,17 +27,17 @@
     <div class="header_buttons">
         <button class="header_add_adv_btn">
             <a
-                    href="/add-advertisement"
+                    href="/advertisements/add"
                     class="header_add_adv_text"
             >+&nbsp;Добавить&nbsp;объявление</a>
         </button>
        {{#if user}}
-       <button class="header_enter_btn" onclick="window.location.href='/my-advertisements'">
+       <button class="header_enter_btn" onclick="window.location.href='/advertisements/my'">
            <span class="header_add_adv_text">{{user.login}}</span>
         </button>
         {{else}}
            {{user}}
-           <button class="header_enter_btn" onclick="window.location.href='/auth'">
+           <button class="header_enter_btn" onclick="window.location.href='/auth/login'">
                <span class="header_add_adv_text">Войти</span>
            </button> {{/if}}
     </div>
@@ -54,7 +54,7 @@
         </li>
         <li class="popup_nav__item">
             <a
-                    href="/my-advertisements"
+                    href="/advertisements/my"
                     class="popup-nav_item_text"
             >Мои&nbsp;объявления</a>
         </li>
@@ -64,12 +64,12 @@
         <li class="header_buttons active_button">
             <button
                     class="header_add_adv_btn"
-                    onclick="window.location.href='add-advertisement'"
+                    onclick="window.location.href='advertisements/add'"
             >
                 <span class="header_add_adv_text">+&nbsp;Добавить&nbsp;объявление</span>
             </button>
             {{#if user}}
-                <button class="header_enter_btn" onclick="window.location.href='/my-advertisements'">
+                <button class="header_enter_btn" onclick="window.location.href='/advertisements/my'">
                     <span class="header_add_adv_text">{{user.login}}</span>
                 </button>
             {{else}}
