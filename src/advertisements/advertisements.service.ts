@@ -1,9 +1,10 @@
 import { Injectable } from "@nestjs/common";
-import { Repository } from "typeorm";
+import { Between, LessThan, Like, MoreThan, Repository } from "typeorm";
 import { Advertisement } from "./entities/advertisement.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import * as EasyYandexS3 from "easy-yandex-s3";
 import { CreateAdvertisementDto } from "./dto/create-advertisement.dto";
+import { SearchAdvertisementDto } from "./dto/search-advertisement.dto";
 
 @Injectable()
 export class AdvertisementsService {
@@ -22,8 +23,27 @@ export class AdvertisementsService {
       debug: false,
     });
   }
-  async getFlatList() {
-    const advertisements = await this.advertisementsRepository.find({});
+  async getFlatList(searchOptions: SearchAdvertisementDto) {
+    let advertisements: Advertisement[];
+    if (Object.keys(searchOptions).length) {
+      advertisements = await this.advertisementsRepository.find({
+        where: {
+          dealType: searchOptions.dealType,
+          dealObject: searchOptions.dealObject,
+          price: Between(
+            searchOptions.smallestPrice ? searchOptions.smallestPrice : 0,
+            searchOptions.biggestPrice ? searchOptions.biggestPrice : Infinity
+          ),
+          roomCount:
+            searchOptions.roomCount === 4
+              ? MoreThan(3)
+              : searchOptions.roomCount,
+          location: Like(`%${searchOptions.address}%`),
+        },
+      });
+    } else {
+      advertisements = await this.advertisementsRepository.find({});
+    }
     return { user: { login: "user" }, advertisements: advertisements };
   }
 

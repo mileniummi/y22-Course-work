@@ -31,7 +31,7 @@ export class CreateAdvertisementDto {
     example: 9,
     description: "Number of the floor on which flat is located",
   })
-  readonly floorNumber: number;
+  readonly floorNumber?: number;
   @ApiProperty({
     example: 13,
     description: "Number of all floors in the house",

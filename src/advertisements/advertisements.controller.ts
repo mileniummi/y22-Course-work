@@ -4,6 +4,7 @@ import {
   Get,
   Param,
   Post,
+  Query,
   Redirect,
   Render,
   UploadedFiles,
@@ -14,6 +15,7 @@ import { FilesInterceptor } from "@nestjs/platform-express";
 import { CreateAdvertisementDto } from "./dto/create-advertisement.dto";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { Advertisement } from "./entities/advertisement.entity";
+import { SearchAdvertisementDto } from "./dto/search-advertisement.dto";
 
 @ApiTags("Advertisements")
 @Controller("advertisements")
@@ -24,8 +26,8 @@ export class AdvertisementsController {
   @ApiResponse({ status: 200, type: [Advertisement] })
   @Get("/")
   @Render("pages/flats_list")
-  async getFlatList() {
-    return await this.advertisementsService.getFlatList();
+  async getFlatList(@Query() searchOptions: SearchAdvertisementDto) {
+    return await this.advertisementsService.getFlatList(searchOptions);
   }
 
   // add page for rent

@@ -1,73 +1,87 @@
 <div class="main__page">
-  <div class="main__page__image">
-    <picture>
-      <img alt="main-bg" src="images/initial_images/home.jpg" />
-    </picture>
-  </div>
-  <div class="main__page__choice">
-    <form action="">
-      <div class="main__page__buy__rent">
-        <div class="main__page__buy__rent-item">
-          <input id="fid-1" type="radio" name="radio" value="1" checked />
-          <label for="fid-1">Купить</label>
-        </div>
-        <div class="main__page__buy__rent-item">
-          <input id="fid-2" type="radio" name="radio" value="2" />
-          <label for="fid-2">Снять</label>
-        </div>
-      </div>
-      <ul class="main__page__options">
-        <li>
-          <select class="main__page__options__select">
-            <option>Квартира</option>
-            <option>Дом</option>
-          </select>
-        </li>
-        <li>
-          <select class="main__page__options__rooms">
-            <option>Комнаты</option>
-            <option>Cтудия</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3+</option>
-          </select>
-        </li>
-        <li id="form-row-li-id">
-          <div class="main__page__options__price">
-            <span class="main__page__options__price__text">Цена </span>
-              <svg class="fa-thin_fa-angle-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M192 384c-8.188 0-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L192 306.8l137.4-137.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-160 160C208.4 380.9 200.2 384 192 384z"/></svg>
-          </div>
-          <div id="form-row-div-id" class="form-row">
-            <div class="col">
-              <input type="number" onkeypress="return event.charCode >= 48" min="1" class="form-control" placeholder="От"/>
-            </div>
-            <div class="col">
-              <input type="number" onkeypress="return event.charCode >= 48" min="1" class="form-control" placeholder="До" />
-            </div>
-            <label>
-              <select class="form-row-price" name="currency">
-                <option value="dollar">$</option>
-                <option value="ruble">₽</option>
-                <option value="MDL">MDL</option>
-              </select>
-            </label>
-          </div>
-        </li>
-        <li>
-          <input
-            class="main__page__options__address"
-            name="address"
-            placeholder="Адрес"
-            type="text"
-          />
-        </li>
-      </ul>
-    </form>
-    <div class="main__page__options__search">
-      <button class="main__page__options__search__btn">
-        <p class="main__page__options__search__txt">Найти</p>
-      </button>
+    <div class="main__page__image">
+        <picture>
+            <img alt="main-bg" src="images/initial_images/home.jpg"/>
+        </picture>
     </div>
-  </div>
+    <div class="main__page__choice">
+        <form method="GET" action="/advertisements">
+            <div class="main__page__buy__rent">
+                <div class="main__page__buy__rent-item">
+                    <input id="fid-1" type="radio" name="dealType" value="sell" checked/>
+                    <label for="fid-1">Купить</label>
+                </div>
+                <div class="main__page__buy__rent-item">
+                    <input id="fid-2" type="radio" name="dealType" value="rent"/>
+                    <label for="fid-2">Снять</label>
+                </div>
+            </div>
+            <ul class="main__page__options">
+                <li>
+                    <label>
+                        <select class="main__page__options__select" name="dealObject">
+                            <option value="flat">Квартира</option>
+                            <option value="house">Дом</option>
+                            <option value="studio">Cтудия</option>
+                        </select>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <select name="roomCount" class="main__page__options__rooms">
+                            <option value="2">2</option>
+                            <option value="1">1</option>
+                            <option value="3">3</option>
+                            <option value="4">4+</option>
+                        </select>
+                    </label>
+                </li>
+                <li id="form-row-li-id">
+                    <div class="main__page__options__price">
+                        <span class="main__page__options__price__text">Цена </span>
+                        <svg class="fa-thin_fa-angle-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                            <path d="M192 384c-8.188 0-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L192 306.8l137.4-137.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-160 160C208.4 380.9 200.2 384 192 384z"/>
+                        </svg>
+                    </div>
+                    <div id="form-row-div-id" class="form-row">
+                        <div class="col">
+                            <label>
+                                <input name="smallestPrice" type="number"
+                                       min="1" class="form-control" placeholder="От" />
+                            </label>
+                        </div>
+                        <div class="col">
+                            <label>
+                                <input name="biggestPrice" type="number"
+                                       min="1" class="form-control" placeholder="До"/>
+                            </label>
+                        </div>
+                        <label>
+                            <select class="form-row-price" name="currency">
+                                <option value="ruble">₽</option>
+                                <option value="dollar">$</option>
+                                <option value="MDL">MDL</option>
+                            </select>
+                        </label>
+                    </div>
+                </li>
+                <li>
+                    <label>
+                        <input
+                                class="main__page__options__address"
+                                name="address"
+                                placeholder="Адрес"
+                                type="text"
+                        />
+                    </label>
+                </li>
+            </ul>
+            <div class="main__page__options__search">
+                <button type="submit" class="main__page__options__search__btn">
+                    <a class="main__page__options__search__txt">Найти</a>
+                </button>
+            </div>
+        </form>
+    </div>
 </div>
 <script src="/javascript/set_price.js"></script>
