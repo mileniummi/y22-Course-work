@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
-import { Between, LessThan, Like, MoreThan, Repository } from "typeorm";
-import { Advertisement } from "./entities/advertisement.entity";
+import { Between, Like, MoreThan, Repository } from "typeorm";
+import { Advertisement, DealType } from "./entities/advertisement.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import * as EasyYandexS3 from "easy-yandex-s3";
 import { CreateAdvertisementDto } from "./dto/create-advertisement.dto";
@@ -44,7 +44,16 @@ export class AdvertisementsService {
     } else {
       advertisements = await this.advertisementsRepository.find({});
     }
-    return { user: { login: "user" }, advertisements: advertisements };
+    return {
+      user: { login: "user" },
+      advertisements: advertisements,
+      amountOfRoomsText: searchOptions.roomCount
+        ? searchOptions.roomCount + "-комнатную"
+        : "",
+      dealTypeText:
+        searchOptions.dealType === DealType.SELL ? "Купить" : "Арендовать",
+      // доделать, когда будут отдельные страницы для rent и sale
+    };
   }
 
   async getSingleFlat(id) {

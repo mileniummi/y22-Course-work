@@ -1382,6 +1382,10 @@ footer {
     border-radius: 0 3px 3px 0;
 }
 
+.prev {
+    left: 0;
+}
+
 /* Position the "next button" to the right */
 .next {
     right: 0;
@@ -1405,16 +1409,31 @@ footer {
     text-align: center;
 }
 
-/* Number text (1/4 etc) */
 .numbertext {
-    color: #f2f2f2;
+    color: black;
     font-size: 12px;
     padding: 8px 12px;
     position: absolute;
+    top: 0;
+    left: 0
 }
 
 .slideshow-container {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 820px;
+    height: 700px;
+}
+
+.slideshow-container-adv-list {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 492px;
+    height: 420px;
 }
 
 /* The dots/bullets/indicators */

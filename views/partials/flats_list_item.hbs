@@ -1,13 +1,13 @@
-<!--one flat-->
+<!--one advertisement-->
 <a href="/advertisements/{{adv.id}}">
   <div class="flat_page">
     <div class="flat_page__inner">
       <div class="images">
         <div class="big_image">
-          <div class="slideshow-container slider" id="div{{adv.id}}">
+          <div class="slideshow-container-adv-list slider" id="div{{adv.id}}">
 
               {{#each adv.images}}
-                  <div class="numbertext">{{math @index '+' 1}}/ {{../adv.images.length}}</div>
+                  <div class="numbertext">{{math @index '+' 1}} / {{../adv.images.length}}</div>
                       <img alt="" class="adv_list_item_mySlides" src="{{this}}">
               {{/each}}
 
@@ -42,7 +42,7 @@
               </div>
             </a>
             <div class="flats_list_buttons">
-              <a class="phone_number" id="phone_number_1" data-contact-number="{{adv.contactNumber}}">Показать телефон</a>
+              <a class="phone_number" data-contact-number="{{adv.contactNumber}}">Показать телефон</a>
               <button class="favourites favourites_button">Добавить в избранное</button>
             </div>
           </div>
