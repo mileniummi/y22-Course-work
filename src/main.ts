@@ -1,10 +1,11 @@
-import { NestFactory } from "@nestjs/core";
+import { HttpAdapterHost, NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { NestExpressApplication } from "@nestjs/platform-express";
 import { join } from "path";
 import * as hbs from "hbs";
 import * as expressHbs from "express-handlebars";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
+import { AllExceptionsFilter } from "./filters/all-exceptions.filter";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -42,6 +43,9 @@ async function bootstrap() {
       },
     })
   );
+
+  const httpAdapter = app.get(HttpAdapterHost);
+  app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
 
   await app.listen(parseInt(process.env.PORT, 10) || 3000);
 }
