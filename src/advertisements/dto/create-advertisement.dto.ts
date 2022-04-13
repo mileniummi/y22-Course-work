@@ -4,17 +4,20 @@ import {
   DealObject,
 } from "../entities/advertisement.entity";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsInt, IsNumber, IsString } from "class-validator";
 
 export class CreateAdvertisementDto {
   @ApiProperty({
     example: "Nice flat near the center for low price...",
     description: "Description of advertisement",
   })
+  @IsString()
   readonly description: string;
   @ApiProperty({
     example: 250,
     description: "Total floor area of flat or house",
   })
+  @IsInt()
   readonly area: number;
   @ApiProperty({ example: 25000000, description: "Price of advertisement" })
   readonly price: number;

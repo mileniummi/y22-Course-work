@@ -3,12 +3,14 @@ import {
   Controller,
   Get,
   Param,
+  ParseIntPipe,
   Post,
   Query,
   Redirect,
   Render,
   UploadedFiles,
   UseInterceptors,
+  UsePipes,
 } from "@nestjs/common";
 import { AdvertisementsService } from "./advertisements.service";
 import { FilesInterceptor } from "@nestjs/platform-express";
@@ -16,6 +18,7 @@ import { CreateAdvertisementDto } from "./dto/create-advertisement.dto";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { Advertisement } from "./entities/advertisement.entity";
 import { SearchAdvertisementDto } from "./dto/search-advertisement.dto";
+import { ObjectValidationPipe } from "../object-validation-pipe";
 
 @ApiTags("Advertisements")
 @Controller("advertisements")
@@ -41,8 +44,8 @@ export class AdvertisementsController {
   }
 
   @ApiOperation({ summary: "Fill in the form and add new advertisement" })
-  @ApiResponse({ status: 200, type: [Advertisement] })
-  @Post("/add")
+  @ApiResponse({ status: 201, type: [Advertisement] })
+  @Post()
   @Redirect("my")
   @UseInterceptors(FilesInterceptor("photos[]"))
   async create(
@@ -62,7 +65,7 @@ export class AdvertisementsController {
   @ApiResponse({ status: 200, type: [Advertisement] })
   @Get("/:id")
   @Render("pages/flat_page")
-  async getOneFlat(@Param("id") id: number) {
+  async getOneFlat(@Param("id", ParseIntPipe) id: number) {
     return await this.advertisementsService.getSingleFlat(id);
   }
 }

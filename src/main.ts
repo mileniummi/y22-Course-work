@@ -5,10 +5,20 @@ import { join } from "path";
 import * as hbs from "hbs";
 import * as expressHbs from "express-handlebars";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
+import { ValidationPipe } from "@nestjs/common";
 import { AllExceptionsFilter } from "./filters/all-exceptions.filter";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      disableErrorMessages: false,
+    })
+  );
 
   const config = new DocumentBuilder()
     .setTitle("Home-Hunter")
@@ -44,8 +54,8 @@ async function bootstrap() {
     })
   );
 
-  const httpAdapter = app.get(HttpAdapterHost);
-  app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
+  // const httpAdapter = app.get(HttpAdapterHost);
+  // app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
 
   await app.listen(parseInt(process.env.PORT, 10) || 3000);
 }
