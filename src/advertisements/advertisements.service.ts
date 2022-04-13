@@ -23,9 +23,12 @@ export class AdvertisementsService {
       debug: false,
     });
   }
-  async getFlatList(searchOptions: SearchAdvertisementDto | {}) {
+
+  async getAdvList(searchOptions: SearchAdvertisementDto, dealType: DealType) {
     let advertisements: Advertisement[];
-    if (searchOptions instanceof SearchAdvertisementDto) {
+    console.log(searchOptions);
+    if (Object.keys(searchOptions).length > 0) {
+      console.log("here");
       advertisements = await this.advertisementsRepository.find({
         where: {
           dealType: searchOptions.dealType,
@@ -49,12 +52,21 @@ export class AdvertisementsService {
           : "",
         dealTypeText:
           searchOptions.dealType === DealType.SELL ? "Купить" : "Арендовать",
-        // доделать, когда будут отдельные страницы для rent и sale
       };
     } else {
-      advertisements = await this.advertisementsRepository.find({});
+      advertisements = await this.advertisementsRepository.find({
+        where: { dealType },
+      });
       return { advertisements, amountOfRoomsText: "", dealTypeText: "" };
     }
+  }
+
+  async getSellAdvList(searchOptions: SearchAdvertisementDto) {
+    return await this.getAdvList(searchOptions, DealType.SELL);
+  }
+
+  async getRentAdvList(searchOptions: SearchAdvertisementDto) {
+    return await this.getAdvList(searchOptions, DealType.RENT);
   }
 
   async getSingleFlat(id) {

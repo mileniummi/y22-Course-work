@@ -3,21 +3,42 @@ import {
   DealObject,
   DealType,
 } from "../entities/advertisement.entity";
-import { IsEnum, IsNumber, IsString } from "class-validator";
+import { IsEnum, IsNumber, IsOptional, IsString } from "class-validator";
+import { Transform } from "class-transformer";
 
 export class SearchAdvertisementDto {
   @IsEnum(DealType)
-  readonly dealType: string;
+  @IsOptional()
+  readonly dealType?: string;
+
   @IsEnum(DealObject)
-  readonly dealObject: string;
+  @IsOptional()
+  readonly dealObject?: string;
+
   @IsNumber()
-  readonly roomCount: number;
+  @IsOptional()
+  @Transform((prop) => parseInt(prop.value), { toClassOnly: true })
+  readonly roomCount?: number;
+
   @IsNumber()
-  readonly smallestPrice: number;
+  @IsOptional()
+  @Transform((prop) => (prop.value ? parseFloat(prop.value) : null), {
+    toClassOnly: true,
+  })
+  readonly smallestPrice?: number;
+
   @IsNumber()
-  readonly biggestPrice: number;
+  @IsOptional()
+  @Transform((prop) => (prop.value ? parseFloat(prop.value) : null), {
+    toClassOnly: true,
+  })
+  readonly biggestPrice?: number;
+
   @IsEnum(Currency)
-  readonly currency: Currency;
+  @IsOptional()
+  readonly currency?: Currency;
+
   @IsString()
-  readonly address: string;
+  @IsOptional()
+  readonly address?: string;
 }

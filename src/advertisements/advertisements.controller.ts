@@ -26,13 +26,20 @@ export class AdvertisementsController {
 
   @ApiOperation({ summary: "Get search advertisements" })
   @ApiResponse({ status: 200, type: [Advertisement] })
-  @Get("/")
+  @Get("/sell")
   @Render("pages/flats_list")
-  async getFlatList(@Query() searchOptions: SearchAdvertisementDto | {}) {
-    return await this.advertisementsService.getFlatList(searchOptions);
+  async getSellAdvList(@Query() searchOptions: SearchAdvertisementDto) {
+    return await this.advertisementsService.getSellAdvList(searchOptions);
   }
 
-  // add page for rent
+  @ApiOperation({ summary: "Get search advertisements for rent" })
+  @ApiResponse({ status: 200, type: [Advertisement] })
+  @Get("/rent")
+  @Render("pages/flats_list")
+  async getRentAdvList(@Query() searchOptions: SearchAdvertisementDto) {
+    console.log(searchOptions);
+    return await this.advertisementsService.getRentAdvList(searchOptions);
+  }
 
   @ApiOperation({ summary: "Get advertisements which were added by user" })
   @ApiResponse({ status: 200, type: [Advertisement] })
