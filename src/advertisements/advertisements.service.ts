@@ -23,9 +23,9 @@ export class AdvertisementsService {
       debug: false,
     });
   }
-  async getFlatList(searchOptions: SearchAdvertisementDto) {
+  async getFlatList(searchOptions: SearchAdvertisementDto | {}) {
     let advertisements: Advertisement[];
-    if (Object.keys(searchOptions).length) {
+    if (searchOptions instanceof SearchAdvertisementDto) {
       advertisements = await this.advertisementsRepository.find({
         where: {
           dealType: searchOptions.dealType,
@@ -41,19 +41,20 @@ export class AdvertisementsService {
           location: Like(`%${searchOptions.address}%`),
         },
       });
+      return {
+        user: { login: "user" },
+        advertisements,
+        amountOfRoomsText: searchOptions.roomCount
+          ? searchOptions.roomCount + "-комнатную"
+          : "",
+        dealTypeText:
+          searchOptions.dealType === DealType.SELL ? "Купить" : "Арендовать",
+        // доделать, когда будут отдельные страницы для rent и sale
+      };
     } else {
       advertisements = await this.advertisementsRepository.find({});
+      return { advertisements, amountOfRoomsText: "", dealTypeText: "" };
     }
-    return {
-      user: { login: "user" },
-      advertisements: advertisements,
-      amountOfRoomsText: searchOptions.roomCount
-        ? searchOptions.roomCount + "-комнатную"
-        : "",
-      dealTypeText:
-        searchOptions.dealType === DealType.SELL ? "Купить" : "Арендовать",
-      // доделать, когда будут отдельные страницы для rent и sale
-    };
   }
 
   async getSingleFlat(id) {

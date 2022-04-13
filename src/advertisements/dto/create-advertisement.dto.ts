@@ -4,6 +4,7 @@ import {
   DealObject,
 } from "../entities/advertisement.entity";
 import { ApiProperty } from "@nestjs/swagger";
+import { Transform } from "class-transformer";
 import { IsNumber, IsString, IsBoolean, IsEnum } from "class-validator";
 
 export class CreateAdvertisementDto {
@@ -18,11 +19,13 @@ export class CreateAdvertisementDto {
     example: 250,
     description: "Total floor area of flat or house",
   })
+  @Transform((prop) => parseFloat(prop.value), { toClassOnly: true })
   @IsNumber()
   readonly area: number;
 
   @ApiProperty({ example: 25000000, description: "Price of advertisement" })
   @IsNumber()
+  @Transform((prop) => parseFloat(prop.value), { toClassOnly: true })
   readonly price: number;
 
   @ApiProperty({
@@ -34,10 +37,12 @@ export class CreateAdvertisementDto {
 
   @ApiProperty({ example: 2.8, description: "Height of ceiling" })
   @IsNumber()
+  @Transform((prop) => parseFloat(prop.value), { toClassOnly: true })
   readonly ceilingHeight: number;
 
   @ApiProperty({ example: 5, description: "Amount of rooms" })
   @IsNumber()
+  @Transform((prop) => parseInt(prop.value), { toClassOnly: true })
   readonly roomCount: number;
 
   @ApiProperty({
@@ -45,6 +50,7 @@ export class CreateAdvertisementDto {
     description: "Number of the floor on which flat is located",
   })
   @IsNumber()
+  @Transform((prop) => parseInt(prop.value), { toClassOnly: true })
   readonly floorNumber?: number;
 
   @ApiProperty({
@@ -52,10 +58,12 @@ export class CreateAdvertisementDto {
     description: "Number of all floors in the house",
   })
   @IsNumber()
+  @Transform((prop) => parseInt(prop.value), { toClassOnly: true })
   readonly totalFloorNumber: number;
 
   @ApiProperty({ example: 2017, description: "Year when the house was build" })
   @IsNumber()
+  @Transform((prop) => parseInt(prop.value), { toClassOnly: true })
   readonly yearOfBuilding: number;
 
   @ApiProperty({
@@ -63,6 +71,7 @@ export class CreateAdvertisementDto {
     description: "Area of a kitchen in the flat or house in square meters",
   })
   @IsNumber()
+  @Transform((prop) => parseInt(prop.value), { toClassOnly: true })
   readonly kitchenArea: number;
 
   @ApiProperty({
@@ -70,6 +79,7 @@ export class CreateAdvertisementDto {
     description: "Living are of flat or house in square meters",
   })
   @IsNumber()
+  @Transform((prop) => parseFloat(prop.value), { toClassOnly: true })
   readonly livingArea: number;
 
   @ApiProperty({
@@ -77,6 +87,7 @@ export class CreateAdvertisementDto {
     description: "Latitude of object location",
   })
   @IsNumber()
+  @Transform((prop) => parseFloat(prop.value), { toClassOnly: true })
   readonly latitude: number;
 
   @ApiProperty({
@@ -84,6 +95,7 @@ export class CreateAdvertisementDto {
     description: "Longitude of object location",
   })
   @IsNumber()
+  @Transform((prop) => parseFloat(prop.value), { toClassOnly: true })
   readonly longitude: number;
 
   @ApiProperty({
@@ -92,6 +104,7 @@ export class CreateAdvertisementDto {
       "Shows if person ready or not to show his flat or house online",
   })
   @IsBoolean()
+  @Transform((prop) => prop.value === "true", { toClassOnly: true })
   readonly readyToShowOnline: boolean;
 
   @ApiProperty({
@@ -99,6 +112,7 @@ export class CreateAdvertisementDto {
     description: "Shows if the price is final or customer can bargain",
   })
   @IsBoolean()
+  @Transform((prop) => prop.value === "true", { toClassOnly: true })
   readonly isFinalPrice: boolean;
 
   @ApiProperty({
@@ -106,6 +120,7 @@ export class CreateAdvertisementDto {
     description: "Shows if selling object has furniture or not",
   })
   @IsBoolean()
+  @Transform((prop) => prop.value === "true", { toClassOnly: true })
   readonly hasFurniture: boolean;
 
   @ApiProperty({
@@ -113,6 +128,7 @@ export class CreateAdvertisementDto {
     description: "Shows if object needs renovation or not",
   })
   @IsBoolean()
+  @Transform((prop) => prop.value === "true", { toClassOnly: true })
   readonly needsRenovation: boolean;
 
   @ApiProperty({
@@ -120,6 +136,7 @@ export class CreateAdvertisementDto {
     description: "Shows if object is sold by owner or estate agent",
   })
   @IsBoolean()
+  @Transform((prop) => prop.value === "true", { toClassOnly: true })
   readonly fromOwner: boolean;
 
   @ApiProperty({

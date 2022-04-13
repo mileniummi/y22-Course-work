@@ -5,12 +5,9 @@ import {
   NotImplementedException,
   Post,
   Render,
-  UseFilters,
 } from "@nestjs/common";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { CreateUserDto } from "../user/dto/create-user.dto";
-import { ObjectValidationPipe } from "../object-validation-pipe";
-import { BadRequestExceptionsFilter } from "../filters/bad-request.exceptions.filter";
 
 @ApiTags("Authorization")
 @Controller("auth")
@@ -39,14 +36,13 @@ export class AuthController {
   }
 
   @ApiOperation({ summary: "Register in system" })
-  @ApiResponse({ status: 200, description: "Returns user token" })
+  @ApiResponse({ status: 201, description: "Returns user token" })
   @ApiResponse({
     status: 401,
     description: "User with this username already exists",
   })
   @Post("/register")
-  // @UseFilters(BadRequestExceptionsFilter)
-  register(@Body(new ObjectValidationPipe()) user: CreateUserDto) {
+  register(@Body() user: CreateUserDto) {
     console.log(user);
   }
 }

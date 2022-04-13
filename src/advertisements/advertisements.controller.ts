@@ -18,7 +18,6 @@ import { CreateAdvertisementDto } from "./dto/create-advertisement.dto";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { Advertisement } from "./entities/advertisement.entity";
 import { SearchAdvertisementDto } from "./dto/search-advertisement.dto";
-import { ObjectValidationPipe } from "../object-validation-pipe";
 
 @ApiTags("Advertisements")
 @Controller("advertisements")
@@ -29,7 +28,7 @@ export class AdvertisementsController {
   @ApiResponse({ status: 200, type: [Advertisement] })
   @Get("/")
   @Render("pages/flats_list")
-  async getFlatList(@Query() searchOptions: SearchAdvertisementDto) {
+  async getFlatList(@Query() searchOptions: SearchAdvertisementDto | {}) {
     return await this.advertisementsService.getFlatList(searchOptions);
   }
 
@@ -46,7 +45,7 @@ export class AdvertisementsController {
   @ApiOperation({ summary: "Fill in the form and add new advertisement" })
   @ApiResponse({ status: 201, type: [Advertisement] })
   @Post()
-  @Redirect("my")
+  @Redirect("/advertisements/my")
   @UseInterceptors(FilesInterceptor("photos[]"))
   async create(
     @Body() advertisement: CreateAdvertisementDto,
