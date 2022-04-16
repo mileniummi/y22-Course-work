@@ -10,13 +10,17 @@ import {
   Render,
   UploadedFiles,
   UseInterceptors,
-  UsePipes,
 } from "@nestjs/common";
 import { AdvertisementsService } from "./advertisements.service";
 import { FilesInterceptor } from "@nestjs/platform-express";
 import { CreateAdvertisementDto } from "./dto/create-advertisement.dto";
-import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
-import { Advertisement } from "./entities/advertisement.entity";
+import {
+  ApiBadRequestResponse,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from "@nestjs/swagger";
+import { Advertisement, DealType } from "./entities/advertisement.entity";
 import { SearchAdvertisementDto } from "./dto/search-advertisement.dto";
 
 @ApiTags("Advertisements")
@@ -29,7 +33,10 @@ export class AdvertisementsController {
   @Get("/sell")
   @Render("pages/flats_list")
   async getSellAdvList(@Query() searchOptions: SearchAdvertisementDto) {
-    return await this.advertisementsService.getSellAdvList(searchOptions);
+    return await this.advertisementsService.getAll(
+      searchOptions,
+      DealType.SELL
+    );
   }
 
   @ApiOperation({ summary: "Get search advertisements for rent" })
@@ -37,8 +44,10 @@ export class AdvertisementsController {
   @Get("/rent")
   @Render("pages/flats_list")
   async getRentAdvList(@Query() searchOptions: SearchAdvertisementDto) {
-    console.log(searchOptions);
-    return await this.advertisementsService.getRentAdvList(searchOptions);
+    return await this.advertisementsService.getAll(
+      searchOptions,
+      DealType.RENT
+    );
   }
 
   @ApiOperation({ summary: "Get advertisements which were added by user" })
@@ -51,9 +60,10 @@ export class AdvertisementsController {
 
   @ApiOperation({ summary: "Fill in the form and add new advertisement" })
   @ApiResponse({ status: 201, type: [Advertisement] })
-  @Post()
+  @ApiBadRequestResponse({ description: "Invalid advertisement object fields" })
   @Redirect("/advertisements/my")
   @UseInterceptors(FilesInterceptor("photos[]"))
+  @Post()
   async create(
     @Body() advertisement: CreateAdvertisementDto,
     @UploadedFiles() photos: Array<Express.Multer.File>
@@ -71,7 +81,7 @@ export class AdvertisementsController {
   @ApiResponse({ status: 200, type: [Advertisement] })
   @Get("/:id")
   @Render("pages/flat_page")
-  async getOneFlat(@Param("id", ParseIntPipe) id: number) {
-    return await this.advertisementsService.getSingleFlat(id);
+  async getOne(@Param("id", ParseIntPipe) id: number) {
+    return await this.advertisementsService.getOne(id);
   }
 }

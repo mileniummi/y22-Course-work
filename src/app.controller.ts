@@ -8,5 +8,7 @@ export class AppController {
   @ApiResponse({ status: 200, description: "success, returns html text" })
   @Get()
   @Render("pages/index")
-  root() {}
+  root() {
+    return;
+  }
 }
