@@ -21,7 +21,9 @@ function createSliderObjects() {
     obj.id = $(item).attr("id");
     obj.divContent = item;
     obj.slideIndex = 1;
-    obj.slideContents = $(item).find(".mySlides");
+    obj.slideContents = $(item).find(
+      ".adv_list_item_mySlides, .adv_page_mySlides"
+    );
     obj.slideIterations = $(item).find(".numbertext");
     showDivs(obj, 1);
     sliderObjects.push(obj);

@@ -1,33 +1,55 @@
 import { Injectable } from "@nestjs/common";
-import { Repository } from "typeorm";
-import { Advertisement } from "./entities/advertisement.entity";
+import { Between, Like, MoreThan, Repository } from "typeorm";
+import { Advertisement, DealType } from "./entities/advertisement.entity";
 import { InjectRepository } from "@nestjs/typeorm";
-import * as EasyYandexS3 from "easy-yandex-s3";
 import { CreateAdvertisementDto } from "./dto/create-advertisement.dto";
+import { SearchAdvertisementDto } from "./dto/search-advertisement.dto";
+import { YandexStorageService } from "./yandex.storage.service";
 
 @Injectable()
 export class AdvertisementsService {
-  private readonly yandexStorage;
-
   constructor(
     @InjectRepository(Advertisement)
-    private advertisementsRepository: Repository<Advertisement>
-  ) {
-    this.yandexStorage = new EasyYandexS3({
-      auth: {
-        accessKeyId: process.env.YANDEX_STORAGE_KEY_ID,
-        secretAccessKey: process.env.YANDEX_STORAGE_KEY,
-      },
-      Bucket: process.env.YANDEX_STORAGE_BUCKET_NAME,
-      debug: false,
-    });
-  }
-  async getFlatList() {
-    const advertisements = await this.advertisementsRepository.find({});
-    return { user: { login: "user" }, advertisements: advertisements };
+    private advertisementsRepository: Repository<Advertisement>,
+    private yandexStorageService: YandexStorageService
+  ) {}
+
+  async getAll(searchOptions: SearchAdvertisementDto, dealType: DealType) {
+    let advertisements: Advertisement[];
+    if (Object.keys(searchOptions).length > 0) {
+      advertisements = await this.advertisementsRepository.find({
+        where: {
+          dealType: searchOptions.dealType,
+          dealObject: searchOptions.dealObject,
+          price: Between(
+            searchOptions.smallestPrice ? searchOptions.smallestPrice : 0,
+            searchOptions.biggestPrice ? searchOptions.biggestPrice : Infinity
+          ),
+          roomCount:
+            searchOptions.roomCount === 4
+              ? MoreThan(3)
+              : searchOptions.roomCount,
+          location: Like(`%${searchOptions.address}%`),
+        },
+      });
+      return {
+        user: { login: "user" },
+        advertisements,
+        amountOfRoomsText: searchOptions.roomCount
+          ? searchOptions.roomCount + "-комнатную"
+          : "",
+        dealTypeText:
+          searchOptions.dealType === DealType.SELL ? "Купить" : "Арендовать",
+      };
+    } else {
+      advertisements = await this.advertisementsRepository.find({
+        where: { dealType },
+      });
+      return { advertisements, amountOfRoomsText: "", dealTypeText: "" };
+    }
   }
 
-  async getSingleFlat(id) {
+  async getOne(id) {
     const advertisement = await this.advertisementsRepository.findOne({
       where: { id },
     });
@@ -36,13 +58,14 @@ export class AdvertisementsService {
       adv: advertisement ? { ...advertisement } : undefined,
     };
   }
+
   async create(
     advertisement: CreateAdvertisementDto,
     images: Array<Express.Multer.File>
   ) {
     const imagesLinks = [];
     for (const image of images) {
-      const imageLink = await this.saveImageInCloud(image.buffer);
+      const imageLink = await this.yandexStorageService.save(image.buffer);
       if (imageLink) {
         imagesLinks.push(imageLink);
       }
@@ -51,17 +74,5 @@ export class AdvertisementsService {
       ...advertisement,
       images: imagesLinks,
     });
-  }
-
-  async saveImageInCloud(data) {
-    const upload = await this.yandexStorage.Upload(
-      { buffer: data },
-      "/advertisements/"
-    );
-    if (upload === false) {
-      console.log("Something went wrong when uploading photo to Yandex Cloud");
-      return;
-    }
-    return upload.Location;
   }
 }

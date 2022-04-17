@@ -8,5 +8,7 @@ export class FavouritesController {
   @ApiOperation({ summary: "Get all favourite advertisements" })
   @ApiResponse({ status: 200, description: "success, returns html text" })
   @Render("pages/favourites")
-  getFavouriteAdvertisements() {}
+  getFavouriteAdvertisements() {
+    return;
+  }
 }

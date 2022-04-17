@@ -1,28 +1,20 @@
-<!--one flat-->
+<!--one advertisement-->
 <a href="/advertisements/{{adv.id}}">
   <div class="flat_page">
     <div class="flat_page__inner">
       <div class="images">
         <div class="big_image">
-          <div class="slideshow-container slider" id="div{{adv.id}}">
+          <div class="slideshow-container-adv-list slider" id="div{{adv.id}}">
 
               {{#each adv.images}}
-                  <div class="numbertext">{{math @index '+' 1}}/ {{../adv.images.length}}</div>
-                      <img alt="" class="mySlides" src="{{this}}" style="width:100%">
+                  <div class="numbertext">{{math @index '+' 1}} / {{../adv.images.length}}</div>
+                      <img alt="" class="adv_list_item_mySlides" src="{{this}}">
               {{/each}}
 
             <!-- Next and previous buttons -->
             <a class="prev" onclick="plusDivs(this, -1)">&#10094;</a>
             <a class="next" onclick="plusDivs(this, 1)">&#10095;</a>
           </div>
-        </div>
-        <div class="small_images">
-            <div class="small_images__item">
-                <img alt="" class="small_images__item-class" src={{adv.images.[0]}} />
-            </div>
-            <div class="small_images__item">
-                <img alt="" class="small_images__item-class" src={{adv.images.[1]}} />
-            </div>
         </div>
       </div>
       <div class="info">
@@ -50,7 +42,7 @@
               </div>
             </a>
             <div class="flats_list_buttons">
-              <a class="phone_number" id="phone_number_1">Показать телефон</a>
+              <a class="phone_number" data-contact-number="{{adv.contactNumber}}">Показать телефон</a>
               <button class="favourites favourites_button">Добавить в избранное</button>
             </div>
           </div>

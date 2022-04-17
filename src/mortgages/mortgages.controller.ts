@@ -8,5 +8,7 @@ export class MortgagesController {
   @ApiResponse({ status: 200, description: "success, returns html text" })
   @Get("/")
   @Render("pages/mortgages")
-  getMortgageList() {}
+  getMortgageList() {
+    return;
+  }
 }

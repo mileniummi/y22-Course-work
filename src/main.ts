@@ -5,9 +5,19 @@ import { join } from "path";
 import * as hbs from "hbs";
 import * as expressHbs from "express-handlebars";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
+import { ValidationPipe } from "@nestjs/common";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      disableErrorMessages: false,
+    })
+  );
 
   const config = new DocumentBuilder()
     .setTitle("Home-Hunter")

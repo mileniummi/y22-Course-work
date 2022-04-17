@@ -28,18 +28,17 @@ a {
     width: 30%;
 }
 
-.small_images {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 5px;
+.adv_page_mySlides {
+    max-height: 700px;
+    max-width: 820px;
+    width: auto;
+    height: auto;
 }
 
-.small_images__item {
-    width: 100%;
-}
-
-.small_images__item-class {
-    max-width: 100%;
+.adv_list_item_mySlides {
+    max-height: 370px;
+    max-width: 433px;
+    width: auto;
     height: auto;
 }
 
@@ -1110,6 +1109,7 @@ select {
     width: auto;
     height: auto;
     border-radius: 20px;
+    color: #222;
     background-color: #eaee1a;
     padding: 10px;
     margin: 7px;
@@ -1183,6 +1183,22 @@ select {
     margin-left: 0;
 }
 
+.register_page_input {
+    margin-bottom: 14px;
+    height: 60px;
+    width: 320px;
+    border-radius: 20px;
+    font-size: 20px;
+    padding: 5px;
+}
+
+.register_page_form {
+    margin-top: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 /*footer*/
 
 footer {
@@ -1243,6 +1259,10 @@ footer {
 .flat_page__info__full_description__text_all {
     font-weight: 10;
     font-size: 13px;
+    -webkit-line-clamp: 10;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .flat_page__info__full_description__heading {
@@ -1362,6 +1382,10 @@ footer {
     border-radius: 0 3px 3px 0;
 }
 
+.prev {
+    left: 0;
+}
+
 /* Position the "next button" to the right */
 .next {
     right: 0;
@@ -1385,16 +1409,31 @@ footer {
     text-align: center;
 }
 
-/* Number text (1/4 etc) */
 .numbertext {
-    color: #f2f2f2;
+    color: black;
     font-size: 12px;
     padding: 8px 12px;
     position: absolute;
+    top: 0;
+    left: 0
 }
 
 .slideshow-container {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 820px;
+    height: 700px;
+}
+
+.slideshow-container-adv-list {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 492px;
+    height: 420px;
 }
 
 /* The dots/bullets/indicators */
@@ -2048,5 +2087,17 @@ footer {
 
     .popup_nav {
         padding-inline-start: 0;
+    }
+
+    /*login*/
+    .log__page__input {
+        height: 50px;
+        width: 300px
+    }
+
+    /*register*/
+    .register_page_input {
+        height: 50px;
+        width: 300px
     }
 }
