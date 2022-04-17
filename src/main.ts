@@ -6,6 +6,7 @@ import * as hbs from "hbs";
 import * as expressHbs from "express-handlebars";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { ValidationPipe } from "@nestjs/common";
+import * as cookieParser from "cookie-parser";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -34,6 +35,8 @@ async function bootstrap() {
 
   hbs.registerPartials(join(__dirname, "..", "views/partials"));
   hbs.registerPartials(join(__dirname, "..", "views/layouts"));
+
+  app.use(cookieParser());
 
   app.engine(
     "hbs",

@@ -1,23 +1,13 @@
-import {
-  Body,
-  Controller,
-  Get,
-  NotImplementedException,
-  Post,
-  Render,
-} from "@nestjs/common";
-import {
-  ApiBadRequestResponse,
-  ApiOperation,
-  ApiResponse,
-  ApiTags,
-  ApiUnauthorizedResponse,
-} from "@nestjs/swagger";
+import { Body, Controller, Get, Post, Request, Render, UseGuards } from "@nestjs/common";
+import { ApiBadRequestResponse, ApiOperation, ApiResponse, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
 import { CreateUserDto } from "../user/dto/create-user.dto";
+import { AuthGuard } from "@nestjs/passport";
+import { AuthService } from "./auth.service";
 
 @ApiTags("Authorization")
 @Controller("auth")
 export class AuthController {
+  constructor(private authService: AuthService) {}
   @ApiOperation({ summary: "Get login page" })
   @ApiResponse({ status: 200, description: "success, returns html text" })
   @Get("/login")
@@ -41,9 +31,10 @@ export class AuthController {
     status: 401,
     description: "Username or password not correct",
   })
+  @UseGuards(AuthGuard("local"))
   @Post("/login")
-  login(@Body() user) {
-    throw new NotImplementedException();
+  async login(@Request() req) {
+    return await this.authService.login(req.user);
   }
 
   @ApiOperation({ summary: "Register in system" })
@@ -53,7 +44,7 @@ export class AuthController {
     description: "User with this username already exists",
   })
   @Post("/register")
-  register(@Body() user: CreateUserDto) {
-    console.log(user);
+  async register(@Body() user: CreateUserDto) {
+    return await this.authService.register(user);
   }
 }

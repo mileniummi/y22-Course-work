@@ -11,6 +11,7 @@ import { MortgagesModule } from "./mortgages/mortgages.module";
 import { AuthModule } from "./auth/auth.module";
 import { getConnectionOptions } from "typeorm";
 import { join } from "path";
+import { UserModule } from "./user/user.module";
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { join } from "path";
     FavouritesModule,
     MortgagesModule,
     AuthModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [

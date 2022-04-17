@@ -39,6 +39,6 @@ export class User {
     example: [1, 2, 6],
     description: "All favourite advertisements id list",
   })
-  @Column("int", { array: true })
+  @Column("int", { array: true, nullable: true })
   favAdvsID: number[];
 }

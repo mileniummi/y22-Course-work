@@ -9,6 +9,7 @@ import {
   Redirect,
   Render,
   UploadedFiles,
+  UseGuards,
   UseInterceptors,
 } from "@nestjs/common";
 import { AdvertisementsService } from "./advertisements.service";
@@ -22,6 +23,7 @@ import {
 } from "@nestjs/swagger";
 import { Advertisement, DealType } from "./entities/advertisement.entity";
 import { SearchAdvertisementDto } from "./dto/search-advertisement.dto";
+import { JwtAuthGuard } from "../auth/jwt-auth.guard";
 
 @ApiTags("Advertisements")
 @Controller("advertisements")
@@ -53,6 +55,7 @@ export class AdvertisementsController {
   @ApiOperation({ summary: "Get advertisements which were added by user" })
   @ApiResponse({ status: 200, type: [Advertisement] })
   @Get("/my")
+  @UseGuards(JwtAuthGuard)
   @Render("pages/my-advertisements")
   getMyAdvertisements() {
     return {};
@@ -64,6 +67,7 @@ export class AdvertisementsController {
   @Redirect("/advertisements/my")
   @UseInterceptors(FilesInterceptor("photos[]"))
   @Post()
+  @UseGuards(JwtAuthGuard)
   async create(
     @Body() advertisement: CreateAdvertisementDto,
     @UploadedFiles() photos: Array<Express.Multer.File>
@@ -75,6 +79,7 @@ export class AdvertisementsController {
   @ApiResponse({ status: 200, type: [Advertisement] })
   @Get("/add")
   @Render("pages/add-advertisement")
+  @UseGuards(JwtAuthGuard)
   getAddAdvertisementPage() {}
 
   @ApiOperation({ summary: "Get page of current advertisement by id" })
