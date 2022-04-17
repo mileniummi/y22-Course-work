@@ -64,10 +64,12 @@ export class AdvertisementsService {
     images: Array<Express.Multer.File>
   ) {
     const imagesLinks = [];
-    for (const image of images) {
-      const imageLink = await this.yandexStorageService.save(image.buffer);
-      if (imageLink) {
-        imagesLinks.push(imageLink);
+    if (images) {
+      for (const image of images) {
+        const imageLink = await this.yandexStorageService.save(image.buffer);
+        if (imageLink) {
+          imagesLinks.push(imageLink);
+        }
       }
     }
     await this.advertisementsRepository.save({
