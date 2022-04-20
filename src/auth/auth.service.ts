@@ -19,12 +19,12 @@ export class AuthService {
     return null;
   }
 
-  async login(user: LoginUserDto, response: Response) {
+  async login(user: LoginUserDto, response) {
     const payload = await this.validateUser(user.username, user.password);
     response.cookie("token", this.jwtService.sign(payload));
   }
 
-  async register(user: CreateUserDto, response: Response) {
+  async register(user: CreateUserDto, response) {
     const dbUser = await this.userService.findOne(user.username);
     if (dbUser) {
       throw new UnauthorizedException("This username is already taken!");
