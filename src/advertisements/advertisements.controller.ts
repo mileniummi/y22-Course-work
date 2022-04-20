@@ -9,21 +9,14 @@ import {
   Redirect,
   Render,
   UploadedFiles,
-  UseGuards,
   UseInterceptors,
 } from "@nestjs/common";
 import { AdvertisementsService } from "./advertisements.service";
 import { FilesInterceptor } from "@nestjs/platform-express";
 import { CreateAdvertisementDto } from "./dto/create-advertisement.dto";
-import {
-  ApiBadRequestResponse,
-  ApiOperation,
-  ApiResponse,
-  ApiTags,
-} from "@nestjs/swagger";
+import { ApiBadRequestResponse, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { Advertisement, DealType } from "./entities/advertisement.entity";
 import { SearchAdvertisementDto } from "./dto/search-advertisement.dto";
-import { JwtAuthGuard } from "../auth/jwt-auth.guard";
 
 @ApiTags("Advertisements")
 @Controller("advertisements")
@@ -35,10 +28,7 @@ export class AdvertisementsController {
   @Get("/sell")
   @Render("pages/flats_list")
   async getSellAdvList(@Query() searchOptions: SearchAdvertisementDto) {
-    return await this.advertisementsService.getAll(
-      searchOptions,
-      DealType.SELL
-    );
+    return await this.advertisementsService.getAll(searchOptions, DealType.SELL);
   }
 
   @ApiOperation({ summary: "Get search advertisements for rent" })
@@ -46,16 +36,12 @@ export class AdvertisementsController {
   @Get("/rent")
   @Render("pages/flats_list")
   async getRentAdvList(@Query() searchOptions: SearchAdvertisementDto) {
-    return await this.advertisementsService.getAll(
-      searchOptions,
-      DealType.RENT
-    );
+    return await this.advertisementsService.getAll(searchOptions, DealType.RENT);
   }
 
   @ApiOperation({ summary: "Get advertisements which were added by user" })
-  @ApiResponse({ status: 200, type: [Advertisement] })
+  @ApiResponse({ status: 200, type: [Advertisement], description: "success, returns html text" })
   @Get("/my")
-  @UseGuards(JwtAuthGuard)
   @Render("pages/my-advertisements")
   getMyAdvertisements() {
     return {};
@@ -67,11 +53,7 @@ export class AdvertisementsController {
   @Redirect("/advertisements/my")
   @UseInterceptors(FilesInterceptor("photos[]"))
   @Post()
-  @UseGuards(JwtAuthGuard)
-  async create(
-    @Body() advertisement: CreateAdvertisementDto,
-    @UploadedFiles() photos: Array<Express.Multer.File>
-  ) {
+  async create(@Body() advertisement: CreateAdvertisementDto, @UploadedFiles() photos: Array<Express.Multer.File>) {
     await this.advertisementsService.create(advertisement, photos);
   }
 
@@ -79,7 +61,6 @@ export class AdvertisementsController {
   @ApiResponse({ status: 200, type: [Advertisement] })
   @Get("/add")
   @Render("pages/add-advertisement")
-  @UseGuards(JwtAuthGuard)
   getAddAdvertisementPage() {}
 
   @ApiOperation({ summary: "Get page of current advertisement by id" })
