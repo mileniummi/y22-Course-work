@@ -2,10 +2,13 @@ import { Body, Controller, Get, Post, Request, Render, UseGuards } from "@nestjs
 import { ApiBadRequestResponse, ApiOperation, ApiResponse, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
 import { CreateUserDto } from "../user/dto/create-user.dto";
 import { LoginUserDto } from "../user/dto/login-user.dto";
+import { AuthService } from "./auth.service";
+import { Response } from "express";
 
 @ApiTags("Authorization")
 @Controller("auth")
 export class AuthController {
+  constructor(private authService: AuthService) {}
   @ApiOperation({ summary: "Get login page" })
   @ApiResponse({ status: 200, description: "success, returns html text" })
   @Get("/login")
@@ -30,8 +33,8 @@ export class AuthController {
     description: "Username or password not correct",
   })
   @Post("/login")
-  async login(@Body() credentials: LoginUserDto) {
-    return {};
+  async login(@Body() credentials: LoginUserDto, response: Response) {
+    return await this.authService.login(credentials, response);
   }
 
   @ApiOperation({ summary: "Register in system" })
@@ -41,7 +44,7 @@ export class AuthController {
     description: "User with this username already exists",
   })
   @Post("/register")
-  async register(@Body() user: CreateUserDto) {
-    return {};
+  async register(@Body() user: CreateUserDto, response: Response) {
+    return await this.authService.register(user, response);
   }
 }
