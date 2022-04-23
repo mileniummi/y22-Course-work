@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Render, Res } from "@nestjs/common";
+import { Body, Controller, Get, Post, Redirect, Render, Req, Res } from "@nestjs/common";
 import { ApiBadRequestResponse, ApiOperation, ApiResponse, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
 import { CreateUserDto } from "../user/dto/create-user.dto";
 import { LoginUserDto } from "../user/dto/login-user.dto";
@@ -34,7 +34,7 @@ export class AuthController {
   })
   @Post("/login")
   async login(@Body() credentials: LoginUserDto, @Res({ passthrough: true }) response: Response) {
-    return await this.authService.login(credentials, response);
+    await this.authService.login(credentials, response);
   }
 
   @ApiOperation({ summary: "Register in system" })

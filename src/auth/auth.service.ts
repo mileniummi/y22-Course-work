@@ -4,7 +4,6 @@ import { JwtService } from "@nestjs/jwt";
 import * as bcrypt from "bcrypt";
 import { CreateUserDto } from "../user/dto/create-user.dto";
 import { LoginUserDto } from "../user/dto/login-user.dto";
-import { Response } from "express";
 
 @Injectable()
 export class AuthService {
@@ -21,7 +20,7 @@ export class AuthService {
 
   async login(user: LoginUserDto, response) {
     const payload = await this.validateUser(user.username, user.password);
-    response.cookie("token", this.jwtService.sign(payload));
+    response.setHeader("Authorization", `Bearer ${this.jwtService.sign(payload)}`);
   }
 
   async register(user: CreateUserDto, response) {

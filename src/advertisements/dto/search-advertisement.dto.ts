@@ -1,8 +1,4 @@
-import {
-  Currency,
-  DealObject,
-  DealType,
-} from "../entities/advertisement.entity";
+import { Currency, DealObject, DealType } from "../entities/advertisement.entity";
 import { IsEnum, IsNumber, IsOptional, IsString } from "class-validator";
 import { Transform } from "class-transformer";
 
@@ -41,4 +37,14 @@ export class SearchAdvertisementDto {
   @IsString()
   @IsOptional()
   readonly address?: string;
+
+  @IsNumber()
+  @IsOptional()
+  @Transform((prop) => parseInt(prop.value), { toClassOnly: true })
+  readonly page?: number = 1;
+
+  @IsNumber()
+  @IsOptional()
+  @Transform((prop) => parseInt(prop.value), { toClassOnly: true })
+  readonly limit?: number = 10;
 }

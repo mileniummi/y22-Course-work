@@ -5,6 +5,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { CreateAdvertisementDto } from "./dto/create-advertisement.dto";
 import { SearchAdvertisementDto } from "./dto/search-advertisement.dto";
 import { YandexStorageService } from "./yandex.storage.service";
+import { paginate } from "nestjs-typeorm-paginate";
 
 @Injectable()
 export class AdvertisementsService {
@@ -14,38 +15,40 @@ export class AdvertisementsService {
     private yandexStorageService: YandexStorageService
   ) {}
 
-  async getAll(searchOptions: SearchAdvertisementDto, dealType: DealType) {
-    let advertisements: Advertisement[];
-    if (Object.keys(searchOptions).length > 0) {
-      advertisements = await this.advertisementsRepository.find({
-        where: {
-          dealType: searchOptions.dealType,
-          dealObject: searchOptions.dealObject,
-          price: Between(
-            searchOptions.smallestPrice ? searchOptions.smallestPrice : 0,
-            searchOptions.biggestPrice ? searchOptions.biggestPrice : Infinity
-          ),
-          roomCount:
-            searchOptions.roomCount === 4
-              ? MoreThan(3)
-              : searchOptions.roomCount,
-          location: Like(`%${searchOptions.address}%`),
-        },
+  async getAll(searchOptions: SearchAdvertisementDto, dealType: DealType, page, limit) {
+    let advertisements;
+    if (Object.keys(searchOptions).length > 2) {
+      const query = this.advertisementsRepository.createQueryBuilder().where({
+        dealType: searchOptions.dealType,
+        dealObject: searchOptions.dealObject,
+        price: Between(
+          searchOptions.smallestPrice ? searchOptions.smallestPrice : 0,
+          searchOptions.biggestPrice ? searchOptions.biggestPrice : Infinity
+        ),
+        roomCount: searchOptions.roomCount === 4 ? MoreThan(3) : searchOptions.roomCount,
+        location: Like(`%${searchOptions.address}%`),
       });
+      advertisements = await paginate(query, { page, limit });
       return {
         user: { login: "user" },
-        advertisements,
-        amountOfRoomsText: searchOptions.roomCount
-          ? searchOptions.roomCount + "-комнатную"
-          : "",
-        dealTypeText:
-          searchOptions.dealType === DealType.SELL ? "Купить" : "Арендовать",
+        totalPages: advertisements.meta.totalPages,
+        currentPage: advertisements.meta.currentPage,
+        advertisements: advertisements.items,
+        amountOfRoomsText: searchOptions.roomCount ? searchOptions.roomCount + "-комнатную" : "",
+        dealTypeText: searchOptions.dealType === DealType.SELL ? "Купить" : "Арендовать",
       };
     } else {
-      advertisements = await this.advertisementsRepository.find({
-        where: { dealType },
+      advertisements = await paginate(this.advertisementsRepository.createQueryBuilder().where({ dealType }), {
+        page,
+        limit,
       });
-      return { advertisements, amountOfRoomsText: "", dealTypeText: "" };
+      return {
+        totalPages: advertisements.meta.totalPages,
+        currentPage: advertisements.meta.currentPage,
+        advertisements: advertisements.items,
+        amountOfRoomsText: "",
+        dealTypeText: "",
+      };
     }
   }
 
@@ -59,10 +62,7 @@ export class AdvertisementsService {
     };
   }
 
-  async create(
-    advertisement: CreateAdvertisementDto,
-    images: Array<Express.Multer.File>
-  ) {
+  async create(advertisement: CreateAdvertisementDto, images: Array<Express.Multer.File>) {
     const imagesLinks = [];
     if (images) {
       for (const image of images) {

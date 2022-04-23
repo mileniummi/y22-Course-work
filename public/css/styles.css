@@ -38,7 +38,7 @@ a {
 .adv_list_item_mySlides {
     max-height: 370px;
     max-width: 433px;
-    width: auto;
+    width: 100%;
     height: auto;
 }
 
@@ -1432,8 +1432,6 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 492px;
-    height: 420px;
 }
 
 /* The dots/bullets/indicators */
@@ -2100,4 +2098,53 @@ footer {
         height: 50px;
         width: 300px
     }
+}
+
+/*pagination*/
+
+.pagination-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pagination{
+    display: flex;
+    justify-content: space-between;
+    padding-inline-start: 5px;
+}
+.pagination > li{
+    list-style-type: none;
+}
+
+.pagination__item{
+    cursor: pointer;
+    padding: 10px 15px;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    transition: background-color .3s ease-in-out;
+}
+
+.pagination__item.active{
+    background-color:#298f6b;
+}
+
+.pagination__item:hover,
+.pagination-button:hover{
+    background-color:#298f6b;
+}
+.pagination-button{
+    background-color: white;
+    border-radius: 10px 0 0 0;
+    box-shadow: none;
+    padding: 5px 10px;
+    width: auto;
+    height: auto;
+    border: 1px solid #222222;
+    margin-left: 5px;
+    transition: background-color .3s ease-in-out;
+}
+
+.pagination-button.right{
+    border-radius: 0 10px 0 0;
 }
