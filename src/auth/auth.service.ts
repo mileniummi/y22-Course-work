@@ -20,7 +20,7 @@ export class AuthService {
 
   async login(user: LoginUserDto, response) {
     const payload = await this.validateUser(user.username, user.password);
-    response.setHeader("Authorization", `Bearer ${this.jwtService.sign(payload)}`);
+    response.cookie("authorization_token", this.jwtService.sign(payload));
   }
 
   async register(user: CreateUserDto, response) {
@@ -34,6 +34,10 @@ export class AuthService {
       password: hashedPassword,
     });
     const { password, ...payload } = newUser;
-    response.cookie("token", this.jwtService.sign(payload));
+    response.cookie("authorization_token", this.jwtService.sign(payload));
+  }
+
+  logout(response) {
+    response.cookie("authorization_token", "");
   }
 }

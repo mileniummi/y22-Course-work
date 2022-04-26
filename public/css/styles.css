@@ -220,6 +220,10 @@ select {
     padding-top: 50px;
     height: 100%;
     z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
     transform: translate(100%, 0);
     transition: transform 0.5s ease-in-out;
     background: linear-gradient(to right, #3084b9 0%, #54a27a 100%);
@@ -1720,7 +1724,6 @@ footer {
     }
 
     .header_buttons {
-        margin-left: auto;
         flex-direction: column;
     }
 
@@ -2147,4 +2150,63 @@ footer {
 
 .pagination-button.right{
     border-radius: 0 10px 0 0;
+}
+
+
+/*user*/
+.user-profile{
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid #298f6b;
+    border-radius: 10px;
+    padding: 0 10px;
+    margin: 0 10px;
+    transition: all .3s ease-in-out;
+}
+
+.user-profile:hover{
+    background-color: #298f6b;
+    color: white;
+}
+.user-profile > svg{
+    width: 20px;
+    margin-right: 10px;
+}
+.user-profile{
+    font-weight: 600;
+}
+
+.user-profile.active {
+    background-color: #298f6b;
+    color: white;
+}
+.user-profile.active {
+    color: #222222;
+    background-color: transparent;
+}
+.logout-button{
+    z-index: 3;
+    display: none;
+    color: #222222;
+    position: absolute;
+    top: 60px;
+    left: 10px;
+}
+.logout-button.active{
+    display: block;
+    background-color: transparent;
+}
+.popup.user-profile{
+    text-align: center;
+    height: 40px;
+}
+
+.user-profile.hidden{
+    display: none;
+}
+.header_enter_btn.hidden{
+    display: none;
 }
