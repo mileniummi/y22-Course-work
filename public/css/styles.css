@@ -678,6 +678,7 @@ select {
     height: 5%;
     margin-left: 40%;
 }
+
 .form-row-price {
     border-radius: 3px;
     border: none;
@@ -2105,21 +2106,23 @@ footer {
 
 /*pagination*/
 
-.pagination-wrapper{
+.pagination-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.pagination{
+
+.pagination {
     display: flex;
     justify-content: space-between;
     padding-inline-start: 5px;
 }
-.pagination > li{
+
+.pagination > li {
     list-style-type: none;
 }
 
-.pagination__item{
+.pagination__item {
     cursor: pointer;
     padding: 10px 15px;
     width: 30px;
@@ -2128,15 +2131,16 @@ footer {
     transition: background-color .3s ease-in-out;
 }
 
-.pagination__item.active{
-    background-color:#298f6b;
+.pagination__item.active {
+    background-color: #298f6b;
 }
 
 .pagination__item:hover,
-.pagination-button:hover{
-    background-color:#298f6b;
+.pagination-button:hover {
+    background-color: #298f6b;
 }
-.pagination-button{
+
+.pagination-button {
     background-color: white;
     border-radius: 10px 0 0 0;
     box-shadow: none;
@@ -2148,13 +2152,13 @@ footer {
     transition: background-color .3s ease-in-out;
 }
 
-.pagination-button.right{
+.pagination-button.right {
     border-radius: 0 10px 0 0;
 }
 
 
 /*user*/
-.user-profile{
+.user-profile {
     position: relative;
     display: flex;
     align-items: center;
@@ -2167,15 +2171,17 @@ footer {
     transition: all .3s ease-in-out;
 }
 
-.user-profile:hover{
+.user-profile:hover {
     background-color: #298f6b;
     color: white;
 }
-.user-profile > svg{
+
+.user-profile > svg {
     width: 20px;
     margin-right: 10px;
 }
-.user-profile{
+
+.user-profile {
     font-weight: 600;
 }
 
@@ -2183,11 +2189,13 @@ footer {
     background-color: #298f6b;
     color: white;
 }
+
 .user-profile.active {
     color: #222222;
     background-color: transparent;
 }
-.logout-button{
+
+.logout-button {
     z-index: 3;
     display: none;
     color: #222222;
@@ -2195,18 +2203,33 @@ footer {
     top: 60px;
     left: 10px;
 }
-.logout-button.active{
+
+.logout-button.active {
     display: block;
     background-color: transparent;
 }
-.popup.user-profile{
+
+.popup.user-profile {
     text-align: center;
     height: 40px;
 }
 
-.user-profile.hidden{
+.user-profile.hidden {
     display: none;
 }
-.header_enter_btn.hidden{
+
+.header_enter_btn.hidden {
     display: none;
+}
+
+/*not found*/
+.not-found {
+    display: flex;
+    height: 70vh;
+    justify-content: center;
+    align-items: center;
+}
+.not-found-image{
+    width: 100%;
+    height: auto;
 }

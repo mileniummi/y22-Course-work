@@ -15,7 +15,14 @@ import {
 import { AdvertisementsService } from "./advertisements.service";
 import { FilesInterceptor } from "@nestjs/platform-express";
 import { CreateAdvertisementDto } from "./dto/create-advertisement.dto";
-import { ApiBadRequestResponse, ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+import {
+  ApiBadRequestResponse,
+  ApiCookieAuth,
+  ApiForbiddenResponse,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from "@nestjs/swagger";
 import { Advertisement, DealType } from "./entities/advertisement.entity";
 import { SearchAdvertisementDto } from "./dto/search-advertisement.dto";
 import { JwtAuthGuard } from "../auth/jwt-auth.guard";

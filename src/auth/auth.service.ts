@@ -15,7 +15,9 @@ export class AuthService {
       const { password, ...result } = user;
       return result;
     }
-    return null;
+    throw new UnauthorizedException({
+      message: "Неправильный логин или пароль",
+    });
   }
 
   async login(user: LoginUserDto, response) {
