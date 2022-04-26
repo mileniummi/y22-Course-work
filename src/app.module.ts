@@ -3,7 +3,6 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { ConfigModule } from "@nestjs/config";
 import { APP_INTERCEPTOR } from "@nestjs/core";
-import { ServerLoadingTimeInterceptor } from "./server-loading-time.interceptor";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { AdvertisementsModule } from "./advertisements/advertisements.module";
 import { FavouritesModule } from "./favourites/favourites.module";
@@ -12,11 +11,14 @@ import { AuthModule } from "./auth/auth.module";
 import { getConnectionOptions } from "typeorm";
 import { join } from "path";
 import { UserModule } from "./user/user.module";
-import { AuthController } from "./auth/auth.controller";
+import { ServerLoadingTimeInterceptor } from "./server-loading-time.interceptor";
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      ignoreEnvFile: true,
+      isGlobal: true,
+    }),
     TypeOrmModule.forRootAsync({
       useFactory: async () =>
         Object.assign(await getConnectionOptions(), {
@@ -30,7 +32,7 @@ import { AuthController } from "./auth/auth.controller";
     AuthModule,
     UserModule,
   ],
-  controllers: [AppController, AuthController],
+  controllers: [AppController],
   providers: [
     AppService,
     {

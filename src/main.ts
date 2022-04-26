@@ -9,6 +9,7 @@ import { ValidationPipe } from "@nestjs/common";
 import * as cookieParser from "cookie-parser";
 import { ViewUnAuthFilter } from "./filters/view.unauth.filter";
 import { PageNotFoundFilter } from "./filters/page_not_found.filter";
+import { ServerLoadingTimeInterceptor } from "./server-loading-time.interceptor";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -26,6 +27,7 @@ async function bootstrap() {
     .setTitle("Home-Hunter")
     .setDescription("MVC app for selling flats and houses")
     .setVersion("1.0")
+    .addCookieAuth("authorization_token")
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup("docs", app, document);
@@ -63,6 +65,8 @@ async function bootstrap() {
     })
   );
 
+  app.useGlobalFilters(new ViewUnAuthFilter());
+  app.useGlobalInterceptors(new ServerLoadingTimeInterceptor());
   app.useGlobalFilters(new ViewUnAuthFilter(), new PageNotFoundFilter());
 
   await app.listen(parseInt(process.env.PORT, 10) || 3000);

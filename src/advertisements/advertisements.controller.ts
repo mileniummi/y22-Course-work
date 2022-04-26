@@ -15,10 +15,12 @@ import {
 import { AdvertisementsService } from "./advertisements.service";
 import { FilesInterceptor } from "@nestjs/platform-express";
 import { CreateAdvertisementDto } from "./dto/create-advertisement.dto";
-import { ApiBadRequestResponse, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+import { ApiBadRequestResponse, ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { Advertisement, DealType } from "./entities/advertisement.entity";
 import { SearchAdvertisementDto } from "./dto/search-advertisement.dto";
 import { JwtAuthGuard } from "../auth/jwt-auth.guard";
+import AuthUser from "../auth/auth.user.decorator";
+import { User } from "../user/entities/user.entity";
 
 @ApiTags("Advertisements")
 @Controller("advertisements")
@@ -55,9 +57,10 @@ export class AdvertisementsController {
   @ApiResponse({ status: 200, type: [Advertisement], description: "success, returns html text" })
   @Get("/my")
   @UseGuards(JwtAuthGuard)
+  @ApiCookieAuth()
   @Render("pages/my-advertisements")
-  getMyAdvertisements() {
-    return {};
+  getMyAdvertisements(@AuthUser() user: User) {
+    return { user };
   }
 
   @ApiOperation({ summary: "Fill in the form and add new advertisement" })
@@ -66,12 +69,14 @@ export class AdvertisementsController {
   @Redirect("/advertisements/my")
   @UseInterceptors(FilesInterceptor("photos[]"))
   @UseGuards(JwtAuthGuard)
+  @ApiCookieAuth()
   @Post()
   async create(@Body() advertisement: CreateAdvertisementDto, @UploadedFiles() photos: Array<Express.Multer.File>) {
     await this.advertisementsService.create(advertisement, photos);
   }
 
   @UseGuards(JwtAuthGuard)
+  @ApiCookieAuth()
   @ApiOperation({ summary: "Get page with form" })
   @ApiResponse({ status: 200, type: [Advertisement] })
   @Get("/add")
