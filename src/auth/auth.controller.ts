@@ -1,23 +1,22 @@
-import {
-  Body,
-  Controller,
-  Get,
-  NotImplementedException,
-  Post,
-  Render,
-} from "@nestjs/common";
+import { Body, Controller, Get, Post, Redirect, Render, Res, UseGuards } from "@nestjs/common";
 import {
   ApiBadRequestResponse,
+  ApiCookieAuth,
   ApiOperation,
   ApiResponse,
   ApiTags,
   ApiUnauthorizedResponse,
 } from "@nestjs/swagger";
 import { CreateUserDto } from "../user/dto/create-user.dto";
+import { LoginUserDto } from "../user/dto/login-user.dto";
+import { AuthService } from "./auth.service";
+import { Response } from "express";
+import { JwtAuthGuard } from "./jwt-auth.guard";
 
 @ApiTags("Authorization")
 @Controller("auth")
 export class AuthController {
+  constructor(private authService: AuthService) {}
   @ApiOperation({ summary: "Get login page" })
   @ApiResponse({ status: 200, description: "success, returns html text" })
   @Get("/login")
@@ -41,9 +40,10 @@ export class AuthController {
     status: 401,
     description: "Username or password not correct",
   })
+  @Redirect("/advertisements/my")
   @Post("/login")
-  login(@Body() user) {
-    throw new NotImplementedException();
+  async login(@Body() credentials: LoginUserDto, @Res({ passthrough: true }) response: Response) {
+    await this.authService.login(credentials, response);
   }
 
   @ApiOperation({ summary: "Register in system" })
@@ -52,8 +52,17 @@ export class AuthController {
   @ApiUnauthorizedResponse({
     description: "User with this username already exists",
   })
+  @Redirect("/advertisements/my")
   @Post("/register")
-  register(@Body() user: CreateUserDto) {
-    console.log(user);
+  async register(@Body() user: CreateUserDto, @Res({ passthrough: true }) response: Response) {
+    return await this.authService.register(user, response);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @ApiCookieAuth()
+  @Redirect("login")
+  @Get("logout")
+  async logout(@Res({ passthrough: true }) response: Response) {
+    this.authService.logout(response);
   }
 }

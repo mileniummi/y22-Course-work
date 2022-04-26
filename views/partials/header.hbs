@@ -31,15 +31,14 @@
                     class="header_add_adv_text"
             >+&nbsp;Добавить&nbsp;объявление</a>
         </button>
-       {{#if user}}
-       <button class="header_enter_btn" onclick="window.location.href='/advertisements/my'">
-           <span class="header_add_adv_text">{{user.login}}</span>
-        </button>
-        {{else}}
-           {{user}}
+           <div id="user-profile" class="user-profile">
+               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/></svg>
+               <span class="user-username"></span>
+               <a id="logout-button" href="/auth/logout" class="logout-button">Выйти</a>
+           </div>
            <button class="header_enter_btn" onclick="window.location.href='/auth/login'">
                <span class="header_add_adv_text">Войти</span>
-           </button> {{/if}}
+           </button>
     </div>
     <button class="menu-toggle" id="menu-toggle">Menu</button>
     <ul class="popup_nav" id="popup_nav">
@@ -68,15 +67,16 @@
             >
                 <span class="header_add_adv_text">+&nbsp;Добавить&nbsp;объявление</span>
             </button>
-            {{#if user}}
-                <button class="header_enter_btn" onclick="window.location.href='/advertisements/my'">
-                    <span class="header_add_adv_text">{{user.login}}</span>
-                </button>
-            {{else}}
-                {{user}}
+        </li>
+        <li class="popup_nav__item">
+                <div id="popup-user-profile" class="popup user-profile" >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/></svg>
+                    <span class="user-username"></span>
+                    <a id="popup-logout-button" href="/auth/logout" class="popup logout-button">Выйти</a>
+                </div>
                 <button class="header_enter_btn" onclick="window.location.href='/auth/login'">
                     <span class="header_add_adv_text">Войти</span>
-                </button> {{/if}}
+                </button>
         </li>
     </ul>
 </header>

@@ -1,10 +1,11 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { Between, Like, MoreThan, Repository } from "typeorm";
 import { Advertisement, DealType } from "./entities/advertisement.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { CreateAdvertisementDto } from "./dto/create-advertisement.dto";
 import { SearchAdvertisementDto } from "./dto/search-advertisement.dto";
 import { YandexStorageService } from "./yandex.storage.service";
+import { paginate } from "nestjs-typeorm-paginate";
 
 @Injectable()
 export class AdvertisementsService {
@@ -14,38 +15,40 @@ export class AdvertisementsService {
     private yandexStorageService: YandexStorageService
   ) {}
 
-  async getAll(searchOptions: SearchAdvertisementDto, dealType: DealType) {
-    let advertisements: Advertisement[];
-    if (Object.keys(searchOptions).length > 0) {
-      advertisements = await this.advertisementsRepository.find({
-        where: {
-          dealType: searchOptions.dealType,
-          dealObject: searchOptions.dealObject,
-          price: Between(
-            searchOptions.smallestPrice ? searchOptions.smallestPrice : 0,
-            searchOptions.biggestPrice ? searchOptions.biggestPrice : Infinity
-          ),
-          roomCount:
-            searchOptions.roomCount === 4
-              ? MoreThan(3)
-              : searchOptions.roomCount,
-          location: Like(`%${searchOptions.address}%`),
-        },
+  async getAll(searchOptions: SearchAdvertisementDto, dealType: DealType, page, limit) {
+    let advertisements;
+    if (Object.keys(searchOptions).length > 2) {
+      const query = this.advertisementsRepository.createQueryBuilder().where({
+        dealType: searchOptions.dealType,
+        dealObject: searchOptions.dealObject,
+        price: Between(
+          searchOptions.smallestPrice ? searchOptions.smallestPrice : 0,
+          searchOptions.biggestPrice ? searchOptions.biggestPrice : Infinity
+        ),
+        roomCount: searchOptions.roomCount === 4 ? MoreThan(3) : searchOptions.roomCount,
+        location: Like(`%${searchOptions.address}%`),
       });
+      advertisements = await paginate(query, { page, limit });
       return {
         user: { login: "user" },
-        advertisements,
-        amountOfRoomsText: searchOptions.roomCount
-          ? searchOptions.roomCount + "-комнатную"
-          : "",
-        dealTypeText:
-          searchOptions.dealType === DealType.SELL ? "Купить" : "Арендовать",
+        totalPages: advertisements.meta.totalPages,
+        currentPage: advertisements.meta.currentPage,
+        advertisements: advertisements.items,
+        amountOfRoomsText: searchOptions.roomCount ? searchOptions.roomCount + "-комнатную" : "",
+        dealTypeText: searchOptions.dealType === DealType.SELL ? "Купить" : "Арендовать",
       };
     } else {
-      advertisements = await this.advertisementsRepository.find({
-        where: { dealType },
+      advertisements = await paginate(this.advertisementsRepository.createQueryBuilder().where({ dealType }), {
+        page,
+        limit,
       });
-      return { advertisements, amountOfRoomsText: "", dealTypeText: "" };
+      return {
+        totalPages: advertisements.meta.totalPages,
+        currentPage: advertisements.meta.currentPage,
+        advertisements: advertisements.items,
+        amountOfRoomsText: "",
+        dealTypeText: "",
+      };
     }
   }
 
@@ -53,22 +56,26 @@ export class AdvertisementsService {
     const advertisement = await this.advertisementsRepository.findOne({
       where: { id },
     });
+    if (!advertisement) {
+      throw new NotFoundException();
+    }
     return {
       user: { login: "user" },
-      adv: advertisement ? { ...advertisement } : undefined,
+      adv: { ...advertisement },
     };
   }
 
-  async create(
-    advertisement: CreateAdvertisementDto,
-    images: Array<Express.Multer.File>
-  ) {
+  async create(advertisement: CreateAdvertisementDto, images: Array<Express.Multer.File>) {
     const imagesLinks = [];
-    for (const image of images) {
-      const imageLink = await this.yandexStorageService.save(image.buffer);
-      if (imageLink) {
-        imagesLinks.push(imageLink);
+    if (images) {
+      for (const image of images) {
+        const imageLink = await this.yandexStorageService.save(image.buffer);
+        if (imageLink) {
+          imagesLinks.push(imageLink);
+        }
       }
+    } else {
+      imagesLinks.push("/images/no_img_in_adv.jpeg");
     }
     await this.advertisementsRepository.save({
       ...advertisement,

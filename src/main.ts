@@ -6,6 +6,10 @@ import * as hbs from "hbs";
 import * as expressHbs from "express-handlebars";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { ValidationPipe } from "@nestjs/common";
+import * as cookieParser from "cookie-parser";
+import { ViewUnAuthFilter } from "./filters/view.unauth.filter";
+import { PageNotFoundFilter } from "./filters/page_not_found.filter";
+import { ServerLoadingTimeInterceptor } from "./server-loading-time.interceptor";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -23,6 +27,7 @@ async function bootstrap() {
     .setTitle("Home-Hunter")
     .setDescription("MVC app for selling flats and houses")
     .setVersion("1.0")
+    .addCookieAuth("authorization_token")
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup("docs", app, document);
@@ -34,6 +39,8 @@ async function bootstrap() {
 
   hbs.registerPartials(join(__dirname, "..", "views/partials"));
   hbs.registerPartials(join(__dirname, "..", "views/layouts"));
+
+  app.use(cookieParser());
 
   app.engine(
     "hbs",
@@ -49,9 +56,18 @@ async function bootstrap() {
             "+": left_value + right_value,
           }[operation];
         },
+        times: function (n, block) {
+          let accum = "";
+          for (let i = 1; i <= n; ++i) accum += block.fn(i);
+          return accum;
+        },
       },
     })
   );
+
+  app.useGlobalFilters(new ViewUnAuthFilter());
+  app.useGlobalInterceptors(new ServerLoadingTimeInterceptor());
+  app.useGlobalFilters(new ViewUnAuthFilter(), new PageNotFoundFilter());
 
   await app.listen(parseInt(process.env.PORT, 10) || 3000);
 }

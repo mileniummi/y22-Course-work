@@ -1,0 +1,15 @@
+<div class="pagination-wrapper">
+    <button id="pagination_next" class="pagination-button">Следующая</button>
+    <ul class="pagination" id="pagination">
+        {{#times totalPages}}
+            <li><a class="pagination__item" href="">{{this}}</a></li>
+        {{/times}}
+    </ul>
+    <button id="pagination_prev" class="pagination-button right">Предыдущая</button>
+</div>
+
+<script>
+    let currentPage = {{currentPage}};
+    let totalPages = {{totalPages}};
+</script>
+<script src="/javascript/pagination.js"></script>
