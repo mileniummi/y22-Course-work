@@ -46,6 +46,8 @@
     "rimraf": "^3.0.2",
     "rjx": "^3.0.3",
     "rxjs": "^7.2.0",
+    "supertokens-node": "^9.2.0",
+    "supertokens-website": "^10.0.10",
     "swagger-ui-express": "^4.3.0",
     "typeorm": "^0.2.45"
   },

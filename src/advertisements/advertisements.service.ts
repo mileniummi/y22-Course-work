@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { Between, Like, MoreThan, Repository } from "typeorm";
 import { Advertisement, DealType } from "./entities/advertisement.entity";
 import { InjectRepository } from "@nestjs/typeorm";
@@ -56,9 +56,12 @@ export class AdvertisementsService {
     const advertisement = await this.advertisementsRepository.findOne({
       where: { id },
     });
+    if (!advertisement) {
+      throw new NotFoundException();
+    }
     return {
       user: { login: "user" },
-      adv: advertisement ? { ...advertisement } : undefined,
+      adv: { ...advertisement },
     };
   }
 
@@ -71,6 +74,8 @@ export class AdvertisementsService {
           imagesLinks.push(imageLink);
         }
       }
+    } else {
+      imagesLinks.push("/images/no_img_in_adv.jpeg");
     }
     await this.advertisementsRepository.save({
       ...advertisement,

@@ -12,6 +12,7 @@ import { AuthModule } from "./auth/auth.module";
 import { getConnectionOptions } from "typeorm";
 import { join } from "path";
 import { UserModule } from "./user/user.module";
+import { AuthController } from "./auth/auth.controller";
 
 @Module({
   imports: [
@@ -29,7 +30,7 @@ import { UserModule } from "./user/user.module";
     AuthModule,
     UserModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, AuthController],
   providers: [
     AppService,
     {

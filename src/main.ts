@@ -8,6 +8,7 @@ import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { ValidationPipe } from "@nestjs/common";
 import * as cookieParser from "cookie-parser";
 import { ViewUnAuthFilter } from "./filters/view.unauth.filter";
+import { PageNotFoundFilter } from "./filters/page_not_found.filter";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -62,7 +63,7 @@ async function bootstrap() {
     })
   );
 
-  app.useGlobalFilters(new ViewUnAuthFilter());
+  app.useGlobalFilters(new ViewUnAuthFilter(), new PageNotFoundFilter());
 
   await app.listen(parseInt(process.env.PORT, 10) || 3000);
 }
