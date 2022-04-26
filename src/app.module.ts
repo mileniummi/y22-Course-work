@@ -12,6 +12,8 @@ import { getConnectionOptions } from "typeorm";
 import { join } from "path";
 import { UserModule } from "./user/user.module";
 import { ServerLoadingTimeInterceptor } from "./server-loading-time.interceptor";
+import { MessagesGateway } from "./messager.gateway";
+import { MessagesModule } from './messages/messages.module';
 
 @Module({
   imports: [
@@ -31,6 +33,7 @@ import { ServerLoadingTimeInterceptor } from "./server-loading-time.interceptor"
     MortgagesModule,
     AuthModule,
     UserModule,
+    MessagesModule,
   ],
   controllers: [AppController],
   providers: [
@@ -39,6 +42,7 @@ import { ServerLoadingTimeInterceptor } from "./server-loading-time.interceptor"
       provide: APP_INTERCEPTOR,
       useClass: ServerLoadingTimeInterceptor,
     },
+    MessagesGateway,
   ],
 })
 export class AppModule {}

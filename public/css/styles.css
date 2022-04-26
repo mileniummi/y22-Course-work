@@ -230,8 +230,11 @@ select {
 }
 
 .popup_nav__item {
-    /*border-bottom: white 2px solid;*/
     padding: 5px 0;
+}
+.popup_nav__item > a > svg{
+    height: 40px;
+    width: 40px;
 }
 
 .background_for_one_flat_page {
@@ -303,6 +306,7 @@ select {
 
 .nav {
     display: flex;
+    align-items: center;
 }
 
 .header_logo {
@@ -325,6 +329,11 @@ select {
     color: black;
     font-weight: lighter;
 }
+
+.nav_item_text > svg{
+    margin-left: 20px;
+}
+
 
 .popup-nav_item_text {
     text-decoration: none;
@@ -2233,3 +2242,7 @@ footer {
     width: 100%;
     height: auto;
 }
+
+
+/*chats*/
+
