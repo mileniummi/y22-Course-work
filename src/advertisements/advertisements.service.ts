@@ -67,7 +67,7 @@ export class AdvertisementsService {
 
   async create(advertisement: CreateAdvertisementDto, images: Array<Express.Multer.File>) {
     const imagesLinks = [];
-    if (images) {
+    if (images && images.length > 0) {
       for (const image of images) {
         const imageLink = await this.yandexStorageService.save(image.buffer);
         if (imageLink) {

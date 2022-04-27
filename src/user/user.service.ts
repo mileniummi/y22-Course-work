@@ -18,4 +18,8 @@ export class UserService {
   async create(user: CreateUserDto): Promise<User | undefined> {
     return await this.userRepository.save(user);
   }
+
+  // async addFavAdv(user: User, id: number) {
+  //   return await this.userRepository.
+  // }
 }

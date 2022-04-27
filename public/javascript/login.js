@@ -1,15 +1,21 @@
-const form = document.querySelector("form");
+supertokens.init({
+  apiDomain: "https://home-hunter.herokuapp.com",
+  apiBasePath: "/docs",
+});
 
-form.addEventListener("submit", async (e) => {
+const form = document.getElementById("log__page-form");
+form.addEventListener("submit", async function (e) {
   e.preventDefault();
-
   const formData = new FormData(form);
   try {
-    const res = await fetch("/", {
-      method: "POST",
-      body: JSON.strigify(formData),
-      headers: { "Content-Type": "application/json" },
+    const res = await fetch("/auth/authorizationurl?thirdPartyId=google", {
+      method: "GET",
+      headers: {
+        rid: "thirdpartyemailpassword",
+      },
     });
-    const data = await res.json();
-  } catch {}
+    console.log(res);
+  } catch (e) {
+    console.log(e);
+  }
 });

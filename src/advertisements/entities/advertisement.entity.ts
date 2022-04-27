@@ -1,10 +1,4 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  CreateDateColumn,
-  ManyToOne,
-} from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne, ManyToMany } from "typeorm";
 import { User } from "../../user/entities/user.entity";
 import { ApiProperty } from "@nestjs/swagger";
 
@@ -118,8 +112,7 @@ export class Advertisement {
 
   @ApiProperty({
     example: true,
-    description:
-      "Shows if person ready or not to show his flat or house online",
+    description: "Shows if person ready or not to show his flat or house online",
   })
   @Column()
   readyToShowOnline: boolean;
@@ -209,11 +202,12 @@ export class Advertisement {
   author: User;
 
   @ApiProperty({
-    example: [
-      "https://home-hunter-images.storage.yandexcloud.net/advertisements/lol.png",
-    ],
+    example: ["https://home-hunter-images.storage.yandexcloud.net/advertisements/lol.png"],
     description: "Array with links of object images",
   })
   @Column("text", { array: true })
   images: string[];
+
+  @ManyToMany(() => User)
+  usersFav: User[];
 }
