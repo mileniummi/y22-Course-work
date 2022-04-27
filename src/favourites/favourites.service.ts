@@ -6,5 +6,7 @@ import { UserService } from "../user/user.service";
 export class FavouritesService {
   constructor(private userService: UserService) {}
 
-  async addFavAdv(user: User, id: number) {}
+  async addFavAdv(user: User, id: number) {
+    return await this.userService.addFavAdv(user, id);
+  }
 }
