@@ -14,7 +14,11 @@ const paintCurrentPageItem = () => {
     if (href.includes("page=")) {
       href = href.replace(/page=[0-9]+/, `page=${item.innerHTML}`);
     } else {
-      href = href.concat(`&page=${item.innerHTML}`);
+      if (href.includes("?")) {
+        href = href.concat(`&page=${item.innerHTML}`);
+      } else {
+        href = href.concat(`?page=${item.innerHTML}`);
+      }
     }
     item.href = href;
   }

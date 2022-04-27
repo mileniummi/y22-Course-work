@@ -232,7 +232,8 @@ select {
 .popup_nav__item {
     padding: 5px 0;
 }
-.popup_nav__item > a > svg{
+
+.popup_nav__item > a > svg {
     height: 40px;
     width: 40px;
 }
@@ -330,8 +331,9 @@ select {
     font-weight: lighter;
 }
 
-.nav_item_text > svg{
-    margin-left: 20px;
+.nav_item_text > svg {
+    margin-left: 10px;
+    margin-right: 15px;
 }
 
 
@@ -2238,11 +2240,81 @@ footer {
     justify-content: center;
     align-items: center;
 }
-.not-found-image{
+
+.not-found-image {
     width: 100%;
     height: auto;
 }
 
 
 /*chats*/
+.chat__item {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 0 1px 1px rgb(20 35 52 / 3%), 0 1px 3px rgb(20 35 52 / 4%), 0 2px 7px rgb(20 35 52 / 5%), 0 6px 24px rgb(20 35 52 / 7%);
+    border-radius: 20px;
+    cursor: pointer;
+}
 
+.chat-interlocutor {
+    margin-right: auto;
+}
+
+.chat-image {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+}
+
+/*dialog*/
+.dialog-wrapper {
+    max-width: 1200px;
+    display: flex;
+    margin-left: 200px;
+    margin-top: 20px;
+    border-radius: 10px;
+    flex-direction: column;
+    box-shadow: 0 15px 15px -5px rgba(0, 0, 0, 0.2);
+}
+
+.dialog-header{
+    font-family: Helvetica, sans-serif;
+    border-radius: 10px 10px 0  0;
+}
+.dialog-footer{
+    border-radius: 0  0 10px 10px;
+}
+
+.dialog-header,
+.dialog-footer
+{
+    color: #666;
+    font-family: Helvetica, sans-serif;
+    background-color: #eee;
+    height: 60px;
+    border: 1px solid #cccccc;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dialog-input{
+    color: #666;
+    font-family: Helvetica, sans-serif;
+    height: 40px;
+    border: 0;
+    font-weight: 500;
+    font-size: 20px;
+    outline: none;
+    width: 100%;
+    padding-left:5px;
+    background-color: #ddd;
+}
+
+.dialog-body{
+    min-height: 600px;
+    padding: 10px;
+    color: #414141;
+}

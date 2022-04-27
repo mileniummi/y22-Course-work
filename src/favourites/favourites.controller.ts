@@ -1,4 +1,4 @@
-import { Controller, Get, Render, UseGuards } from "@nestjs/common";
+import { Controller, Get, Param, ParseIntPipe, Put, Render, UseGuards } from "@nestjs/common";
 import { ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import AuthUser from "../auth/auth.user.decorator";
 import { User } from "../user/entities/user.entity";

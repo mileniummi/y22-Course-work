@@ -9,6 +9,7 @@ import {
   Redirect,
   Render,
   UploadedFiles,
+  UseFilters,
   UseGuards,
   UseInterceptors,
 } from "@nestjs/common";
@@ -19,6 +20,7 @@ import {
   ApiBadRequestResponse,
   ApiCookieAuth,
   ApiForbiddenResponse,
+  ApiNotFoundResponse,
   ApiOperation,
   ApiResponse,
   ApiTags,
@@ -28,6 +30,7 @@ import { SearchAdvertisementDto } from "./dto/search-advertisement.dto";
 import { JwtAuthGuard } from "../auth/jwt-auth.guard";
 import AuthUser from "../auth/auth.user.decorator";
 import { User } from "../user/entities/user.entity";
+import { InvalidRouteFilter } from "../filters/invalid.route.filter";
 
 @ApiTags("Advertisements")
 @Controller("advertisements")
@@ -94,6 +97,8 @@ export class AdvertisementsController {
 
   @ApiOperation({ summary: "Get page of current advertisement by id" })
   @ApiResponse({ status: 200, type: [Advertisement] })
+  @ApiNotFoundResponse({ description: "Invalid route" })
+  @UseFilters(InvalidRouteFilter)
   @Get("/:id")
   @Render("pages/flat_page")
   async getOne(@Param("id", ParseIntPipe) id: number) {

@@ -7,7 +7,7 @@ import * as expressHbs from "express-handlebars";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { ValidationPipe } from "@nestjs/common";
 import * as cookieParser from "cookie-parser";
-import { ViewUnAuthFilter } from "./filters/view.unauth.filter";
+import { UnauthFilter } from "./filters/unauth.filter";
 import { PageNotFoundFilter } from "./filters/page_not_found.filter";
 import { ServerLoadingTimeInterceptor } from "./server-loading-time.interceptor";
 
@@ -65,9 +65,9 @@ async function bootstrap() {
     })
   );
 
-  app.useGlobalFilters(new ViewUnAuthFilter());
+  app.useGlobalFilters(new UnauthFilter());
   app.useGlobalInterceptors(new ServerLoadingTimeInterceptor());
-  app.useGlobalFilters(new ViewUnAuthFilter(), new PageNotFoundFilter());
+  app.useGlobalFilters(new UnauthFilter(), new PageNotFoundFilter());
 
   await app.listen(parseInt(process.env.PORT, 10) || 3000);
 }
