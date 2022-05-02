@@ -81,6 +81,12 @@ a {
     background-color: #e5e5e5;
     padding: 10px;
     transition: all 0.5s ease-in-out;
+    display: none;
+    margin-left: 20px;
+}
+.favourites.active{
+    background-color: #e5e5e5;
+    display:inline-block;
 }
 
 .search_result {
@@ -111,8 +117,8 @@ main {
     border: none;
     font-size: 12px;
 }
-
 .page-title {
+    margin-top: 50px;
     margin-left: 150px;
     font-size: 36px;
 }
@@ -334,6 +340,11 @@ select {
 .nav_item_text > svg {
     margin-left: 10px;
     margin-right: 15px;
+    transition: all .3s ease-in-out;
+}
+
+.nav_item_text >svg:hover{
+    fill: #e81818;
 }
 
 
@@ -2289,26 +2300,30 @@ footer {
 .dialog-header,
 .dialog-footer
 {
+    position: relative;
     color: #666;
     font-family: Helvetica, sans-serif;
     background-color: #eee;
     height: 60px;
     border: 1px solid #cccccc;
     padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: inline-block;
+    align-items: center;
+    vertical-align: middle;
 }
 
 .dialog-input{
+    position: absolute;
+    top: 50%;
+    transform: translate(0%, -50%);
     color: #666;
     font-family: Helvetica, sans-serif;
     height: 40px;
     border: 0;
     font-weight: 500;
     font-size: 20px;
+    width: 90%;
     outline: none;
-    width: 100%;
     padding-left:5px;
     background-color: #ddd;
 }
@@ -2318,3 +2333,50 @@ footer {
     padding: 10px;
     color: #414141;
 }
+
+.dialog-message{
+    padding: 10px 30px 10px 10px;
+    width: 500px;
+    margin-top: 20px;
+    position: relative;
+}
+
+.dialog-message__text{
+    font-weight: 400;
+    font-family: 'Radio Canada', sans-serif;
+}
+.dialog-message__time{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: 'Radio Canada', sans-serif;
+}
+
+.dialog-message.author{
+    margin-left: auto;
+    background-color: #ccf1fa;
+    border-radius: 20px 20px 0 20px;
+}
+
+.dialog-message.interlocutor{
+    background-color: #ccf6c4;
+    border-radius: 0 20px 20px 20px;
+}
+
+.dialog-footer__button{
+    height: 40px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: auto;
+    border: 0;
+    background-color: transparent;
+
+}
+.dialog-footer__button > img{
+    width: 50px;
+    height: 30px;
+}
+

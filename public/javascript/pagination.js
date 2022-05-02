@@ -40,15 +40,19 @@ const changeCurrentPage = (operation) => {
   paintCurrentPageItem();
   document.querySelector(".pagination__item.active").click();
 };
+
 document.getElementById("pagination_next").addEventListener("click", () => {
   changeCurrentPage("next");
 });
+
 document.getElementById("pagination_prev").addEventListener("click", () => {
   changeCurrentPage("prev");
 });
+
 if (currentPage === 1) {
   document.getElementById("pagination_prev").style.display = "none";
 }
+
 if (currentPage === totalPages) {
   document.getElementById("pagination_next").style.display = "none";
 }

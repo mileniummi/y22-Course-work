@@ -1,3 +1,13 @@
+{{#if display}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <h1 class="page-title">Избранное</h1>
+    <div class="background_for_results" style="margin-top: 50px;">
+        {{#each advertisements}}
+            {{> flats_list_item adv=this}}
+        {{/each}}
+    </div>
+    <script src="/javascript/slide_show.js"></script>
+{{else}}
 <div class="background_for_favourites">
     <div class="background_for_favourites__page">
         <div class="background_for_favourites__page__container">
@@ -18,3 +28,4 @@
         />
     </div>
 </div>
+{{/if}}

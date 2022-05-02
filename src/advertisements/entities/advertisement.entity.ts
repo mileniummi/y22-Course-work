@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne, ManyToMany } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne, ManyToMany, JoinTable } from "typeorm";
 import { User } from "../../user/entities/user.entity";
 import { ApiProperty } from "@nestjs/swagger";
 
@@ -207,7 +207,4 @@ export class Advertisement {
   })
   @Column("text", { array: true })
   images: string[];
-
-  @ManyToMany(() => User)
-  usersFav: User[];
 }

@@ -13,9 +13,8 @@ export class Message {
   text: string;
 
   @ApiProperty({ type: [User] })
-  @ManyToMany(() => User)
-  @JoinTable()
-  users: User[];
+  @ManyToOne(() => User, (user) => user.messages)
+  author: User;
 
   @ApiProperty({ type: [Chat] })
   @ManyToOne(() => Chat, (chat) => chat.id)

@@ -32,3 +32,24 @@
     </ul>
   </div>
 </div>
+
+<script src="//<a href=" http:="s3.intickets.ru=" intickets.min.js"="" target="_blank">s3.intickets.ru/intickets.min.js"></script>
+
+<script src="s3.intickets.ru/intickets.min.js"></script>
+<link rel="stylesheet" href="http://s3.intickets.ru/intickets.min.css" >
+<script>
+
+    $( document ).ready(function() {
+
+        $('a').each(function (){
+
+            var href = $(this).attr('href');
+
+            if(href.indexOf('#abiframe') !== -1) {
+                $(this).addClass('abiframelnk');
+            }
+
+        });
+
+    });
+</script>

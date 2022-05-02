@@ -22,8 +22,12 @@ export class UserService {
     return await this.userRepository.save(user);
   }
 
+  async getFavAdv(user: User) {
+    return await this.userRepository.findOne({ where: { id: user.id }, relations: ["favAdvs"] });
+  }
+
   async addFavAdv(user: User, advId: number) {
     const { adv } = await this.advertisementService.getOne(advId);
-    return this.userRepository.createQueryBuilder().relation(Advertisement, "favAdvs").of(user).add(adv);
+    return await this.userRepository.createQueryBuilder().relation(User, "favAdvs").of(user).add(adv);
   }
 }

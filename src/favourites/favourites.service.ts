@@ -9,4 +9,8 @@ export class FavouritesService {
   async addFavAdv(user: User, id: number) {
     return await this.userService.addFavAdv(user, id);
   }
+
+  async getFavAdv(user: User) {
+    return await this.userService.getFavAdv(user);
+  }
 }
