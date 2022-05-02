@@ -14,10 +14,6 @@ export class Chat {
   @JoinTable()
   users: User[];
 
-  @ManyToOne(() => Advertisement, (adv) => adv.id)
-  @JoinTable()
-  advertisement: Advertisement;
-
   @OneToMany(() => Message, (message) => message.chat)
   messages: Message[];
 }

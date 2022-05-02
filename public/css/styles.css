@@ -2287,6 +2287,7 @@ footer {
     border-radius: 10px;
     flex-direction: column;
     box-shadow: 0 15px 15px -5px rgba(0, 0, 0, 0.2);
+    position: relative;
 }
 
 .dialog-header{
@@ -2373,10 +2374,24 @@ footer {
     width: auto;
     border: 0;
     background-color: transparent;
-
 }
+
 .dialog-footer__button > img{
     width: 50px;
     height: 30px;
 }
 
+.dialog-body.blurred, .dialog-footer.blurred {
+    opacity: .3;
+}
+
+.no-click {
+    pointer-events: none;
+}
+
+.dialog-message__start-button {
+    opacity: 1;
+    position: absolute;
+    top: 50%;
+    left: 40%;;
+}

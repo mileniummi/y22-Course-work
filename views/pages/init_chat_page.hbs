@@ -1,6 +1,6 @@
 <div class="dialog-wrapper" id="v-app">
-  <div class="dialog-header">${interlocutor}</div>
-  <div class="dialog-body">
+  <div class="dialog-header">Имя собеседника</div>
+  <div class="dialog-body blurred">
     <div class="dialog-message author">
       <div class="dialog-message__text">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab architecto blanditiis consectetur consequuntur
@@ -28,17 +28,13 @@
       </div>
     </div>
   </div>
-  <form class="dialog-footer">
-    <input type="hidden" v-model="user" value="{{user}}" />
+  <button class="dialog-message__start-button"><a href="/messages/new-dialog?advId={{advId}}">Начать диалог</button>
+  <form class="dialog-footer blurred">
     <label>
-      <input v-model="text" class="dialog-input" type="text" name="message" placeholder="Enter your message" />
+      <input v-model="text" class="dialog-input" type="text" name="message" placeholder="Enter your message" readonly />
     </label>
-    <button class="dialog-footer__button" type="submit" @click.prevent="sendMessage()">
+    <button class="dialog-footer__button no-click" type="submit" @click.prevent="sendMessage()">
       <img src="/images/icons/paper-plane-svgrepo-com.svg" alt="send-icon" />
     </button>
   </form>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
-<script src="/socket.io/socket.io.js"></script>
-<script src="/javascript/chat_vue.js"></script>

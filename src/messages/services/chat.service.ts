@@ -11,20 +11,18 @@ export class ChatService {
     @InjectRepository(Chat)
     private chatRepository: Repository<Chat>
   ) {}
-  async getOne(advId: number, userId: number) {
+  async getOne(userId: number) {
     return await this.chatRepository
       .createQueryBuilder("chat")
-      .leftJoinAndSelect("chat.advertisement", "adv")
-      .where("adv.id = :id", { id: advId })
       .leftJoinAndSelect("chat.users", "user")
       .where("user.id = :id", { id: userId })
       .getOne();
   }
-  async create(initiator: User, interlocutor: User, advertisement: Advertisement) {
+  async create(initiator: User, interlocutor: User) {
     if (initiator.id === interlocutor.id) {
       //  Офигевший сам с собой общатся хочет
       throw new ConflictException();
     }
-    return await this.chatRepository.save({ users: [initiator, interlocutor], advertisement });
+    return await this.chatRepository.save({ users: [initiator, interlocutor] });
   }
 }

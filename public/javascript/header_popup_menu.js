@@ -48,7 +48,7 @@ popupUserProfileButton.addEventListener("click", () => {
 
 for (const logoutButton of logoutButtons) {
   logoutButton.addEventListener("click", () => {
-    localStorage.removeItem("username");
+    localStorage.removeItem("user");
   });
 }
 

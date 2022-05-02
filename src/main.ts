@@ -65,7 +65,7 @@ async function bootstrap() {
     })
   );
 
-  app.useGlobalInterceptors(new ServerLoadingTimeInterceptor());
+  //app.useGlobalInterceptors(new ServerLoadingTimeInterceptor());
   app.useGlobalFilters(new UnauthFilter(), new PageNotFoundFilter());
 
   await app.listen(parseInt(process.env.PORT, 10) || 3000);

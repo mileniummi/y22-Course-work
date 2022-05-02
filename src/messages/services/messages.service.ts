@@ -18,15 +18,25 @@ export class MessagesService {
 
   async addMessageToChat(user, advId, chatMessageText: string) {
     const adv = await this.advertisementsService.getWithAuthor(advId);
-    let dbChat = await this.chatService.getOne(advId, user.id);
+    let dbChat = await this.chatService.getOne(advId);
     if (!dbChat) {
       console.log("no chat found");
       //  creating chat
-      dbChat = await this.chatService.create(user, adv.author, adv);
+      dbChat = await this.chatService.create(user, adv.author);
     }
     return await this.create(chatMessageText, dbChat, user);
   }
+
   async create(chatMessageText: string, chat: Chat, author: User) {
     return await this.messageRepository.save({ text: chatMessageText, chat, author });
+  }
+
+  async addChat(advId: number, user: User) {
+    const adv = await this.advertisementsService.getWithAuthor(advId);
+    let dbChat = await this.chatService.getOne(user.id);
+    if (!dbChat) {
+      dbChat = await this.chatService.create(user, adv.author);
+    }
+    return dbChat;
   }
 }

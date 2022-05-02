@@ -13,7 +13,7 @@ import { join } from "path";
 import { UserModule } from "./user/user.module";
 import { ServerLoadingTimeInterceptor } from "./server-loading-time.interceptor";
 import { MessagesGateway } from "./messager.gateway";
-import { MessagesModule } from './messages/messages.module';
+import { MessagesModule } from "./messages/messages.module";
 
 @Module({
   imports: [
@@ -36,13 +36,6 @@ import { MessagesModule } from './messages/messages.module';
     MessagesModule,
   ],
   controllers: [AppController],
-  providers: [
-    AppService,
-    {
-      provide: APP_INTERCEPTOR,
-      useClass: ServerLoadingTimeInterceptor,
-    },
-    MessagesGateway,
-  ],
+  providers: [AppService, MessagesGateway],
 })
 export class AppModule {}
