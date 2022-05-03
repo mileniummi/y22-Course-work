@@ -38,4 +38,14 @@ export class UserService {
       .leftJoinAndSelect("chat.users", "users")
       .getOne();
   }
+
+  async getUserChat(id: number, interlocutorId: number) {
+    return await this.userRepository
+      .createQueryBuilder("user")
+      .where("user.id = :id", { id }) //все чаты юзера
+      .leftJoinAndSelect("user.chats", "chat")
+      .leftJoinAndSelect("chat.users", "chatUsers")
+      .where("chatUsers.id = :id", { id: interlocutorId })
+      .getOne();
+  }
 }

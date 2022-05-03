@@ -12,14 +12,6 @@ export class ChatService {
     private chatRepository: Repository<Chat>
   ) {}
 
-  async getOne(userId: number) {
-    return await this.chatRepository
-      .createQueryBuilder("chat")
-      .leftJoinAndSelect("chat.users", "user")
-      .where("user.id = :id", { id: userId })
-      .getOne();
-  }
-
   async getOneById(id: number) {
     return await this.chatRepository.findOne({ where: { id }, relations: ["users"] });
   }

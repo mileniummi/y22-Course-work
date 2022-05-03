@@ -35,11 +35,4 @@ export class MessagesController {
   async getOneChat(@Param("id") advId, @AuthUser() user: User) {
     return { advId, user };
   }
-
-  // @Post("/dialog/:id")
-  // @UseGuards(JwtAuthGuard)
-  // @Render("pages/dialog")
-  // async addMsgToChat(@Param("id") advId: number, @AuthUser() user: User) {
-  //   return await this.messagesService.addMessageToChat(user,)
-  // }
 }

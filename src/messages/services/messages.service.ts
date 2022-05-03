@@ -28,21 +28,10 @@ export class MessagesService {
             interlocutor = chatUser;
           }
         });
-        const rndInt = Math.floor(Math.random() * 8) + 1;
+        const rndInt = Math.floor(Math.random() * 9) + 1;
         return { id: chat.id, interlocutor, icon: `/images/chat-icons/${rndInt}.jpg` };
       }),
     };
-  }
-
-  async addMessageToChat(user, advId, chatMessageText: string) {
-    const adv = await this.advertisementsService.getWithAuthor(advId);
-    let dbChat = await this.chatService.getOne(advId);
-    if (!dbChat) {
-      console.log("no chat found");
-      //  creating chat
-      dbChat = await this.chatService.create(user, adv.author);
-    }
-    return await this.create(chatMessageText, dbChat, user);
   }
 
   async create(chatMessageText: string, chat: Chat, author) {
@@ -60,8 +49,10 @@ export class MessagesService {
 
   async addChat(advId: number, user: User) {
     const adv = await this.advertisementsService.getWithAuthor(advId);
-    let dbChat = await this.chatService.getOne(user.id);
+    let dbChat = (await this.userService.getUserChat(user.id, adv.author.id)).chats[0];
+    console.log(dbChat);
     if (!dbChat) {
+      console.log("sdfisdfsdi", dbChat);
       dbChat = await this.chatService.create(user, adv.author);
     }
     return dbChat;
