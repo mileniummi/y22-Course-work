@@ -4,14 +4,16 @@ import { JwtAuthGuard } from "../auth/jwt-auth.guard";
 import AuthUser from "../auth/auth.user.decorator";
 import { User } from "../user/entities/user.entity";
 import { Response } from "express";
+import { ChatService } from "./services/chat.service";
 
 @Controller("messages")
 export class MessagesController {
   constructor(private messagesService: MessagesService) {}
   @Get()
-  @Render("pages/messages")
-  getAllChats() {
-    return;
+  @UseGuards(JwtAuthGuard)
+  @Render("pages/chats")
+  async getAllChats(@AuthUser() user: User) {
+    return await this.messagesService.getAllChats(user);
   }
 
   @Get("/dialog")

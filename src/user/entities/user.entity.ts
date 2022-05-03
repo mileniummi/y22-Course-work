@@ -3,6 +3,7 @@ import { Advertisement } from "../../advertisements/entities/advertisement.entit
 import { ApiProperty } from "@nestjs/swagger";
 import { Chat } from "../../messages/entities/chat.entity";
 import { Message } from "../../messages/entities/message.entity";
+import { JoinColumn } from "typeorm/browser";
 
 @Entity()
 export class User {
@@ -51,6 +52,7 @@ export class User {
   @OneToMany(() => Message, (message) => message.author)
   messages: Message[];
 
-  @OneToMany(() => Chat, (chat) => chat.users)
+  @ManyToMany(() => Chat, (chat) => chat.users)
+  @JoinTable()
   chats: Chat[];
 }

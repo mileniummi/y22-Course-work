@@ -1,35 +1,16 @@
 <div class="dialog-wrapper" id="v-app">
   <div class="dialog-header">${interlocutor}</div>
   <div class="dialog-body">
-    <div class="dialog-message author">
+    <div class="dialog-message" v-for="msg of messages" v-bind:class="{ author : msg.author.username === user }">
       <div class="dialog-message__text">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab architecto blanditiis consectetur consequuntur
-        cupiditate, doloremque exercitationem expedita id iure iusto laborum magni natus nesciunt quasi, quos sequi
-        soluta unde veniam.
+        ${msg.text}
       </div>
       <div class="dialog-message__time">
-        19.15
-      </div>
-    </div>
-    <div class="dialog-message interlocutor">
-      <div class="dialog-message__text">
-        Here we go living yards, All around the word seems like paradise
-      </div>
-      <div class="dialog-message__time">
-        19.12
-      </div>
-    </div>
-    <div class="dialog-message author" v-for="msg of messages">
-      <div class="dialog-message__text">
-        ${msg}
-      </div>
-      <div class="dialog-message__time">
-        19.12
+        ${new Date(msg.createdAt).getHours()}:${new Date(msg.createdAt).getMinutes()}
       </div>
     </div>
   </div>
   <form class="dialog-footer">
-    <input type="hidden" v-model="user" value="{{user}}" />
     <label>
       <input v-model="text" class="dialog-input" type="text" name="message" placeholder="Enter your message" />
     </label>
@@ -38,6 +19,9 @@
     </button>
   </form>
 </div>
+<script>
+  const user = '{{user.username}}'; const userId = '{{user.id}}'
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
 <script src="/socket.io/socket.io.js"></script>

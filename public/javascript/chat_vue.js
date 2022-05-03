@@ -1,31 +1,41 @@
 let chatId = `${location.pathname}`.match(/(\d+)/)[0];
-console.log(chatId);
 let app = new Vue({
   delimiters: ["${", "}"],
   el: "#v-app",
   data: {
-    interlocutor: "Aliftina Cherednichenko",
+    interlocutor: "",
     text: "",
-    user: "",
-    messages: ["Versage", "sdfisdjis jdfiwj3r84 439 ur349 ru3489, sdfusfhdus"],
+    messages: [],
     socket: null,
   },
   methods: {
     sendMessage() {
-      console.log(this.user);
-      console.log(`send ${this.text}`);
-      this.socket.emit("msgToServer", this.text);
+      this.socket.emit("msgToServer", { text: this.text, author: user, chatId: chatId });
       this.text = "";
     },
     receiveMessage(msg) {
-      console.log(`resv ${msg}`);
       this.messages.push(msg);
+    },
+    initChat() {
+      this.socket.emit("getChatMessages", { chatId: chatId });
+    },
+    receiveChat(data) {
+      this.messages = data.messages;
+      data.users.map((user_) => {
+        if (user_.username !== user) {
+          this.interlocutor = `${user_.firstName} ${user_.lastName}`;
+        }
+      });
     },
   },
   created() {
     this.socket = io("http://localhost:12345");
+    this.initChat();
     this.socket.on("msgToClient", (msg) => {
       this.receiveMessage(msg);
+    });
+    this.socket.on("chatToClient", (data) => {
+      this.receiveChat(data);
     });
   },
 });

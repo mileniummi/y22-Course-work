@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, OneToMany, ManyToMany, JoinTable, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, OneToMany, ManyToMany, JoinTable, ManyToOne, Column } from "typeorm";
 import { ApiProperty } from "@nestjs/swagger";
 import { User } from "../../user/entities/user.entity";
 import { Message } from "./message.entity";
@@ -10,8 +10,7 @@ export class Chat {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToMany(() => User)
-  @JoinTable()
+  @ManyToMany(() => User, (user) => user.chats)
   users: User[];
 
   @OneToMany(() => Message, (message) => message.chat)

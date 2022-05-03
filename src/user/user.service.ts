@@ -4,7 +4,6 @@ import { Repository } from "typeorm";
 import { User } from "./entities/user.entity";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { AdvertisementsService } from "../advertisements/advertisements.service";
-import { Advertisement } from "../advertisements/entities/advertisement.entity";
 
 @Injectable()
 export class UserService {
@@ -29,5 +28,14 @@ export class UserService {
   async addFavAdv(user: User, advId: number) {
     const { adv } = await this.advertisementService.getOne(advId);
     return await this.userRepository.createQueryBuilder().relation(User, "favAdvs").of(user).add(adv);
+  }
+
+  async getAllChats(id: number) {
+    return await this.userRepository
+      .createQueryBuilder("user")
+      .where("user.id = :id", { id })
+      .leftJoinAndSelect("user.chats", "chat")
+      .leftJoinAndSelect("chat.users", "users")
+      .getOne();
   }
 }

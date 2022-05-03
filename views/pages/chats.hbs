@@ -1,0 +1,12 @@
+<main class="chats-wrapper">
+  {{#each chats}}
+    <div class="chats">
+      <h2 class="chats-title"></h2>
+      <a href="/messages/dialog/{{this.id}}" class="chat__item">
+        <img class="chat-image" src="{{this.icon}}" alt="chat-preview" />
+        <div class="chat-interlocutor">{{this.interlocutor.firstName}} {{this.interlocutor.lastName}}</div>
+        <div class="chat-last-updated-time"> </div>
+      </a>
+    </div>
+  {{/each}}
+</main>

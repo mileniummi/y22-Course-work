@@ -3,9 +3,7 @@
   <div class="dialog-body blurred">
     <div class="dialog-message author">
       <div class="dialog-message__text">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab architecto blanditiis consectetur consequuntur
-        cupiditate, doloremque exercitationem expedita id iure iusto laborum magni natus nesciunt quasi, quos sequi
-        soluta unde veniam.
+        Лучше быть последним среди волков, чем первым среди шакалов.
       </div>
       <div class="dialog-message__time">
         19.15
@@ -13,22 +11,22 @@
     </div>
     <div class="dialog-message interlocutor">
       <div class="dialog-message__text">
-        Here we go living yards, All around the word seems like paradise
+        Демократия — это когда два волка и ягненок голосуют насчет обеденного меню.
       </div>
       <div class="dialog-message__time">
         19.12
       </div>
     </div>
-    <div class="dialog-message author" v-for="msg of messages">
+    <div class="dialog-message author">
       <div class="dialog-message__text">
-        ${msg}
+        Можна кинуть камень в волка,но не волка в камень,ауффф!!!
       </div>
       <div class="dialog-message__time">
         19.12
       </div>
     </div>
   </div>
-  <button class="dialog-message__start-button"><a href="/messages/new-dialog?advId={{advId}}">Начать диалог</button>
+  <button class="dialog-message__start-button"><a href="/messages/new-dialog?advId={{advId}}">Начать диалог</a></button>
   <form class="dialog-footer blurred">
     <label>
       <input v-model="text" class="dialog-input" type="text" name="message" placeholder="Enter your message" readonly />
