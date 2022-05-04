@@ -88,7 +88,22 @@ Also this table contains columns with information about advertisement (such as p
 - **User**  
 *id* column is primary key  
 *favAdvsID* is field with an array with id of advertisements which were added to favourites by user  
-Also this table contains columns with first name, last name, username, password and info about activity of user's account
+Also this table contains columns with first name, last name, username, password and info about activity of user's account  
+
+
+- **Chat**  
+*id* column is primary key
+
+
+- **Message**  
+*id* column is primary key  
+*authorId* is foreign key of table User
+*chatId* is foreign key of table Chat
+
+
+- **User_fav_advs_advertisement**  
+*userId* is foreign key of table User  
+*advertisementId* is foreign key of table Advertisement
 
 ## Описание ER-диаграммы  
 
@@ -99,8 +114,26 @@ Also this table contains columns with first name, last name, username, password 
 *authorId* - внешний ключ этой таблицы, который является первичным ключом таблицы  User  
 Также в этой таблице содержатся колонки с информацией про объявление, такие как: цена, локация, описание и т.д., которые были заполнены пользователем  
 
+
 - **User**  
 *id* - первичный ключ  
 *favAdvsID* - массив с id объявлений, которые пользователь добавил в избранное  
 Также эта таблица содержит колонки с именем, фамилией, именем пользователя, паролем и информацией об активности аккаунта  
 
+
+- **Chat**  
+  *id* - первичный ключ  
+Таблица с чатами
+
+
+- **Message**  
+  *id* - первичынй ключ
+  *authorId* - внешний ключ этой таблицы, который является первичным ключем таблицы User  
+  *chatId* - внешний ключ этой таблицы, который является первичным ключем таблицы Chat  
+Таблица с сообщениями
+
+
+- **User_fav_advs_advertisement**  
+  *userId* - внешний ключ этой таблицы, который является первичным ключем таблицы User  
+  *advertisementId* - внешний ключ этой таблицы, который является первичным ключем таблицы Advertisement  
+Таблица с объявлениями, которые добавлены в избранное
