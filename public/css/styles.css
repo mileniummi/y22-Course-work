@@ -84,9 +84,10 @@ a {
     display: none;
     margin-left: 20px;
 }
-.favourites.active{
+
+.favourites.active {
     background-color: #e5e5e5;
-    display:inline-block;
+    display: inline-block;
 }
 
 .search_result {
@@ -117,6 +118,7 @@ main {
     border: none;
     font-size: 12px;
 }
+
 .page-title {
     margin-top: 50px;
     margin-left: 150px;
@@ -343,7 +345,7 @@ select {
     transition: all .3s ease-in-out;
 }
 
-.nav_item_text >svg:hover{
+.nav_item_text > svg:hover {
     fill: #e81818;
 }
 
@@ -1363,7 +1365,7 @@ footer {
     height: 222px;
 }
 
-.background_for_page_not_found{
+.background_for_page_not_found {
     margin-top: 50px;
 }
 
@@ -1560,7 +1562,8 @@ footer {
     background-color: #298f6b;
     color: white;
 }
-.messages > svg:hover{
+
+.messages > svg:hover {
     fill: #298f6b;
 }
 
@@ -1658,17 +1661,17 @@ footer {
     position: relative;
 }
 
-.dialog-header{
+.dialog-header {
     font-family: Helvetica, sans-serif;
-    border-radius: 10px 10px 0  0;
+    border-radius: 10px 10px 0 0;
 }
-.dialog-footer{
-    border-radius: 0  0 10px 10px;
+
+.dialog-footer {
+    border-radius: 0 0 10px 10px;
 }
 
 .dialog-header,
-.dialog-footer
-{
+.dialog-footer {
     position: relative;
     color: #666;
     font-family: Helvetica, sans-serif;
@@ -1681,7 +1684,7 @@ footer {
     vertical-align: middle;
 }
 
-.dialog-input{
+.dialog-input {
     position: absolute;
     top: 50%;
     transform: translate(0%, -50%);
@@ -1693,17 +1696,17 @@ footer {
     font-size: 20px;
     width: 90%;
     outline: none;
-    padding-left:5px;
+    padding-left: 5px;
     background-color: #ddd;
 }
 
-.dialog-body{
+.dialog-body {
     min-height: 600px;
     padding: 10px;
     color: #414141;
 }
 
-.dialog-message{
+.dialog-message {
     padding: 10px 30px 10px 10px;
     width: 500px;
     margin-top: 20px;
@@ -1712,11 +1715,12 @@ footer {
     border-radius: 0 20px 20px 20px;
 }
 
-.dialog-message__text{
+.dialog-message__text {
     font-weight: 400;
     font-family: 'Radio Canada', sans-serif;
 }
-.dialog-message__time{
+
+.dialog-message__time {
     position: absolute;
     bottom: 10px;
     right: 10px;
@@ -1725,13 +1729,13 @@ footer {
     font-family: 'Radio Canada', sans-serif;
 }
 
-.dialog-message.author{
+.dialog-message.author {
     margin-left: auto;
     background-color: #ccf1fa;
     border-radius: 20px 20px 0 20px;
 }
 
-.dialog-footer__button{
+.dialog-footer__button {
     height: 40px;
     position: absolute;
     top: 10px;
@@ -1741,7 +1745,7 @@ footer {
     background-color: transparent;
 }
 
-.dialog-footer__button > img{
+.dialog-footer__button > img {
     width: 50px;
     height: 30px;
 }
@@ -1762,7 +1766,8 @@ footer {
     width: auto;
     padding: 0;
 }
-.dialog-message__start-button > a{
+
+.dialog-message__start-button > a {
     padding: 10px 18px;
 }
 
