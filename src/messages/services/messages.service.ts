@@ -19,7 +19,7 @@ export class MessagesService {
   ) {}
 
   async getAllChats(user: User) {
-    const { chats } = await this.userService.getAllChats(user.id);
+    const { chats } = await this.userService.getWithAllChats(user.id);
     return {
       chats: chats.map((chat) => {
         let interlocutor;
@@ -49,10 +49,16 @@ export class MessagesService {
 
   async addChat(advId: number, user: User) {
     const adv = await this.advertisementsService.getWithAuthor(advId);
-    let dbChat = (await this.userService.getUserChat(user.id, adv.author.id)).chats[0];
-    console.log(dbChat);
+    const userWithChats = await this.userService.getWithAllChats(user.id);
+    let dbChat;
+    userWithChats.chats.map((chat) => {
+      chat.users.forEach((user) => {
+        if (user.id === adv.author.id) {
+          dbChat = chat;
+        }
+      });
+    });
     if (!dbChat) {
-      console.log("sdfisdfsdi", dbChat);
       dbChat = await this.chatService.create(user, adv.author);
     }
     return dbChat;

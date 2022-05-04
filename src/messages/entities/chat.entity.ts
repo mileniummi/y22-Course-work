@@ -1,8 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, OneToMany, ManyToMany, JoinTable, ManyToOne, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, OneToMany, ManyToMany } from "typeorm";
 import { ApiProperty } from "@nestjs/swagger";
 import { User } from "../../user/entities/user.entity";
 import { Message } from "./message.entity";
-import { Advertisement } from "../../advertisements/entities/advertisement.entity";
 
 @Entity()
 export class Chat {
@@ -10,9 +9,11 @@ export class Chat {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @ApiProperty({ type: [User] })
   @ManyToMany(() => User, (user) => user.chats)
   users: User[];
 
+  @ApiProperty({ type: [Message] })
   @OneToMany(() => Message, (message) => message.chat)
   messages: Message[];
 }

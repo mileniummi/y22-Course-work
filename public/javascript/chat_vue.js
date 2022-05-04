@@ -10,7 +10,7 @@ let app = new Vue({
   },
   methods: {
     sendMessage() {
-      this.socket.emit("msgToServer", { text: this.text, author: user, chatId: chatId });
+      this.socket.emit("msgToServer", { text: this.text, author: user, room: chatId });
       this.text = "";
     },
     receiveMessage(msg) {
@@ -18,6 +18,10 @@ let app = new Vue({
     },
     initChat() {
       this.socket.emit("getChatMessages", { chatId: chatId });
+      this.joinRoom();
+    },
+    joinRoom() {
+      this.socket.emit("joinRoom", chatId);
     },
     receiveChat(data) {
       this.messages = data.messages;
@@ -29,7 +33,7 @@ let app = new Vue({
     },
   },
   created() {
-    this.socket = io("http://localhost:12345");
+    this.socket = io(websocketsPath);
     this.initChat();
     this.socket.on("msgToClient", (msg) => {
       this.receiveMessage(msg);

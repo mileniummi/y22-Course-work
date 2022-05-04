@@ -16,7 +16,15 @@ export class AppController {
   @ApiResponse({ status: 200, description: "success, returns html text" })
   @Get("/page_not_found")
   @Render("pages/page_not_found")
-  fetPageNotFound() {
+  getPageNotFound() {
+    return;
+  }
+
+  @ApiOperation({ summary: "Get page forbidden" })
+  @ApiResponse({ status: 200, description: "success, returns html text" })
+  @Get("/page_forbidden")
+  @Render("pages/page_forbidden")
+  getPageForbidden() {
     return;
   }
 }

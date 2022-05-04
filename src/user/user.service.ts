@@ -30,7 +30,7 @@ export class UserService {
     return await this.userRepository.createQueryBuilder().relation(User, "favAdvs").of(user).add(adv);
   }
 
-  async getAllChats(id: number) {
+  async getWithAllChats(id: number) {
     return await this.userRepository
       .createQueryBuilder("user")
       .where("user.id = :id", { id })
@@ -42,10 +42,10 @@ export class UserService {
   async getUserChat(id: number, interlocutorId: number) {
     return await this.userRepository
       .createQueryBuilder("user")
-      .where("user.id = :id", { id }) //все чаты юзера
+      .where("user.id = :id", { id })
       .leftJoinAndSelect("user.chats", "chat")
-      .leftJoinAndSelect("chat.users", "chatUsers")
-      .where("chatUsers.id = :id", { id: interlocutorId })
+      .leftJoinAndSelect("chat.users", "chatUser") //все чаты юзера
+      .where("chatUser.id = :id", { id: interlocutorId })
       .getOne();
   }
 }

@@ -1363,6 +1363,9 @@ footer {
     height: 222px;
 }
 
+.background_for_page_not_found{
+    margin-top: 50px;
+}
 
 * {
     box-sizing: border-box;

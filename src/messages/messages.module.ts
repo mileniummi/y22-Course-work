@@ -9,7 +9,7 @@ import { YandexStorageService } from "../advertisements/yandex.storage.service";
 import { Advertisement } from "../advertisements/entities/advertisement.entity";
 import { AuthModule } from "../auth/auth.module";
 import { ChatService } from "./services/chat.service";
-import { MessagesGateway } from "./messager.gateway";
+import { MessagesGateway } from "./messages.gateway";
 import { User } from "../user/entities/user.entity";
 import { UserService } from "../user/user.service";
 

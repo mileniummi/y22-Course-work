@@ -10,6 +10,7 @@ import * as cookieParser from "cookie-parser";
 import { UnauthFilter } from "./filters/unauth.filter";
 import { PageNotFoundFilter } from "./filters/page_not_found.filter";
 import { ServerLoadingTimeInterceptor } from "./server-loading-time.interceptor";
+import { ForbiddenFilter } from "./filters/forbidden.filter";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -65,8 +66,8 @@ async function bootstrap() {
     })
   );
 
-  //app.useGlobalInterceptors(new ServerLoadingTimeInterceptor());
-  app.useGlobalFilters(new UnauthFilter(), new PageNotFoundFilter());
+  app.useGlobalInterceptors(new ServerLoadingTimeInterceptor());
+  app.useGlobalFilters(new UnauthFilter(), new PageNotFoundFilter(), new ForbiddenFilter());
 
   await app.listen(parseInt(process.env.PORT, 10) || 3000);
 }

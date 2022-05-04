@@ -9,7 +9,7 @@ export class Message {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ApiProperty({ example: "Hello Word", description: "" })
+  @ApiProperty({ example: "Hello Word", description: "text of message" })
   @Column()
   text: string;
 
@@ -20,11 +20,11 @@ export class Message {
   @CreateDateColumn()
   createdAt: Date;
 
-  @ApiProperty({ type: [User] })
+  @ApiProperty({ type: User })
   @ManyToOne(() => User, (user) => user.messages)
   author: User;
 
-  @ApiProperty({ type: [Chat] })
+  @ApiProperty({ type: Chat })
   @ManyToOne(() => Chat, (chat) => chat.id)
   chat: Chat;
 }
