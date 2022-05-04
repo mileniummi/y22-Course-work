@@ -7,9 +7,10 @@ import * as expressHbs from "express-handlebars";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { ValidationPipe } from "@nestjs/common";
 import * as cookieParser from "cookie-parser";
-import { ViewUnAuthFilter } from "./filters/view.unauth.filter";
+import { UnauthFilter } from "./filters/unauth.filter";
 import { PageNotFoundFilter } from "./filters/page_not_found.filter";
 import { ServerLoadingTimeInterceptor } from "./server-loading-time.interceptor";
+import { ForbiddenFilter } from "./filters/forbidden.filter";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -65,9 +66,8 @@ async function bootstrap() {
     })
   );
 
-  app.useGlobalFilters(new ViewUnAuthFilter());
   app.useGlobalInterceptors(new ServerLoadingTimeInterceptor());
-  app.useGlobalFilters(new ViewUnAuthFilter(), new PageNotFoundFilter());
+  app.useGlobalFilters(new UnauthFilter(), new PageNotFoundFilter(), new ForbiddenFilter());
 
   await app.listen(parseInt(process.env.PORT, 10) || 3000);
 }

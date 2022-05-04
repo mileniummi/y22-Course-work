@@ -46,5 +46,5 @@ export class SearchAdvertisementDto {
   @IsNumber()
   @IsOptional()
   @Transform((prop) => parseInt(prop.value), { toClassOnly: true })
-  readonly limit?: number = 10;
+  readonly limit?: number = 5;
 }

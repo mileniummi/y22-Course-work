@@ -9,18 +9,27 @@ import {
   Redirect,
   Render,
   UploadedFiles,
+  UseFilters,
   UseGuards,
   UseInterceptors,
 } from "@nestjs/common";
 import { AdvertisementsService } from "./advertisements.service";
 import { FilesInterceptor } from "@nestjs/platform-express";
 import { CreateAdvertisementDto } from "./dto/create-advertisement.dto";
-import { ApiBadRequestResponse, ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+import {
+  ApiBadRequestResponse,
+  ApiCookieAuth,
+  ApiNotFoundResponse,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from "@nestjs/swagger";
 import { Advertisement, DealType } from "./entities/advertisement.entity";
 import { SearchAdvertisementDto } from "./dto/search-advertisement.dto";
 import { JwtAuthGuard } from "../auth/jwt-auth.guard";
 import AuthUser from "../auth/auth.user.decorator";
 import { User } from "../user/entities/user.entity";
+import { InvalidRouteFilter } from "../filters/invalid.route.filter";
 
 @ApiTags("Advertisements")
 @Controller("advertisements")
@@ -29,14 +38,22 @@ export class AdvertisementsController {
 
   @ApiOperation({ summary: "Get search advertisements" })
   @ApiResponse({ status: 200, type: [Advertisement] })
+  @Get()
+  @Render("pages/flats_list")
+  async getAdvList(@Query() searchOptions: SearchAdvertisementDto) {
+    return await this.advertisementsService.getAll(searchOptions, searchOptions.page, searchOptions.limit);
+  }
+
+  @ApiOperation({ summary: "Get search advertisements" })
+  @ApiResponse({ status: 200, type: [Advertisement] })
   @Get("/sell")
   @Render("pages/flats_list")
   async getSellAdvList(@Query() searchOptions: SearchAdvertisementDto) {
     return await this.advertisementsService.getAll(
       searchOptions,
-      DealType.SELL,
       searchOptions.page,
-      searchOptions.limit
+      searchOptions.limit,
+      DealType.SELL
     );
   }
 
@@ -47,9 +64,9 @@ export class AdvertisementsController {
   async getRentAdvList(@Query() searchOptions: SearchAdvertisementDto) {
     return await this.advertisementsService.getAll(
       searchOptions,
-      DealType.RENT,
       searchOptions.page,
-      searchOptions.limit
+      searchOptions.limit,
+      DealType.RENT
     );
   }
 
@@ -59,8 +76,13 @@ export class AdvertisementsController {
   @UseGuards(JwtAuthGuard)
   @ApiCookieAuth()
   @Render("pages/my-advertisements")
-  getMyAdvertisements(@AuthUser() user: User) {
-    return { user };
+  async getMyAdvertisements(@AuthUser() user: User) {
+    const advertisements = await this.advertisementsService.getAllByUser(user);
+    return {
+      user,
+      display: advertisements.length,
+      advertisements,
+    };
   }
 
   @ApiOperation({ summary: "Fill in the form and add new advertisement" })
@@ -71,8 +93,12 @@ export class AdvertisementsController {
   @UseGuards(JwtAuthGuard)
   @ApiCookieAuth()
   @Post()
-  async create(@Body() advertisement: CreateAdvertisementDto, @UploadedFiles() photos: Array<Express.Multer.File>) {
-    await this.advertisementsService.create(advertisement, photos);
+  async create(
+    @Body() advertisement: CreateAdvertisementDto,
+    @UploadedFiles() photos: Array<Express.Multer.File>,
+    @AuthUser() user: User
+  ) {
+    await this.advertisementsService.create(advertisement, photos, user);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -87,6 +113,8 @@ export class AdvertisementsController {
 
   @ApiOperation({ summary: "Get page of current advertisement by id" })
   @ApiResponse({ status: 200, type: [Advertisement] })
+  @ApiNotFoundResponse({ description: "Invalid route" })
+  @UseFilters(InvalidRouteFilter)
   @Get("/:id")
   @Render("pages/flat_page")
   async getOne(@Param("id", ParseIntPipe) id: number) {

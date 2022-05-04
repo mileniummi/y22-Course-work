@@ -1,57 +1,41 @@
 <div class="log__page">
-    <div class="log__page__content">
-        <span>Регистрация</span>
-        <form method="post" class="register_page_form">
-            <label>
-                <input
-                        class="register_page_input"
-                        name="lastName"
-                        placeholder="Фамилия"
-                        type="text"
-                />
-            </label>
-            <label>
-                <input
-                        class="register_page_input"
-                        name="firstName"
-                        placeholder="Имя"
-                        type="text"
-                />
-            </label>
-            <label>
-                <input
-                        class="register_page_input"
-                        name="username"
-                        placeholder="Username"
-                        type="text"
-                />
-            </label>
-            <label>
-                <input
-                        class="register_page_input"
-                        name="password"
-                        placeholder="Пароль"
-                        type="password"
-                />
-            </label>
-            <button class="log__page__btn">
-                <span class="log__page__txt">Продолжить</span>
-            </button>
-        </form>
-        <a>Войти через соц. сети</a>
-        <ul class="log__page__social">
-            <li class="social_item">
-                <a href="#"><img alt="vk" src="/images/log_images/vk.svg"/></a>
-            </li>
-            <li class="social_item">
-                <a href="#"><img
-                        alt="telegram"
-                        src="/images/log_images/telegram.svg"
-                /></a>
-            </li>
-            <li class="social_item">
-                <a href="#"><img alt="facebook" src="/images/log_images/fb.svg"/></a>
-            </li>
-        </ul>
-    </div>
+  <div class="log__page__content">
+    <span>Регистрация</span>
+    <form method="post" class="register_page_form">
+      <label>
+        <input class="register_page_input" name="lastName" placeholder="Фамилия" type="text" required minlength="2" />
+      </label>
+      <label>
+        <input class="register_page_input" name="firstName" placeholder="Имя" type="text" required minlength="2" />
+      </label>
+      <label>
+        <input class="register_page_input" name="username" placeholder="Username" type="text" required minlength="3" />
+      </label>
+      <label>
+        <input
+          class="register_page_input"
+          name="password"
+          placeholder="Пароль"
+          type="password"
+          required
+          minlength="6"
+        />
+      </label>
+      <button class="log__page__btn">
+        <span class="log__page__txt">Продолжить</span>
+      </button>
+    </form>
+    <a>Войти через соц. сети</a>
+    <ul class="log__page__social">
+      <li class="social_item">
+        <a href="#"><img alt="vk" src="/images/log_images/vk.svg" /></a>
+      </li>
+      <li class="social_item">
+        <a href="#"><img alt="telegram" src="/images/log_images/telegram.svg" /></a>
+      </li>
+      <li class="social_item">
+        <a href="#"><img alt="facebook" src="/images/log_images/fb.svg" /></a>
+      </li>
+    </ul>
+  </div>
 </div>

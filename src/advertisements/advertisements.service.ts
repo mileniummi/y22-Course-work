@@ -6,6 +6,7 @@ import { CreateAdvertisementDto } from "./dto/create-advertisement.dto";
 import { SearchAdvertisementDto } from "./dto/search-advertisement.dto";
 import { YandexStorageService } from "./yandex.storage.service";
 import { paginate } from "nestjs-typeorm-paginate";
+import { User } from "../user/entities/user.entity";
 
 @Injectable()
 export class AdvertisementsService {
@@ -15,7 +16,8 @@ export class AdvertisementsService {
     private yandexStorageService: YandexStorageService
   ) {}
 
-  async getAll(searchOptions: SearchAdvertisementDto, dealType: DealType, page, limit) {
+  async getAll(searchOptions: SearchAdvertisementDto, page: number, limit: number, dealType?: DealType) {
+    let text;
     let advertisements;
     if (Object.keys(searchOptions).length > 2) {
       const query = this.advertisementsRepository.createQueryBuilder().where({
@@ -29,27 +31,22 @@ export class AdvertisementsService {
         location: Like(`%${searchOptions.address}%`),
       });
       advertisements = await paginate(query, { page, limit });
-      return {
-        user: { login: "user" },
-        totalPages: advertisements.meta.totalPages,
-        currentPage: advertisements.meta.currentPage,
-        advertisements: advertisements.items,
-        amountOfRoomsText: searchOptions.roomCount ? searchOptions.roomCount + "-комнатную" : "",
-        dealTypeText: searchOptions.dealType === DealType.SELL ? "Купить" : "Арендовать",
-      };
+      text = `${searchOptions.dealType === DealType.SELL ? "Купить " : "Арендовать "} ${
+        searchOptions.roomCount ? searchOptions.roomCount + "-комнатную" : ""
+      } квартиру`;
     } else {
       advertisements = await paginate(this.advertisementsRepository.createQueryBuilder().where({ dealType }), {
         page,
         limit,
       });
-      return {
-        totalPages: advertisements.meta.totalPages,
-        currentPage: advertisements.meta.currentPage,
-        advertisements: advertisements.items,
-        amountOfRoomsText: "",
-        dealTypeText: "",
-      };
+      text = dealType === DealType.SELL ? "Купить квартиру" : "Арендовать квартиру";
     }
+    const { totalPages, currentPage } = advertisements.meta;
+    return { advertisements: advertisements.items, totalPages, currentPage, text };
+  }
+
+  async getAllByUser(user: User) {
+    return await this.advertisementsRepository.find({ where: { author: user.id } });
   }
 
   async getOne(id) {
@@ -60,14 +57,17 @@ export class AdvertisementsService {
       throw new NotFoundException();
     }
     return {
-      user: { login: "user" },
       adv: { ...advertisement },
     };
   }
 
-  async create(advertisement: CreateAdvertisementDto, images: Array<Express.Multer.File>) {
+  async getWithAuthor(id) {
+    return await this.advertisementsRepository.findOne({ where: { id }, relations: ["author"] });
+  }
+
+  async create(advertisement: CreateAdvertisementDto, images: Array<Express.Multer.File>, user: User) {
     const imagesLinks = [];
-    if (images) {
+    if (images && images.length > 0) {
       for (const image of images) {
         const imageLink = await this.yandexStorageService.save(image.buffer);
         if (imageLink) {
@@ -79,6 +79,7 @@ export class AdvertisementsService {
     }
     await this.advertisementsRepository.save({
       ...advertisement,
+      author: user,
       images: imagesLinks,
     });
   }

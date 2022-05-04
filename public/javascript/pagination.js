@@ -14,7 +14,11 @@ const paintCurrentPageItem = () => {
     if (href.includes("page=")) {
       href = href.replace(/page=[0-9]+/, `page=${item.innerHTML}`);
     } else {
-      href = href.concat(`&page=${item.innerHTML}`);
+      if (href.includes("?")) {
+        href = href.concat(`&page=${item.innerHTML}`);
+      } else {
+        href = href.concat(`?page=${item.innerHTML}`);
+      }
     }
     item.href = href;
   }
@@ -36,15 +40,19 @@ const changeCurrentPage = (operation) => {
   paintCurrentPageItem();
   document.querySelector(".pagination__item.active").click();
 };
+
 document.getElementById("pagination_next").addEventListener("click", () => {
   changeCurrentPage("next");
 });
+
 document.getElementById("pagination_prev").addEventListener("click", () => {
   changeCurrentPage("prev");
 });
+
 if (currentPage === 1) {
   document.getElementById("pagination_prev").style.display = "none";
 }
+
 if (currentPage === totalPages) {
   document.getElementById("pagination_next").style.display = "none";
 }

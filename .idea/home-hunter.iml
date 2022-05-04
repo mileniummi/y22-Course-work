@@ -10,5 +10,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="bundle" level="application" />
+    <orderEntry type="library" name="axios" level="application" />
+    <orderEntry type="library" name="vue" level="application" />
   </component>
 </module>

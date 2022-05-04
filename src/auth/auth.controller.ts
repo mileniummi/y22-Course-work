@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Redirect, Render, Res, UseGuards } from "@nestjs/common";
+import { Body, Controller, Get, Post, Redirect, Render, Res, UseFilters, UseGuards } from "@nestjs/common";
 import {
   ApiBadRequestResponse,
   ApiCookieAuth,
@@ -12,6 +12,7 @@ import { LoginUserDto } from "../user/dto/login-user.dto";
 import { AuthService } from "./auth.service";
 import { Response } from "express";
 import { JwtAuthGuard } from "./jwt-auth.guard";
+import { BadRequestFilter } from "../filters/bad.request.filter";
 
 @ApiTags("Authorization")
 @Controller("auth")
@@ -40,6 +41,7 @@ export class AuthController {
     status: 401,
     description: "Username or password not correct",
   })
+  @UseFilters(new BadRequestFilter("login"))
   @Redirect("/advertisements/my")
   @Post("/login")
   async login(@Body() credentials: LoginUserDto, @Res({ passthrough: true }) response: Response) {
@@ -60,6 +62,7 @@ export class AuthController {
 
   @UseGuards(JwtAuthGuard)
   @ApiCookieAuth()
+  @ApiOperation({ summary: "logout" })
   @Redirect("login")
   @Get("logout")
   async logout(@Res({ passthrough: true }) response: Response) {
