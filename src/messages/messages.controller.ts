@@ -46,6 +46,6 @@ export class MessagesController {
   @ApiOkResponse({ description: "success, returns html text" })
   @Render("pages/dialog")
   async getOneChat(@Param("id", ParseIntPipe) advId: number, @AuthUser() user: User) {
-    return { advId, user, websocketsPath: `${process.env.DOMAIN}:${process.env.PORT}` };
+    return { advId, user, websocketsPath: `${process.env.DOMAIN}` };
   }
 }
