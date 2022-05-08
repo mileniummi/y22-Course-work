@@ -32,7 +32,7 @@ export class AdvertisementsService {
       });
       advertisements = await paginate(query, { page, limit });
       text = `${searchOptions.dealType === DealType.SELL ? "Купить " : "Арендовать "} ${
-        searchOptions.roomCount ? searchOptions.roomCount + "-комнатную" : ""
+        searchOptions.roomCount ? (searchOptions.roomCount >= 4 ? "" : "-комнатную") : ""
       } квартиру`;
     } else {
       advertisements = await paginate(this.advertisementsRepository.createQueryBuilder().where({ dealType }), {
