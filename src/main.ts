@@ -11,6 +11,8 @@ import { UnauthFilter } from "./filters/unauth.filter";
 import { PageNotFoundFilter } from "./filters/page_not_found.filter";
 import { ServerLoadingTimeInterceptor } from "./server-loading-time.interceptor";
 import { ForbiddenFilter } from "./filters/forbidden.filter";
+import * as requestIp from "request-ip";
+import { TooMayRequestsInterceptor } from "./too-may-requests.interceptor";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -51,10 +53,8 @@ async function bootstrap() {
       extname: "hbs",
       helpers: {
         math: function (left_value, operation, right_value) {
-          left_value = parseInt(left_value);
-          right_value = parseInt(right_value);
           return {
-            "+": left_value + right_value,
+            "+": parseInt(left_value) + parseInt(right_value),
           }[operation];
         },
         times: function (n, block) {
@@ -66,7 +66,8 @@ async function bootstrap() {
     })
   );
 
-  app.useGlobalInterceptors(new ServerLoadingTimeInterceptor());
+  app.useGlobalInterceptors(new ServerLoadingTimeInterceptor(), new TooMayRequestsInterceptor());
+  app.use(requestIp.mw());
   app.useGlobalFilters(new UnauthFilter(), new PageNotFoundFilter(), new ForbiddenFilter());
 
   await app.listen(parseInt(process.env.PORT, 10) || 3000);
