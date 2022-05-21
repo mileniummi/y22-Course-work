@@ -12,7 +12,6 @@ import { PageNotFoundFilter } from "./filters/page_not_found.filter";
 import { ServerLoadingTimeInterceptor } from "./interceptors/server-loading-time.interceptor";
 import { ForbiddenFilter } from "./filters/forbidden.filter";
 import * as requestIp from "request-ip";
-import { TooManyRequestsMiddleware } from "./middlewares/too-many-requests.middleware";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -65,7 +64,7 @@ async function bootstrap() {
     })
   );
 
-  app.useGlobalInterceptors(new ServerLoadingTimeInterceptor(), new TooMayRequestsInterceptor());
+  app.useGlobalInterceptors(new ServerLoadingTimeInterceptor());
   app.use(requestIp.mw());
   app.useGlobalFilters(new UnauthFilter(), new PageNotFoundFilter(), new ForbiddenFilter());
 
