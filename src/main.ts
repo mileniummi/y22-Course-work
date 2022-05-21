@@ -66,7 +66,7 @@ async function bootstrap() {
     })
   );
 
-  app.useGlobalInterceptors(new ServerLoadingTimeInterceptor(), new TooMayRequestsInterceptor());
+  app.useGlobalInterceptors(new ServerLoadingTimeInterceptor());
   app.use(requestIp.mw());
   app.useGlobalFilters(new UnauthFilter(), new PageNotFoundFilter(), new ForbiddenFilter());
 
