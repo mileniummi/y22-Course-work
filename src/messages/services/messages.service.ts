@@ -28,7 +28,7 @@ export class MessagesService {
             interlocutor = chatUser;
           }
         });
-        const rndInt = Math.floor(Math.random() * 9) + 1;
+        const rndInt = Math.floor(Math.random() * 15) + 1;
         return { id: chat.id, interlocutor, icon: `/images/chat-icons/${rndInt}.jpg` };
       }),
     };
