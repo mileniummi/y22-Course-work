@@ -76,7 +76,7 @@ Nest is [MIT licensed](LICENSE).
 
 ## Description of ER diagram  
 
-We have two tables in the database: advertisement and user. You can see the diagram in the root of repository (ER-diagram.png)
+We have five tables in the database: Advertisement, User, Chat, Message and User_fav_advs_advertisement.. You can see the diagram in the root of repository (ER-diagram.png)
 ![ER-diagram.png](ER-diagram.png)
 
 - **Advertisement**  
@@ -107,7 +107,7 @@ Also this table contains columns with first name, last name, username, password 
 
 ## Описание ER-диаграммы  
 
-В базе данных есть две таблицы: advertisement и user. Саму таблицу можно увидеть в корне репозитория (ER-diagram.png)
+В базе данных есть пять таблиц: Advertisement, User, Chat, Message и User_fav_advs_advertisement. Саму таблицу можно увидеть в корне репозитория (ER-diagram.png)
 
 - **Advertisement**  
 *id* - первичный ключ   

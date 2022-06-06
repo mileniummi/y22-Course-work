@@ -1,4 +1,4 @@
-import { Module } from "@nestjs/common";
+import { MiddlewareConsumer, Module, NestModule, RequestMethod } from "@nestjs/common";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { ConfigModule } from "@nestjs/config";
@@ -11,6 +11,7 @@ import { getConnectionOptions } from "typeorm";
 import { join } from "path";
 import { UserModule } from "./user/user.module";
 import { MessagesModule } from "./messages/messages.module";
+import { TooManyRequestsMiddleware } from "./middlewares/too-many-requests.middleware";
 
 @Module({
   imports: [
@@ -35,4 +36,11 @@ import { MessagesModule } from "./messages/messages.module";
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer): any {
+    consumer.apply(TooManyRequestsMiddleware).forRoutes({
+      path: "*",
+      method: RequestMethod.ALL,
+    });
+  }
+}
