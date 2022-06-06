@@ -4,5 +4,16 @@
   "autoLoadEntities": true,
   "ssl": {
     "rejectUnauthorized": false
+  },
+  "migrations": [
+    "database/migrations/**/*.ts"
+  ],
+  "subscribers": [
+    "src/subscriber/**/*.ts"
+  ],
+  "cli": {
+    "entitiesDir": "src/entity",
+    "migrationsDir": "database/migrations",
+    "subscribersDir": "src/subscriber"
   }
 }

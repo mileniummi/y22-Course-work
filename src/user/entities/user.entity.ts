@@ -1,6 +1,9 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToMany, JoinTable } from "typeorm";
 import { Advertisement } from "../../advertisements/entities/advertisement.entity";
 import { ApiProperty } from "@nestjs/swagger";
+import { Chat } from "../../messages/entities/chat.entity";
+import { Message } from "../../messages/entities/message.entity";
+import { JoinColumn } from "typeorm/browser";
 
 @Entity()
 export class User {
@@ -36,9 +39,20 @@ export class User {
   advertisements: Advertisement[];
 
   @ApiProperty({
-    example: [1, 2, 6],
-    description: "All favourite advertisements id list",
+    description: "All favourite advertisements list",
   })
-  @Column("int", { array: true, nullable: true })
-  favAdvsID: number[];
+  @ManyToMany(() => Advertisement)
+  @JoinTable()
+  favAdvs: Advertisement[];
+
+  @ApiProperty({
+    example: [Advertisement],
+    description: "All user advertisements",
+  })
+  @OneToMany(() => Message, (message) => message.author)
+  messages: Message[];
+
+  @ManyToMany(() => Chat, (chat) => chat.users)
+  @JoinTable()
+  chats: Chat[];
 }
